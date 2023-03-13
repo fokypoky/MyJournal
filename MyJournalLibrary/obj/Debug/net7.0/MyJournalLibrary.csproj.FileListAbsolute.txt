@@ -1,0 +1,14 @@
+F:\RiderProjects\MyJournal\MyJournalLibrary\bin\Debug\net7.0\MyJournalLibrary.deps.json
+F:\RiderProjects\MyJournal\MyJournalLibrary\bin\Debug\net7.0\MyJournalLibrary.dll
+F:\RiderProjects\MyJournal\MyJournalLibrary\bin\Debug\net7.0\MyJournalLibrary.pdb
+F:\RiderProjects\MyJournal\MyJournalLibrary\obj\Debug\net7.0\MyJournalLibrary.csproj.AssemblyReference.cache
+F:\RiderProjects\MyJournal\MyJournalLibrary\obj\Debug\net7.0\MyJournalLibrary.GeneratedMSBuildEditorConfig.editorconfig
+F:\RiderProjects\MyJournal\MyJournalLibrary\obj\Debug\net7.0\MyJournalLibrary.AssemblyInfoInputs.cache
+F:\RiderProjects\MyJournal\MyJournalLibrary\obj\Debug\net7.0\MyJournalLibrary.AssemblyInfo.cs
+F:\RiderProjects\MyJournal\MyJournalLibrary\obj\Debug\net7.0\MyJournalLibrary.csproj.CoreCompileInputs.cache
+F:\RiderProjects\MyJournal\MyJournalLibrary\obj\Debug\net7.0\MyJournalLibrary.dll
+F:\RiderProjects\MyJournal\MyJournalLibrary\obj\Debug\net7.0\refint\MyJournalLibrary.dll
+F:\RiderProjects\MyJournal\MyJournalLibrary\obj\Debug\net7.0\MyJournalLibrary.pdb
+F:\RiderProjects\MyJournal\MyJournalLibrary\obj\Debug\net7.0\ref\MyJournalLibrary.dll
+F:\RiderProjects\MyJournal\MyJournalLibrary\bin\Debug\net7.0\MyJournalLibrary.runtimeconfig.json
+F:\RiderProjects\MyJournal\MyJournalLibrary\obj\Debug\net7.0\MyJournalLibrary.genruntimeconfig.cache
