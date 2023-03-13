@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyJournal", "MyJournal\MyJournal.csproj", "{1CF9C4A0-8789-4F3F-870A-0069BA7B3DD7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatServer", "ChatServer\ChatServer.csproj", "{E7294A65-CAC5-4159-A841-D0BAEFEA82C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyJournalAdmin", "MyJournalAdmin\MyJournalAdmin.csproj", "{67C0A6CC-C19B-4531-84BC-168003DE8481}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1CF9C4A0-8789-4F3F-870A-0069BA7B3DD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CF9C4A0-8789-4F3F-870A-0069BA7B3DD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CF9C4A0-8789-4F3F-870A-0069BA7B3DD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CF9C4A0-8789-4F3F-870A-0069BA7B3DD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7294A65-CAC5-4159-A841-D0BAEFEA82C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7294A65-CAC5-4159-A841-D0BAEFEA82C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7294A65-CAC5-4159-A841-D0BAEFEA82C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7294A65-CAC5-4159-A841-D0BAEFEA82C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67C0A6CC-C19B-4531-84BC-168003DE8481}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67C0A6CC-C19B-4531-84BC-168003DE8481}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67C0A6CC-C19B-4531-84BC-168003DE8481}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67C0A6CC-C19B-4531-84BC-168003DE8481}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
