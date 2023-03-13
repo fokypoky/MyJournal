@@ -2743,6 +2743,19 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
+      },
+      "MyJournalLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "8.0.0-preview.1"
+        },
+        "compile": {
+          "bin/placeholder/MyJournalLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MyJournalLibrary.dll": {}
+        }
       }
     }
   },
@@ -8349,12 +8362,18 @@
         "system.xml.xpath.xdocument.4.0.1.nupkg.sha512",
         "system.xml.xpath.xdocument.nuspec"
       ]
+    },
+    "MyJournalLibrary/1.0.0": {
+      "type": "project",
+      "path": "../MyJournalLibrary/MyJournalLibrary.csproj",
+      "msbuildProject": "../MyJournalLibrary/MyJournalLibrary.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0-windows7.0": [
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.0-preview.1.23111.4",
       "MvvmLight >= 5.4.1.1",
+      "MyJournalLibrary >= 1.0.0",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 8.0.0-preview.1"
     ]
   },
@@ -8364,11 +8383,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\MyJournal\\MyJournal.csproj",
+      "projectUniqueName": "F:\\RiderProjects\\MyJournal\\MyJournal\\MyJournal.csproj",
       "projectName": "MyJournal",
-      "projectPath": "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\MyJournal\\MyJournal.csproj",
+      "projectPath": "F:\\RiderProjects\\MyJournal\\MyJournal\\MyJournal.csproj",
       "packagesPath": "C:\\Users\\fokypoky\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\MyJournal\\obj\\",
+      "outputPath": "F:\\RiderProjects\\MyJournal\\MyJournal\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\fokypoky\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -8384,7 +8403,11 @@
       "frameworks": {
         "net7.0-windows7.0": {
           "targetAlias": "net7.0-windows",
-          "projectReferences": {}
+          "projectReferences": {
+            "F:\\RiderProjects\\MyJournal\\MyJournalLibrary\\MyJournalLibrary.csproj": {
+              "projectPath": "F:\\RiderProjects\\MyJournal\\MyJournalLibrary\\MyJournalLibrary.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -8431,7 +8454,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   },

@@ -1,9 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MyJournalLibrary.EFModels;
+using MyJournalLibrary.EFModelsConfiguration;
 
 namespace MyJournal.Models;
 
 public class ApplicationContext : DbContext
 {
+    public DbSet<Auditory> Auditories { get; set; }
+    public DbSet<Class> Classes { get; set; }
 
     public static string ConnectionString =
         "Host=localhost;Port=5432;Username=postgres;Password=toor;Database=MyJournalDB";
@@ -15,6 +19,7 @@ public class ApplicationContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        base.OnModelCreating(modelBuilder);
+        modelBuilder.ApplyConfiguration(new AuditoryConfiguration());
+        modelBuilder.ApplyConfiguration(new ClassConfiguration());
     }
 }

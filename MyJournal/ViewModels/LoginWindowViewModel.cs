@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using MyJournal.Models;
 using MyJournal.ViewModels.Base;
 using MyJournal.Views;
 
@@ -25,13 +26,14 @@ public class LoginWindowViewModel : ViewModel
 
     public ICommand LoginButtonClick
     {
-        get => new RelayCommand(OnLoginButtonClick);
+        get => new RelayCommand(OnLoginButtonClick, CanLoginButtonClicked);
     }
     private void OnLoginButtonClick()
     {
         TeacherWindow window = new TeacherWindow();
         window.Show();
     }
+    private bool CanLoginButtonClicked() => (new ApplicationContext()).Database.CanConnect();
 
     public ICommand ConnectionSettingsButtonClick
     {

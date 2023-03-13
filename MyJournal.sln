@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatServer", "ChatServer\Ch
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyJournalAdmin", "MyJournalAdmin\MyJournalAdmin.csproj", "{67C0A6CC-C19B-4531-84BC-168003DE8481}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyJournalLibrary", "MyJournalLibrary\MyJournalLibrary.csproj", "{813EAD83-5768-4CDB-B9D8-BDE2EE238171}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{67C0A6CC-C19B-4531-84BC-168003DE8481}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67C0A6CC-C19B-4531-84BC-168003DE8481}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67C0A6CC-C19B-4531-84BC-168003DE8481}.Release|Any CPU.Build.0 = Release|Any CPU
+		{813EAD83-5768-4CDB-B9D8-BDE2EE238171}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{813EAD83-5768-4CDB-B9D8-BDE2EE238171}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{813EAD83-5768-4CDB-B9D8-BDE2EE238171}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{813EAD83-5768-4CDB-B9D8-BDE2EE238171}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -10,6 +10,7 @@
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Tools": "8.0.0-preview.1.23111.4",
           "MvvmLight": "5.4.1.1",
+          "MyJournalLibrary": "1.0.0",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "8.0.0-preview.1"
         },
         "runtime": {
@@ -1621,6 +1622,14 @@
           "System.Xml.XDocument": "4.0.11",
           "System.Xml.XPath": "4.0.1"
         }
+      },
+      "MyJournalLibrary/1.0.0": {
+        "dependencies": {
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "8.0.0-preview.1"
+        },
+        "runtime": {
+          "MyJournalLibrary.dll": {}
+        }
       }
     }
   },
@@ -2581,6 +2590,11 @@
       "sha512": "sha512-FLhdYJx4331oGovQypQ8JIw2kEmNzCsjVOVYY/16kZTUoquZG85oVn7yUhBE2OZt1yGPSXAL0HTEfzjlbNpM7Q==",
       "path": "system.xml.xpath.xdocument/4.0.1",
       "hashPath": "system.xml.xpath.xdocument.4.0.1.nupkg.sha512"
+    },
+    "MyJournalLibrary/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }
