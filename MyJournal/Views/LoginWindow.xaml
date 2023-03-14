@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MyJournal"
         xmlns:vmodel="clr-namespace:MyJournal.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="550" Width="350"
+        Title="Login" Height="550" Width="350"
         ResizeMode="NoResize">
     <Window.DataContext>
         <vmodel:LoginWindowViewModel/>
