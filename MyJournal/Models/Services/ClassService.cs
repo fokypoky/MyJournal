@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Microsoft.EntityFrameworkCore;
 using MyJournal.Models.Repositories;
+using MyJournal.Models.Repositories.EntityRepositories;
 using MyJournal.Models.Repositories.Interfaces;
 using MyJournalLibrary.Entities;
 
@@ -8,11 +10,11 @@ namespace MyJournal.Models.Services;
 
 public class ClassService
 {
-    private readonly IEntityRepository<Class> _repository;
-
+    private readonly ClassRepository _repository;
+    
     public ClassService(DbContext context)
     {
-        _repository = new EntityRepository<Class>(context);
+        _repository = new ClassRepository(context);
     }
 
     public Class GetById(int id) => _repository.GetById(id);
@@ -21,4 +23,6 @@ public class ClassService
     public void Delete(Class _class) => _repository.Delete(_class);
     public void DeleteRange(IEnumerable<Class> classes) => _repository.DeleteRange(classes);
     public void Update(Class _class) => _repository.Update(_class);
+    public ICollection<Class> GetClassesByEmployee(Employee employee) => _repository.GetClassesByEmployee(employee);
+
 }

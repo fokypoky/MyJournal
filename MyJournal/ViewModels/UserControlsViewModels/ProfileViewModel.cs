@@ -1,15 +1,29 @@
-﻿using System.Windows.Input;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using MyJournal.Models;
+using MyJournal.Models.Services;
 using MyJournal.ViewModels.Base;
+using MyJournalLibrary.Entities;
 
 namespace MyJournal.ViewModels.ControlsViewModels;
 
 public class ProfileViewModel : ViewModel
 {
-    private string _personName = "Иванов Иван Иванович";
+    private string _personName;
     private string _email;
     private string _phone;
     private string _password;
+
+    private ICollection<Class> _classes;
+
+    public ICollection<Class> Classes
+    {
+        get => _classes;
+        set => SetField(ref _classes, value);
+    }
 
     public string Email
     {
@@ -31,18 +45,21 @@ public class ProfileViewModel : ViewModel
     public string PersonName
     {
         get => _personName;
+        set => SetField(ref _personName, value);
     }
 
-    public ICommand ChangeButtonClick
+    public ProfileViewModel()
     {
-        get
-        {
-            return new RelayCommand(OnChangeButtonClick);
-        }
-    }
+        var contacts = (new ContactService(new ApplicationContext()).GetById(ApplicationData.UserId));
+        var employee = (new EmployeeService(new ApplicationContext())).GetByContacts(contacts);
 
-    private void OnChangeButtonClick()
-    {
+        PersonName = $"{contacts?.Surname} {contacts?.Name} {contacts?.Midname}";
+        Email = contacts.Email;
+        Phone = contacts.PhoneNumber;
+        Password = contacts.Password;
         
+        //не работает
+        Classes = (new ClassService(new ApplicationContext())).GetClassesByEmployee(employee);
+        MessageBox.Show(Classes.Count.ToString());
     }
 }

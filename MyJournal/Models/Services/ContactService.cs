@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using MyJournal.Models.Repositories;
+using MyJournal.Models.Repositories.EntityRepositories;
 using MyJournal.Models.Repositories.Interfaces;
 using MyJournalLibrary.Entities;
 
@@ -8,11 +9,11 @@ namespace MyJournal.Models.Services;
 
 public class ContactService
 {
-    private IEntityRepository<Contact> _repository;
+    private readonly ContactRepository _repository;
 
     public ContactService(DbContext context)
     {
-        _repository = new EntityRepository<Contact>(context);
+        _repository = new ContactRepository(context);
     }
 
     public Contact GetById(int id) => _repository.GetById(id);

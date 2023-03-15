@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using MyJournal.Models.Repositories;
+using MyJournal.Models.Repositories.EntityRepositories;
 using MyJournal.Models.Repositories.Interfaces;
 using MyJournalLibrary.Entities;
 
@@ -8,11 +9,11 @@ namespace MyJournal.Models.Services;
 
 public class TaskService
 {
-    private readonly IEntityRepository<Task> _repository;
+    private readonly TaskRepository _repository;
 
     public TaskService(DbContext context)
     {
-        _repository = new EntityRepository<Task>(context);
+        _repository = new TaskRepository(context);
     }
 
     public Task GetById(int id) => _repository.GetById(id);

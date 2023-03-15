@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using MyJournal.Models.Repositories;
+using MyJournal.Models.Repositories.EntityRepositories;
 using MyJournal.Models.Repositories.Interfaces;
 using MyJournalLibrary.Entities;
 
@@ -8,11 +9,11 @@ namespace MyJournal.Models.Services;
 
 public class AuditoryService
 {
-    private readonly IEntityRepository<Auditory> _repository;
+    private readonly AuditoryRepository _repository;
 
     public AuditoryService(DbContext context)
     {
-        _repository = new EntityRepository<Auditory>(context);
+        _repository = new AuditoryRepository(context);
     }
 
     public Auditory GetById(int id) => _repository.GetById(id);

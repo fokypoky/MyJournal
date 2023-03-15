@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using MyJournal.Models.Repositories;
+using MyJournal.Models.Repositories.EntityRepositories;
 using MyJournal.Models.Repositories.Interfaces;
 using MyJournalLibrary.Entities;
 
@@ -8,11 +9,11 @@ namespace MyJournal.Models.Services;
 
 public class MarkService
 {
-    private readonly IEntityRepository<Mark> _repository;
+    private readonly MarkRepository _repository;
 
     public MarkService(DbContext context)
     {
-        _repository = new EntityRepository<Mark>(context);
+        _repository = new MarkRepository(context);
     }
 
     public Mark GetById(int id) => _repository.GetById(id);
