@@ -40,6 +40,11 @@
       </PackageReference>
       <PackageReference Include="MvvmLight" Version="5.4.1.1" />
       <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0-preview.1" />
+      <PackageReference Include="System.Runtime.Serialization.Json" Version="4.3.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\MyJournalLibrary\MyJournalLibrary.csproj" />
     </ItemGroup>
 
 </Project>

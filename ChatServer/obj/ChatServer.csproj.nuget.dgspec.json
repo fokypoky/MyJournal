@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\ChatServer\\ChatServer.csproj": {}
+    "F:\\RiderProjects\\MyJournal\\ChatServer\\ChatServer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\ChatServer\\ChatServer.csproj": {
+    "F:\\RiderProjects\\MyJournal\\ChatServer\\ChatServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\ChatServer\\ChatServer.csproj",
+        "projectUniqueName": "F:\\RiderProjects\\MyJournal\\ChatServer\\ChatServer.csproj",
         "projectName": "ChatServer",
-        "projectPath": "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\ChatServer\\ChatServer.csproj",
+        "projectPath": "F:\\RiderProjects\\MyJournal\\ChatServer\\ChatServer.csproj",
         "packagesPath": "C:\\Users\\fokypoky\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\ChatServer\\obj\\",
+        "outputPath": "F:\\RiderProjects\\MyJournal\\ChatServer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\fokypoky\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -55,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

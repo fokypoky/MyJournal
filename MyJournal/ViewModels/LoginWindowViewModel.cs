@@ -1,8 +1,13 @@
-﻿using System.Windows;
+﻿using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using Microsoft.EntityFrameworkCore;
+using MyJournal.Models;
+using MyJournal.Models.Repositories;
 using MyJournal.ViewModels.Base;
 using MyJournal.Views;
+using MyJournalLibrary.Entities;
 
 namespace MyJournal.ViewModels;
 
@@ -25,13 +30,14 @@ public class LoginWindowViewModel : ViewModel
 
     public ICommand LoginButtonClick
     {
-        get => new RelayCommand(OnLoginButtonClick);
+        get => new RelayCommand(OnLoginButtonClick, CanLoginButtonClicked);
     }
     private void OnLoginButtonClick()
     {
-        TeacherWindow window = new TeacherWindow();
-        window.Show();
+        
     }
+
+    private bool CanLoginButtonClicked() => (new ApplicationContext()).Database.CanConnect();
 
     public ICommand ConnectionSettingsButtonClick
     {
@@ -44,6 +50,13 @@ public class LoginWindowViewModel : ViewModel
     
     public LoginWindowViewModel()
     {
+        DataBaseConnectionRepository connectionRepository = new DataBaseConnectionRepository();
+        DatabaseConnection connection = connectionRepository.Load();
+        
+        if (connection != null)
+        {
+            ApplicationContext.ConnectionString = connection.ToConnectionString();
+        }
         
     }
 }
