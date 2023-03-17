@@ -63,8 +63,7 @@
                 <TextBlock Text="Пароль" Margin="0,3,0,3"/>
                 <TextBox Text="{Binding Password}"/>
                 
-                <Button Content="Изменить" Margin="0,5,0,0"
-                        Command="{Binding ChangeButtonClick}"/>
+                <Button Content="Изменить" Margin="0,5,0,0"/>
             </StackPanel>
             
             <Grid Grid.Column="1">
@@ -74,7 +73,9 @@
                 </Grid.RowDefinitions>
                 <TextBlock Text="Мои предметы" 
                            TextAlignment="Center"/>
-                <ListBox Grid.Row="1" BorderThickness="0"/>
+                <ListBox Grid.Row="1" BorderThickness="0"
+                         ItemsSource="{Binding Classes}"
+                         />
             </Grid>
         </Grid>
         

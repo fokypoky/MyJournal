@@ -46,12 +46,12 @@ public class ConnectionSettingsViewModel : ViewModel
         set => SetField(ref _password, value);
     }
 
-    public RelayCommand<Window> ApplyButtonClick
+    public RelayCommand ApplyButtonClick
     {
-        get => new RelayCommand<Window>(OnApplyButtonClick);
+        get => new RelayCommand(OnApplyButtonClick);
     }
 
-    private void OnApplyButtonClick(Window window)
+    private void OnApplyButtonClick()
     {
         string connectionString = $"Host={Host};Port={Port};Username={Username};Password={Password};Database={Database}";
         ApplicationContext.ConnectionString = connectionString;

@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight.Command;
 using Microsoft.EntityFrameworkCore;
 using MyJournal.Models;
 using MyJournal.Models.Repositories;
+using MyJournal.Models.Services;
 using MyJournal.ViewModels.Base;
 using MyJournal.Views;
 using MyJournalLibrary.Entities;
@@ -34,7 +35,27 @@ public class LoginWindowViewModel : ViewModel
     }
     private void OnLoginButtonClick()
     {
-        
+        var service = new LoginService(Login, Password);
+        service.FillApplicationData();
+
+        switch (ApplicationData.UserRole)
+        {
+            case UserRole.Employee:
+                TeacherWindow teacherWindow = new TeacherWindow();
+                teacherWindow.Show();
+                break;
+            case UserRole.Parent:
+                ParentWindow parentWindow = new ParentWindow();
+                parentWindow.Show();
+                break;
+            case UserRole.Student:
+                StudentWindow studentWindow = new StudentWindow();
+                studentWindow.Show();
+                break;
+            default:
+                MessageBox.Show("Такого пользователя нет");
+                break;
+        }
     }
 
     private bool CanLoginButtonClicked() => (new ApplicationContext()).Database.CanConnect();
