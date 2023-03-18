@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MyJournalLibrary.Entities;
 
+
 namespace MyJournalLibrary.EntitiesConfiguration;
 
 public class AuditoryConfiguration : IEntityTypeConfiguration<Auditory>

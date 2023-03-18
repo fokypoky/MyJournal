@@ -16,7 +16,8 @@ public class LoginService
 
     public void FillApplicationData()
     {
-        using (var db = new ApplicationContext())
+        // TODO: переписать
+        /*using (var db = new ApplicationContext())
         {
             var contact = db.Contacts.FirstOrDefault(c =>
                 (c.PhoneNumber == _login || c.Email == _login) && c.Password == _password);
@@ -51,6 +52,6 @@ public class LoginService
             {
                 ApplicationData.UserRole = UserRole.None;
             }
-        }
+        }*/
     }
 }

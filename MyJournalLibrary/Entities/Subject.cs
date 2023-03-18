@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace MyJournalLibrary.Entities;
+﻿namespace MyJournalLibrary.Entities;
 
 public partial class Subject
 {
@@ -9,8 +6,8 @@ public partial class Subject
 
     public string SubjectTitle { get; set; } = null!;
 
-    public virtual ICollection<EmployeeSubject> EmployeeSubjects { get; } = new List<EmployeeSubject>();
-
+    public virtual ICollection<Employee> Employees { get; set; } = new List<Employee>();
+    public virtual ICollection<EmployeeSubject> EmployeeSubjects { get; set; }
     public virtual ICollection<Task> Tasks { get; } = new List<Task>();
 
     public virtual ICollection<Timetable> Timetables { get; } = new List<Timetable>();

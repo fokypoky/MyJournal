@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Xrcb/5aj46tghMicYk1+i7rd2df+abjjFsJ4+hTKMiRn76Q8sClMM3kRrPOIeVSaQSn0+UltCGLF/g7vv5GX7w==",
+  "dgSpecHash": "TaWXh9BZLk5vUeThGTjZOWsKGrSZLO9EFmxuAUPYeVwgCsT7r7YcEIdug6ynbitn1BuK9Kyp/omFbYBJ1wCPyA==",
   "success": true,
-  "projectFilePath": "F:\\RiderProjects\\MyJournal\\MyJournal\\MyJournal.csproj",
+  "projectFilePath": "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\MyJournal\\MyJournal.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\fokypoky\\.nuget\\packages\\commonservicelocator\\2.0.2\\commonservicelocator.2.0.2.nupkg.sha512",
     "C:\\Users\\fokypoky\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

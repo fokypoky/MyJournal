@@ -25,5 +25,26 @@ public class StudentConfiguration : IEntityTypeConfiguration<Student>
             .HasForeignKey(d => d.ContactsId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("students_contacts_id_fkey");
+
+        builder
+            .HasMany(s => s.Parents)
+            .WithMany(p => p.Students)
+            .UsingEntity<ParentStudent>
+            (j => j
+                    .HasOne(p => p.Parent)
+                    .WithMany(p => p.ParentStudents)
+                    .HasForeignKey(fk => fk.ParentId),
+                j => j
+                    .HasOne(p => p.Student)
+                    .WithMany(p => p.ParentStudents)
+                    .HasForeignKey(fk => fk.StudentId),
+                j =>
+                {
+                    j.ToTable("parent_student");
+                    j.Property(p => p.Id).HasColumnName("id");
+                    j.Property(p => p.ParentId).HasColumnName("parent_id");
+                    j.Property(p => p.StudentId).HasColumnName("student_id");
+                }
+            );
     }
 }

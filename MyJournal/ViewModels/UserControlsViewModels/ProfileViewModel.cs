@@ -6,7 +6,6 @@ using GalaSoft.MvvmLight.Command;
 using MyJournal.Models;
 using MyJournal.Models.Services;
 using MyJournal.ViewModels.Base;
-using MyJournalLibrary.Entities;
 
 namespace MyJournal.ViewModels.ControlsViewModels;
 
@@ -17,13 +16,13 @@ public class ProfileViewModel : ViewModel
     private string _phone;
     private string _password;
 
-    private ICollection<Class> _classes;
+    /*private ICollection<Class> _classes;
 
     public ICollection<Class> Classes
     {
         get => _classes;
         set => SetField(ref _classes, value);
-    }
+    }*/
 
     public string Email
     {
@@ -50,16 +49,6 @@ public class ProfileViewModel : ViewModel
 
     public ProfileViewModel()
     {
-        var contacts = (new ContactService(new ApplicationContext()).GetById(ApplicationData.UserId));
-        var employee = (new EmployeeService(new ApplicationContext())).GetByContacts(contacts);
-
-        PersonName = $"{contacts?.Surname} {contacts?.Name} {contacts?.Midname}";
-        Email = contacts.Email;
-        Phone = contacts.PhoneNumber;
-        Password = contacts.Password;
-        
-        //не работает
-        Classes = (new ClassService(new ApplicationContext())).GetClassesByEmployee(employee);
-        MessageBox.Show(Classes.Count.ToString());
+        // TODO: добавить загрузку данных
     }
 }

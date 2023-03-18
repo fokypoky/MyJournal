@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MyJournalLibrary.Entities;
 
 namespace MyJournalLibrary.EntitiesConfiguration;
-
 public class ContactConfiguration : IEntityTypeConfiguration<Contact>
 {
     public void Configure(EntityTypeBuilder<Contact> builder)
@@ -38,5 +37,6 @@ public class ContactConfiguration : IEntityTypeConfiguration<Contact>
         builder.Property(e => e.Surname)
             .HasMaxLength(50)
             .HasColumnName("surname");
+        
     }
 }

@@ -2836,7 +2836,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "Npgsql.EntityFrameworkCore.PostgreSQL": "8.0.0-preview.1"
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "8.0.0-preview.1",
+          "System.Runtime.Serialization.Json": "4.3.0"
         },
         "compile": {
           "bin/placeholder/MyJournalLibrary.dll": {}
@@ -8725,11 +8726,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\RiderProjects\\MyJournal\\MyJournal\\MyJournal.csproj",
+      "projectUniqueName": "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\MyJournal\\MyJournal.csproj",
       "projectName": "MyJournal",
-      "projectPath": "F:\\RiderProjects\\MyJournal\\MyJournal\\MyJournal.csproj",
+      "projectPath": "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\MyJournal\\MyJournal.csproj",
       "packagesPath": "C:\\Users\\fokypoky\\.nuget\\packages\\",
-      "outputPath": "F:\\RiderProjects\\MyJournal\\MyJournal\\obj\\",
+      "outputPath": "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\MyJournal\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\fokypoky\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -8746,8 +8747,8 @@
         "net7.0-windows7.0": {
           "targetAlias": "net7.0-windows",
           "projectReferences": {
-            "F:\\RiderProjects\\MyJournal\\MyJournalLibrary\\MyJournalLibrary.csproj": {
-              "projectPath": "F:\\RiderProjects\\MyJournal\\MyJournalLibrary\\MyJournalLibrary.csproj"
+            "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\MyJournalLibrary\\MyJournalLibrary.csproj": {
+              "projectPath": "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\MyJournalLibrary\\MyJournalLibrary.csproj"
             }
           }
         }
@@ -8800,7 +8801,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   },

@@ -152,7 +152,13 @@ F:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\refint\MyJournal.d
 F:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\MyJournal.pdb
 F:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\MyJournal.genruntimeconfig.cache
 F:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\ref\MyJournal.dll
+C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\bin\Debug\net7.0-windows\MyJournalLibrary.dll
+C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\bin\Debug\net7.0-windows\MyJournalLibrary.pdb
 F:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\ParentWindow.g.cs
 F:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\StudentWindow.g.cs
 F:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\ParentWindow.baml
 F:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\StudentWindow.baml
+C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\ParentWindow.g.cs
+C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\StudentWindow.g.cs
+C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\ParentWindow.baml
+C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\StudentWindow.baml

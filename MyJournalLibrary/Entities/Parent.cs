@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace MyJournalLibrary.Entities;
+﻿namespace MyJournalLibrary.Entities;
 
 public partial class Parent
 {
@@ -10,6 +7,6 @@ public partial class Parent
     public int ContactsId { get; set; }
 
     public virtual Contact Contacts { get; set; } = null!;
-
-    public virtual ICollection<ParentStudent> ParentStudents { get; } = new List<ParentStudent>();
+    public virtual ICollection<ParentStudent> ParentStudents { get; set; }
+    public virtual ICollection<Student> Students { get; set; }
 }

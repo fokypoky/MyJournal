@@ -5,7 +5,7 @@ using MyJournal.Models;
 using MyJournal.ViewModels.Base;
 using System.Linq;
 using System.Windows;
-using MyJournal.Models.Repositories;
+using MyJournalLibrary.Repositories.FileRepositories;
 
 namespace MyJournal.ViewModels;
 
@@ -53,18 +53,19 @@ public class ConnectionSettingsViewModel : ViewModel
 
     private void OnApplyButtonClick()
     {
-        string connectionString = $"Host={Host};Port={Port};Username={Username};Password={Password};Database={Database}";
-        ApplicationContext.ConnectionString = connectionString;
+        DatabaseConnection connection = new DatabaseConnection(Host, Port, Username, Password, Database);
+        JsonRepository<DatabaseConnection> repository = new JsonRepository<DatabaseConnection>("ConnectionSettings.json");
+        
+        // TODO: довести до ума, метод не должен принимать параметр
+        repository.WriteFile(connection);
 
-        DataBaseConnectionRepository repository = new DataBaseConnectionRepository(connectionString);
-        repository.Save();
-
-        MessageBox.Show("Новые настройки применены. Перезапустите приложение");
+        MessageBox.Show("Изменения применены. Перезапустите приложение");
     }
     
     public ConnectionSettingsViewModel()
     {
         DatabaseConnection connection = new DatabaseConnection(ApplicationContext.ConnectionString);
+        
         Host = connection.Host;
         Port = connection.Port;
         Username = connection.Username;

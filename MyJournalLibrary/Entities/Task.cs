@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace MyJournalLibrary.Entities;
+﻿namespace MyJournalLibrary.Entities;
 
 public partial class Task
 {

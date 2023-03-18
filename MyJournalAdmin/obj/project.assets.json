@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\RiderProjects\\MyJournal\\MyJournalAdmin\\MyJournalAdmin.csproj",
+      "projectUniqueName": "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\MyJournalAdmin\\MyJournalAdmin.csproj",
       "projectName": "MyJournalAdmin",
-      "projectPath": "F:\\RiderProjects\\MyJournal\\MyJournalAdmin\\MyJournalAdmin.csproj",
+      "projectPath": "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\MyJournalAdmin\\MyJournalAdmin.csproj",
       "packagesPath": "C:\\Users\\fokypoky\\.nuget\\packages\\",
-      "outputPath": "F:\\RiderProjects\\MyJournal\\MyJournalAdmin\\obj\\",
+      "outputPath": "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\MyJournalAdmin\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\fokypoky\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -64,7 +64,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   }

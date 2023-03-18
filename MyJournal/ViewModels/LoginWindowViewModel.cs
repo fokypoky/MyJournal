@@ -1,14 +1,11 @@
-﻿using System.Linq;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
-using Microsoft.EntityFrameworkCore;
 using MyJournal.Models;
-using MyJournal.Models.Repositories;
 using MyJournal.Models.Services;
 using MyJournal.ViewModels.Base;
 using MyJournal.Views;
-using MyJournalLibrary.Entities;
+using MyJournalLibrary.Repositories.FileRepositories;
 
 namespace MyJournal.ViewModels;
 
@@ -58,7 +55,9 @@ public class LoginWindowViewModel : ViewModel
         }
     }
 
-    private bool CanLoginButtonClicked() => (new ApplicationContext()).Database.CanConnect();
+    private bool CanLoginButtonClicked() => true;
+    // TODO: сделать проверку входа
+    //private bool CanLoginButtonClicked() => (new ApplicationContext()).Database.CanConnect();
 
     public ICommand ConnectionSettingsButtonClick
     {
@@ -71,13 +70,21 @@ public class LoginWindowViewModel : ViewModel
     
     public LoginWindowViewModel()
     {
-        DataBaseConnectionRepository connectionRepository = new DataBaseConnectionRepository();
-        DatabaseConnection connection = connectionRepository.Load();
+        JsonRepository<DatabaseConnection> repository = new JsonRepository<DatabaseConnection>("ConnectionSettings.json");
+        var connection = repository.ReadFile();
         
         if (connection != null)
         {
             ApplicationContext.ConnectionString = connection.ToConnectionString();
         }
+        /*DataBaseConnectionRepository connectionRepository = new DataBaseConnectionRepository();
+        DatabaseConnection connection = connectionRepository.Load();
         
+        TODO: использовать репозиторий
+        
+        if (connection != null)
+        {
+            ApplicationContext.ConnectionString = connection.ToConnectionString();
+        }*/
     }
 }

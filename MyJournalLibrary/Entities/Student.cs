@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections;
 
 namespace MyJournalLibrary.Entities;
 
@@ -14,8 +13,8 @@ public partial class Student
     public virtual Class Class { get; set; } = null!;
 
     public virtual Contact Contacts { get; set; } = null!;
-
+    public virtual ICollection<ParentStudent> ParentStudents { get; set; }
     public virtual ICollection<Mark> Marks { get; } = new List<Mark>();
+    public virtual ICollection<Parent> Parents { get; set; }
 
-    public virtual ICollection<ParentStudent> ParentStudents { get; } = new List<ParentStudent>();
 }
