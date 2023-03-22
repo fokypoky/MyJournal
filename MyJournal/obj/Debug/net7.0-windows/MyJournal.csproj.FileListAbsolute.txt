@@ -67,13 +67,11 @@ C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Vie
 C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\MarksUserControl.g.cs
 C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\ProfileUserControl.g.cs
 C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\TasksUserControl.g.cs
-C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\TimetableUserControl.g.cs
 C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\ChatUserControl.baml
 C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\MainUserControl.baml
 C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\MarksUserControl.baml
 C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\ProfileUserControl.baml
 C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\TasksUserControl.baml
-C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\TimetableUserControl.baml
 F:\RiderProjects\MyJournal\MyJournal\bin\Debug\net7.0-windows\MyJournal.exe
 F:\RiderProjects\MyJournal\MyJournal\bin\Debug\net7.0-windows\MyJournal.deps.json
 F:\RiderProjects\MyJournal\MyJournal\bin\Debug\net7.0-windows\MyJournal.runtimeconfig.json
@@ -162,3 +160,5 @@ C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Vie
 C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\StudentWindow.g.cs
 C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\ParentWindow.baml
 C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\StudentWindow.baml
+C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\TeacherTimetableUserControl.g.cs
+C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\TeacherTimetableUserControl.baml

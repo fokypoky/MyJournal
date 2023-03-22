@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.Command;
 using MyJournal.ViewModels.Base;
 using MyJournal.ViewModels.Controls;
 using MyJournal.Views;
+using MyJournal.Views.UserControls;
 
 namespace MyJournal.ViewModels;
 
@@ -70,7 +71,7 @@ public class TeacherWindowViewModel : ViewModel
         _marksUserControl = new MarksUserControl();
         _profileUserControl = new ProfileUserControl();
         _tasksUserControl = new TasksUserControl();
-        _timetableUserControl = new TimetableUserControl();
+        _timetableUserControl = new TeacherTimetableUserControl();
 
         _currentUserControl = _mainUserControl;
     }

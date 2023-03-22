@@ -40,20 +40,6 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             
-            <!--TODO: Добавить открытие окна настроек-->
-            <Grid Grid.Row="1">
-                <TextBlock Text="Настройки подключения" 
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Bottom"
-                           Margin="0,0,0,10" Foreground="#606060">
-                    <TextBlock.InputBindings>
-                        <MouseBinding 
-                            MouseAction="LeftClick"
-                            Command="{Binding ConnectionSettingsButtonClick}"/>
-                    </TextBlock.InputBindings>
-                </TextBlock>
-            </Grid>
-            
             <StackPanel>
                 <Button Content="Главная"
                         Command="{Binding MainButtonClick}"/>
