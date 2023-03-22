@@ -29,12 +29,15 @@
             <Setter Property="FontFamily" Value="Inter"/>
             <Setter Property="FontSize" Value="20"/>
         </Style>
+        <Style TargetType="ListBox">
+            <Setter Property="IsEnabled" Value="False"/>
+        </Style>
     </UserControl.Resources>
     
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
-            <RowDefinition Height="13*"/>
+            <RowDefinition Height="10*"/>
             <RowDefinition Height="15*"/>
         </Grid.RowDefinitions>
         
@@ -60,10 +63,7 @@
                 <TextBlock Text="Телефон" Margin="0,3,0,3"/>
                 <TextBox Text="{Binding Phone}"/>
                 
-                <TextBlock Text="Пароль" Margin="0,3,0,3"/>
-                <TextBox Text="{Binding Password}"/>
-                
-                <Button Content="Изменить" Margin="0,5,0,0"/>
+                <Button Content="Изменить" Margin="0,10,0,0"/>
             </StackPanel>
             
             <Grid Grid.Column="1">
@@ -74,8 +74,15 @@
                 <TextBlock Text="Мои предметы" 
                            TextAlignment="Center"/>
                 <ListBox Grid.Row="1" BorderThickness="0"
-                         ItemsSource="{Binding Classes}"
-                         />
+                         ItemsSource="{Binding Subjects}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding SubjectTitle}"
+                                       FontFamily="Inter"
+                                       FontSize="17"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </Grid>
         </Grid>
         
@@ -86,7 +93,16 @@
             </Grid.RowDefinitions>
             <TextBlock Text="Мои классы" TextAlignment="Left" 
                        Margin="6, 0, 0,0"/>
-            <ListBox Grid.Row="1" BorderThickness="0"/>
+            <ListBox Grid.Row="1" BorderThickness="0"
+                     ItemsSource="{Binding Classes}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding ClassNumber}"
+                                   FontFamily="Inter"
+                                   FontSize="17"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </Grid>
         
     </Grid>

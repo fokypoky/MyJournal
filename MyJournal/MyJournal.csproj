@@ -47,4 +47,8 @@
       <ProjectReference Include="..\MyJournalLibrary\MyJournalLibrary.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Models\Services" />
+    </ItemGroup>
+
 </Project>

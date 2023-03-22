@@ -2,10 +2,12 @@
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using MyJournal.Models;
-using MyJournal.Models.Services;
+using MyJournalLibrary.Services;
 using MyJournal.ViewModels.Base;
 using MyJournal.Views;
+using MyJournalLibrary.Entities;
 using MyJournalLibrary.Repositories.FileRepositories;
+using UserRole = MyJournal.Models.UserRole;
 
 namespace MyJournal.ViewModels;
 
@@ -32,33 +34,58 @@ public class LoginWindowViewModel : ViewModel
     }
     private void OnLoginButtonClick()
     {
-        var service = new LoginService(Login, Password);
-        service.FillApplicationData();
-
-        switch (ApplicationData.UserRole)
+        using (var db = new ApplicationContext())
         {
-            case UserRole.Employee:
-                TeacherWindow teacherWindow = new TeacherWindow();
-                teacherWindow.Show();
-                break;
-            case UserRole.Parent:
-                ParentWindow parentWindow = new ParentWindow();
-                parentWindow.Show();
-                break;
-            case UserRole.Student:
-                StudentWindow studentWindow = new StudentWindow();
-                studentWindow.Show();
-                break;
-            default:
-                MessageBox.Show("Такого пользователя нет");
-                break;
+            var service = new ContactsService(db);
+            var contact = service.GetByLogin(Login, Password);
+
+            if (contact == null)
+            {
+                MessageBox.Show("Такого пользователя не существует");
+                return;
+            }
+            
+            ApplicationData.UserId = contact.Id;
+
+            switch (contact.UserRole.Rolename.ToLower())
+            {
+                case "employee":
+                    ApplicationData.UserRole = UserRole.Employee;
+                    
+                    TeacherWindow teacherWindow = new TeacherWindow();
+                    teacherWindow.Show();
+                    
+                    break;
+                case "student":
+                    ApplicationData.UserRole = UserRole.Student;
+                    
+                    StudentWindow studentWindow = new StudentWindow();
+                    studentWindow.Show();
+                    
+                    break;
+                case "parent":
+                    ApplicationData.UserRole = UserRole.Student;
+
+                    ParentWindow parentWindow = new ParentWindow();
+                    parentWindow.Show();
+                    
+                    break;
+                default:
+                    ApplicationData.UserRole = UserRole.None;
+                    MessageBox.Show("Недостаточно привилегий");
+                    break;
+            }
+            
         }
     }
 
-    private bool CanLoginButtonClicked() => true;
-    // TODO: сделать проверку входа
-    //private bool CanLoginButtonClicked() => (new ApplicationContext()).Database.CanConnect();
-
+    private bool CanLoginButtonClicked()
+    {
+        using (var db = new ApplicationContext())
+        {
+            return db.Database.CanConnect();
+        }
+    }
     public ICommand ConnectionSettingsButtonClick
     {
         get => new RelayCommand(() =>
@@ -77,14 +104,5 @@ public class LoginWindowViewModel : ViewModel
         {
             ApplicationContext.ConnectionString = connection.ToConnectionString();
         }
-        /*DataBaseConnectionRepository connectionRepository = new DataBaseConnectionRepository();
-        DatabaseConnection connection = connectionRepository.Load();
-        
-        TODO: использовать репозиторий
-        
-        if (connection != null)
-        {
-            ApplicationContext.ConnectionString = connection.ToConnectionString();
-        }*/
     }
 }

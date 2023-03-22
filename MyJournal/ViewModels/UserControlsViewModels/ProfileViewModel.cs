@@ -4,8 +4,9 @@ using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using MyJournal.Models;
-using MyJournal.Models.Services;
 using MyJournal.ViewModels.Base;
+using MyJournalLibrary.Entities;
+using MyJournalLibrary.Services;
 
 namespace MyJournal.ViewModels.ControlsViewModels;
 
@@ -14,15 +15,21 @@ public class ProfileViewModel : ViewModel
     private string _personName;
     private string _email;
     private string _phone;
-    private string _password;
 
-    /*private ICollection<Class> _classes;
+    private ICollection<Subject> _subjects = new List<Subject>();
+    private ICollection<Class> _classes = new List<Class>();
+
+    public ICollection<Subject> Subjects
+    {
+        get => _subjects;
+        set => SetField(ref _subjects, value);
+    }
 
     public ICollection<Class> Classes
     {
         get => _classes;
         set => SetField(ref _classes, value);
-    }*/
+    }
 
     public string Email
     {
@@ -35,12 +42,7 @@ public class ProfileViewModel : ViewModel
         get => _phone;
         set => SetField(ref _phone, value);
     }
-
-    public string Password
-    {
-        get => _password;
-        set => SetField(ref _password, value);
-    }
+    
     public string PersonName
     {
         get => _personName;
@@ -49,6 +51,19 @@ public class ProfileViewModel : ViewModel
 
     public ProfileViewModel()
     {
-        // TODO: добавить загрузку данных
+        Employee employee;
+        
+        using (var context = new ApplicationContext())
+        {
+            var service = new EmployeesService(context);
+            employee = service.GetByContactId(ApplicationData.UserId);
+        }
+        
+        PersonName = $"{employee.Contacts.Surname} {employee.Contacts.Name} {employee.Contacts.Midname}";
+        Email = employee.Contacts.Email;
+        Phone = employee.Contacts.PhoneNumber;
+
+        Subjects = employee.Subjects;
+        Classes = employee.Classes;
     }
 }

@@ -37,6 +37,7 @@ public class ContactConfiguration : IEntityTypeConfiguration<Contact>
         builder.Property(e => e.Surname)
             .HasMaxLength(50)
             .HasColumnName("surname");
-        
+        builder.Property(c => c.UserRoleId)
+            .HasColumnName("userrole_id");
     }
 }
