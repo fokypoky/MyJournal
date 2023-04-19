@@ -46,7 +46,8 @@ public class LoginWindowViewModel : ViewModel
             }
             
             ApplicationData.UserId = contact.Id;
-
+            bool needToClose = false; // нужно ли закрывать окно
+            
             switch (contact.UserRole.Rolename.ToLower())
             {
                 case "employee":
@@ -55,12 +56,16 @@ public class LoginWindowViewModel : ViewModel
                     TeacherWindow teacherWindow = new TeacherWindow();
                     teacherWindow.Show();
                     
+                    needToClose = true;
+                    
                     break;
                 case "student":
                     ApplicationData.UserRole = UserRole.Student;
                     
                     StudentWindow studentWindow = new StudentWindow();
                     studentWindow.Show();
+                    
+                    needToClose = true;
                     
                     break;
                 case "parent":
@@ -69,11 +74,18 @@ public class LoginWindowViewModel : ViewModel
                     ParentWindow parentWindow = new ParentWindow();
                     parentWindow.Show();
                     
+                    needToClose = true;
+                    
                     break;
                 default:
                     ApplicationData.UserRole = UserRole.None;
                     MessageBox.Show("Недостаточно привилегий");
                     break;
+            }
+
+            if (needToClose)
+            {
+                Application.Current.MainWindow.Close();
             }
             
         }
