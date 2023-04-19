@@ -19,6 +19,7 @@ internal class ApplicationContext : DbContext
     public virtual DbSet<Task> Tasks { get; set; }
     public virtual DbSet<Timetable> Timetables { get; set; }
     public virtual DbSet<MyJournalLibrary.Entities.UserRole> UserRoles { get; set; }
+    public virtual DbSet<ClassSubject> ClassSubjects { get; set; }
     public static string ConnectionString { get; set; } =
         "Host=localhost;Port=5432;Username=postgres;Password=toor;Database=MyJournalDB";
 

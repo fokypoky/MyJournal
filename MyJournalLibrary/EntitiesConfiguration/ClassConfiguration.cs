@@ -30,5 +30,27 @@ public class ClassConfiguration : IEntityTypeConfiguration<Class>
             .HasForeignKey(d => d.LeaderId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("classes_leader_id_fkey");
+
+        builder
+            .HasMany(c => c.Subjects)
+            .WithMany(s => s.Classes)
+            .UsingEntity<ClassSubject>
+            (
+                e => e
+                    .HasOne(cs => cs.Subject)
+                    .WithMany(s => s.ClassSubjects)
+                    .HasForeignKey(cs => cs.SubjectId),
+                e => e
+                    .HasOne(cs => cs.Class)
+                    .WithMany(c => c.ClassSubjects)
+                    .HasForeignKey(fk => fk.ClassId),
+                e =>
+                {
+                    e.ToTable("class_subject");
+                    e.Property(p => p.Id).HasColumnName("id");
+                    e.Property(p => p.SubjectId).HasColumnName("subject_id");
+                    e.Property(p => p.ClassId).HasColumnName("class_id");
+                }
+            );
     }
 }

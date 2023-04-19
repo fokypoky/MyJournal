@@ -41,5 +41,26 @@ public class SubjectConfiguration : IEntityTypeConfiguration<Subject>
                     j.Property(p => p.EmployeeId).HasColumnName("employee_id");
                     j.Property(p => p.SubjectId).HasColumnName("subject_id");
                 });
+        builder
+            .HasMany(s => s.Classes)
+            .WithMany(c => c.Subjects)
+            .UsingEntity<ClassSubject>
+            (
+                e => e
+                    .HasOne(cs => cs.Class)
+                    .WithMany(c => c.ClassSubjects)
+                    .HasForeignKey(fk => fk.ClassId),
+                e => e
+                    .HasOne(cs => cs.Subject)
+                    .WithMany(s => s.ClassSubjects)
+                    .HasForeignKey(fk => fk.SubjectId),
+                e =>
+                {
+                    e.ToTable("class_subject");
+                    e.Property(p => p.Id).HasColumnName("id");
+                    e.Property(p => p.SubjectId).HasColumnName("subject_id");
+                    e.Property(p => p.ClassId).HasColumnName("class_id");
+                }
+            );
     }
 }

@@ -14,9 +14,12 @@ public partial class Class
 
     public virtual Employee Leader { get; set; } = null!;
 
-    public virtual ICollection<Student> Students { get; } = new List<Student>();
+    public virtual ICollection<Student> Students { get; set; } = new List<Student>();
 
-    public virtual ICollection<Task> Tasks { get; } = new List<Task>();
+    public virtual ICollection<Task> Tasks { get; set; } = new List<Task>();
 
-    public virtual ICollection<Timetable> Timetables { get; } = new List<Timetable>();
+    public virtual ICollection<Timetable> Timetables { get; set; } = new List<Timetable>();
+    public virtual ICollection<ClassSubject> ClassSubjects { get; set; } = new List<ClassSubject>();
+    public virtual ICollection<Subject> Subjects { get; set; }
+
 }

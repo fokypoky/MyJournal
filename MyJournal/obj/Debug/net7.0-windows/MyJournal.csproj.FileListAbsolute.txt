@@ -64,12 +64,10 @@ C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\bin\Debug\net7.0-windows\Sys
 C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\bin\Debug\net7.0-windows\runtimes\browser\lib\net7.0\System.Text.Encodings.Web.dll
 C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\ChatUserControl.g.cs
 C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\MainUserControl.g.cs
-C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\MarksUserControl.g.cs
 C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\ProfileUserControl.g.cs
 C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\TasksUserControl.g.cs
 C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\ChatUserControl.baml
 C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\MainUserControl.baml
-C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\MarksUserControl.baml
 C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\ProfileUserControl.baml
 C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\TasksUserControl.baml
 F:\RiderProjects\MyJournal\MyJournal\bin\Debug\net7.0-windows\MyJournal.exe
@@ -162,3 +160,7 @@ C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Vie
 C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\StudentWindow.baml
 C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\TeacherTimetableUserControl.g.cs
 C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\TeacherTimetableUserControl.baml
+C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\ProfileSettingsWindow.g.cs
+C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\ProfileSettingsWindow.baml
+C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\TeacherMarksUserControl.g.cs
+C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\TeacherMarksUserControl.baml
