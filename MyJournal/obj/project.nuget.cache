@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "OZux/I1yNFqssqBxDiQpfgVuE9IpN0BF2SI2EzYr/2KmOhgApokHldztTaefNHYXbKkxyiibjhMK2X5p0xHmQA==",
+  "dgSpecHash": "d1XrDaX8HPmGhrlDDyt//Tng7N7ZSO/Ju/k//WynakBcgzKl87qjWYvPPEUlYwKjUS6r7FUz2aCcXv5pDWo6Qg==",
   "success": true,
   "projectFilePath": "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\MyJournal\\MyJournal.csproj",
   "expectedPackageFiles": [
@@ -23,6 +23,7 @@
     "C:\\Users\\fokypoky\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0-preview.1.23110.8\\microsoft.extensions.primitives.8.0.0-preview.1.23110.8.nupkg.sha512",
     "C:\\Users\\fokypoky\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\fokypoky\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
+    "C:\\Users\\fokypoky\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.39\\microsoft.xaml.behaviors.wpf.1.1.39.nupkg.sha512",
     "C:\\Users\\fokypoky\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\fokypoky\\.nuget\\packages\\npgsql\\8.0.0-preview.1\\npgsql.8.0.0-preview.1.nupkg.sha512",
     "C:\\Users\\fokypoky\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\8.0.0-preview.1\\npgsql.entityframeworkcore.postgresql.8.0.0-preview.1.nupkg.sha512",

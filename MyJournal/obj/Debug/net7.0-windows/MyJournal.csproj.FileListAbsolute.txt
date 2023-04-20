@@ -148,3 +148,4 @@ C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Vie
 C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\ProfileSettingsWindow.baml
 C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\TeacherMarksUserControl.g.cs
 C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\TeacherMarksUserControl.baml
+C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\bin\Debug\net7.0-windows\Microsoft.Xaml.Behaviors.dll

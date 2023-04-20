@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:MyJournal.ViewModels.Controls"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:entities="clr-namespace:MyJournalLibrary.Entities;assembly=MyJournalLibrary"
              xmlns:vmodel="clr-namespace:MyJournal.ViewModels.UserControlsViewModels"
              mc:Ignorable="d"
@@ -15,9 +16,29 @@
     <Grid>
         <ScrollViewer
             HorizontalScrollBarVisibility="Disabled">
+            
             <TreeView ItemsSource="{Binding Subjects}"
                       Margin="20,0,0,0"
-                      BorderThickness="0">
+                      BorderThickness="0"
+                      x:Name="SubjectClassTreeView"
+                      >
+                
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectedItemChanged">
+                        <i:InvokeCommandAction
+                            Command="{Binding OnSubjectClassTreeViewSelectedItemChanged}"
+                            CommandParameter="{Binding ElementName=SubjectClassTreeView,
+                            Path=SelectedItem}"/>
+                    </i:EventTrigger>
+                    <i:EventTrigger SourceObject="{
+                        Binding RelativeSource={RelativeSource AncestorType=TreeViewItem}}"
+                                    EventName="Expanded">
+                        <i:InvokeCommandAction
+                            Command="{Binding ElementName=SubjectClassTreeView,
+                            Path=DataContext.OnSubjectClassTreeViewItemExpanded}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                
                 <TreeView.ItemTemplate>
                     <HierarchicalDataTemplate ItemsSource="{Binding Classes}">
                         <TextBlock Text="{Binding SubjectTitle}"
@@ -27,21 +48,14 @@
                                 
                                 <TextBlock Text="{Binding ClassNumber}"
                                            FontSize="16"
-                                           x:Name="classTextBlock">
-                                    <TextBlock.InputBindings>
-                                        <MouseBinding
-                                            MouseAction="LeftClick"
-                                            Command=""
-                                            CommandParameter="{Binding Text, ElementName=classTextBlock}"/>
-                                    </TextBlock.InputBindings>
-                                </TextBlock>
+                                           x:Name="classTextBlock"/>
                             </DataTemplate>
                         </HierarchicalDataTemplate.ItemTemplate>
                     </HierarchicalDataTemplate>
                 </TreeView.ItemTemplate>
             </TreeView>
+
             
         </ScrollViewer>
-        
     </Grid>
 </UserControl>
