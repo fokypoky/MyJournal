@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
 using MyJournal.Models;
 using MyJournal.ViewModels.Base;
+using MyJournal.Infrastructure.Commands;
 using System.Linq;
 using System.Windows;
 using MyJournalLibrary.Repositories.FileRepositories;
@@ -48,18 +48,21 @@ public class ConnectionSettingsViewModel : ViewModel
 
     public RelayCommand ApplyButtonClick
     {
-        get => new RelayCommand(OnApplyButtonClick);
+        get => new RelayCommand((object p) =>
+        {
+            DatabaseConnection connection = new DatabaseConnection(Host, Port, Username, Password, Database);
+            JsonRepository<DatabaseConnection> repository = new JsonRepository<DatabaseConnection>("ConnectionSettings.json");
+        
+            // TODO: довести до ума, метод не должен принимать параметр
+            repository.WriteFile(connection);
+
+            MessageBox.Show("Изменения применены. Перезапустите приложение");
+        });
     }
 
     private void OnApplyButtonClick()
     {
-        DatabaseConnection connection = new DatabaseConnection(Host, Port, Username, Password, Database);
-        JsonRepository<DatabaseConnection> repository = new JsonRepository<DatabaseConnection>("ConnectionSettings.json");
         
-        // TODO: довести до ума, метод не должен принимать параметр
-        repository.WriteFile(connection);
-
-        MessageBox.Show("Изменения применены. Перезапустите приложение");
     }
     
     public ConnectionSettingsViewModel()

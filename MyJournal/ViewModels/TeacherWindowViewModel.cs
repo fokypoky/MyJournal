@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
+using MyJournal.Infrastructure.Commands;
 using MyJournal.ViewModels.Base;
 using MyJournal.ViewModels.Controls;
 using MyJournal.Views;
@@ -27,43 +27,51 @@ public class TeacherWindowViewModel : ViewModel
 
     public ICommand MainButtonClick
     {
-        get => new RelayCommand(() => { CurrentUserControl = _mainUserControl; });
+        get => new RelayCommand((object parameter) =>
+        {
+            CurrentUserControl = _mainUserControl;
+        });
     }
 
     public ICommand ChatButtonClick
     {
-        get => new RelayCommand(() => { CurrentUserControl = _chatUserControl; });
+        get => new RelayCommand((object parameter) =>
+        {
+            CurrentUserControl = _chatUserControl;
+        });
     }
 
     public ICommand MarksButtonClick
     {
-        get => new RelayCommand(() => { CurrentUserControl = _marksUserControl; });
+        get => new RelayCommand((object parameter) =>
+        {
+            CurrentUserControl = _marksUserControl;
+        });
     }
 
     public ICommand ProfileButtonClick
     {
-        get => new RelayCommand(() => { CurrentUserControl = _profileUserControl; });
+        get => new RelayCommand((object parameter) =>
+        {
+            CurrentUserControl = _profileUserControl;
+        });
     }
 
     public ICommand TasksButtonClick
     {
-        get => new RelayCommand(() => { CurrentUserControl = _tasksUserControl;});
+        get => new RelayCommand((object parameter) =>
+        {
+            CurrentUserControl = _tasksUserControl;
+        });
     }
 
     public ICommand TimetableButtonClick
     {
-        get => new RelayCommand(() => { CurrentUserControl = _timetableUserControl; });
-    }
-
-    public ICommand ConnectionSettingsButtonClick
-    {
-        get => new RelayCommand((() =>
+        get => new RelayCommand((object parameter) =>
         {
-            ConnectionSettingsWindow settingsWindow = new ConnectionSettingsWindow();
-            settingsWindow.Show();
-        }));
+            CurrentUserControl = _timetableUserControl;
+        });
     }
-    
     public TeacherWindowViewModel()
     {
         _mainUserControl = new MainUserControl();

@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
+/*using GalaSoft.MvvmLight.Command;*/
 using MyJournal.Models;
 using MyJournalLibrary.Services;
 using MyJournal.ViewModels.Base;
@@ -8,6 +8,7 @@ using MyJournal.Views;
 using MyJournalLibrary.Entities;
 using MyJournalLibrary.Repositories.FileRepositories;
 using UserRole = MyJournal.Models.UserRole;
+using MyJournal.Infrastructure.Commands;
 
 namespace MyJournal.ViewModels;
 
@@ -32,7 +33,8 @@ public class LoginWindowViewModel : ViewModel
     {
         get => new RelayCommand(OnLoginButtonClick, CanLoginButtonClicked);
     }
-    private void OnLoginButtonClick()
+    
+    private void OnLoginButtonClick(object parameter)
     {
         using (var db = new ApplicationContext())
         {
@@ -91,22 +93,22 @@ public class LoginWindowViewModel : ViewModel
         }
     }
 
-    private bool CanLoginButtonClicked()
+    private bool CanLoginButtonClicked(object parameter)
     {
         using (var db = new ApplicationContext())
         {
             return db.Database.CanConnect();
         }
     }
+
     public ICommand ConnectionSettingsButtonClick
     {
-        get => new RelayCommand(() =>
+        get => new RelayCommand((object parameter) =>
         {
             ConnectionSettingsWindow settingsWindow = new ConnectionSettingsWindow();
             settingsWindow.Show();
         });
     }
-    
     public LoginWindowViewModel()
     {
         JsonRepository<DatabaseConnection> repository = new JsonRepository<DatabaseConnection>("ConnectionSettings.json");
