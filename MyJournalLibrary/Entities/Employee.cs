@@ -1,6 +1,4 @@
-﻿using System.Collections;
-
-namespace MyJournalLibrary.Entities;
+﻿namespace MyJournalLibrary.Entities;
 
 public partial class Employee
 {

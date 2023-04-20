@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyJournalLibrary.Entities;
+using MyJournalLibrary.Repositories.EntityRepositories;
 
 namespace MyJournalLibrary.Services;
 
@@ -12,7 +13,7 @@ public class LoginService
     }
     public UserRole GetUserRoleByLogin(string login, string password)
     {
-        UserRoleService service = new UserRoleService(_context);
+        UserRoleRepository service = new UserRoleRepository(_context);
         return service.GetByLogin(login: login, password: password);
     }
 

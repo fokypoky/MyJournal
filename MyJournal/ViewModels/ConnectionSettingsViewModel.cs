@@ -1,9 +1,6 @@
-﻿using System.Diagnostics;
-using System.Windows.Input;
-using MyJournal.Models;
+﻿using MyJournal.Models;
 using MyJournal.ViewModels.Base;
 using MyJournal.Infrastructure.Commands;
-using System.Linq;
 using System.Windows;
 using MyJournalLibrary.Repositories.FileRepositories;
 
@@ -58,11 +55,6 @@ public class ConnectionSettingsViewModel : ViewModel
 
             MessageBox.Show("Изменения применены. Перезапустите приложение");
         });
-    }
-
-    private void OnApplyButtonClick()
-    {
-        
     }
     
     public ConnectionSettingsViewModel()

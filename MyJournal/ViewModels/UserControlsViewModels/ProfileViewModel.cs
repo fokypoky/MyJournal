@@ -1,13 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Windows;
-using System.Windows.Input;
 using MyJournal.Models;
 using MyJournal.ViewModels.Base;
 using MyJournalLibrary.Entities;
-using MyJournalLibrary.Services;
+using MyJournalLibrary.Repositories.EntityRepositories;
 
-namespace MyJournal.ViewModels.ControlsViewModels;
+namespace MyJournal.ViewModels.UserControlsViewModels;
 
 public class ProfileViewModel : ViewModel
 {
@@ -54,7 +51,7 @@ public class ProfileViewModel : ViewModel
         
         using (var context = new ApplicationContext())
         {
-            var service = new EmployeesService(context);
+            var service = new EmployeesRepository(context);
             employee = service.GetByContactId(ApplicationData.UserId);
         }
         

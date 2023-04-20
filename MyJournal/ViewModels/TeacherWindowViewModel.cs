@@ -3,7 +3,6 @@ using System.Windows.Input;
 using MyJournal.Infrastructure.Commands;
 using MyJournal.ViewModels.Base;
 using MyJournal.ViewModels.Controls;
-using MyJournal.Views;
 using MyJournal.Views.UserControls;
 
 namespace MyJournal.ViewModels;

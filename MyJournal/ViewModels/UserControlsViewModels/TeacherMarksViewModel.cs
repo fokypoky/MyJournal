@@ -1,15 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media;
 using MyJournal.Models;
 using MyJournal.ViewModels.Base;
 using MyJournalLibrary.Entities;
 using MyJournalLibrary.Repositories.EntityRepositories;
-using MyJournalLibrary.Services;
 
 namespace MyJournal.ViewModels.UserControlsViewModels;
 

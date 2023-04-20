@@ -1,7 +1,7 @@
 ﻿using MyJournal.Models;
 using MyJournal.ViewModels.Base;
 using MyJournalLibrary.Entities;
-using MyJournalLibrary.Services;
+using MyJournalLibrary.Repositories.EntityRepositories;
 
 namespace MyJournal.ViewModels;
 
@@ -24,7 +24,7 @@ public class ProfileSettingsViewModel : ViewModel
     {
         using (var context = new ApplicationContext())
         {
-            var service = new ContactsService(context);
+            var service = new ContactsRepository(context);
             _contact = service.GetById(ApplicationData.UserId);
         }
     }

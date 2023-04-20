@@ -6,7 +6,7 @@ using MyJournal.ViewModels.Base;
 using MyJournalLibrary.Entities;
 using System.Linq;
 using MyJournal.Models;
-using MyJournalLibrary.Services;
+using MyJournalLibrary.Repositories.EntityRepositories;
 
 namespace MyJournal.ViewModels.UserControlsViewModels;
 
@@ -123,8 +123,8 @@ public class TeacherTimetableViewModel : ViewModel
 
         using (var context = new ApplicationContext())
         {
-            TimetableService timetableService = new TimetableService(context);
-            var employeeService = new EmployeesService(context);
+            TimetableRepository timetableService = new TimetableRepository(context);
+            var employeeService = new EmployeesRepository(context);
 
             var employee = employeeService.GetByContactId(ApplicationData.UserId);
             _timetable = timetableService.GetTimetableByEmployee(employee).ToList();

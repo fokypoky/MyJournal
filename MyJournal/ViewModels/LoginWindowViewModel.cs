@@ -1,14 +1,12 @@
 ﻿using System.Windows;
 using System.Windows.Input;
-/*using GalaSoft.MvvmLight.Command;*/
 using MyJournal.Models;
-using MyJournalLibrary.Services;
 using MyJournal.ViewModels.Base;
 using MyJournal.Views;
-using MyJournalLibrary.Entities;
 using MyJournalLibrary.Repositories.FileRepositories;
 using UserRole = MyJournal.Models.UserRole;
 using MyJournal.Infrastructure.Commands;
+using MyJournalLibrary.Repositories.EntityRepositories;
 
 namespace MyJournal.ViewModels;
 
@@ -38,7 +36,7 @@ public class LoginWindowViewModel : ViewModel
     {
         using (var db = new ApplicationContext())
         {
-            var service = new ContactsService(db);
+            var service = new ContactsRepository(db);
             var contact = service.GetByLogin(Login, Password);
 
             if (contact == null)
