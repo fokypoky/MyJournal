@@ -189,7 +189,6 @@ D:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls
 D:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\MainUserControl.g.cs
 D:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\ProfileUserControl.g.cs
 D:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\TasksUserControl.g.cs
-D:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\TeacherMarksUserControl.g.cs
 D:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\TeacherTimetableUserControl.g.cs
 D:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\App.g.cs
 D:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\GeneratedInternalTypeHelper.g.cs
@@ -205,7 +204,6 @@ D:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls
 D:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\MainUserControl.baml
 D:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\ProfileUserControl.baml
 D:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\TasksUserControl.baml
-D:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\TeacherMarksUserControl.baml
 D:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\TeacherTimetableUserControl.baml
 D:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\MyJournal.g.resources
 D:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\MyJournal.GeneratedMSBuildEditorConfig.editorconfig
@@ -218,3 +216,5 @@ D:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\refint\MyJournal.d
 D:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\MyJournal.pdb
 D:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\MyJournal.genruntimeconfig.cache
 D:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\ref\MyJournal.dll
+D:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\TeacherSelectionMarksUserControl.g.cs
+D:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\TeacherSelectionMarksUserControl.baml

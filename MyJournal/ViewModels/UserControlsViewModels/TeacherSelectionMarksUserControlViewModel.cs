@@ -10,7 +10,7 @@ using MyJournalLibrary.Repositories.EntityRepositories;
 
 namespace MyJournal.ViewModels.UserControlsViewModels;
 
-public class TeacherMarksViewModel : ViewModel
+public class TeacherSelectionMarksUserControlViewModel : ViewModel
 {
     private List<Subject> _subjects;
     private Subject _selectedSubject;
@@ -41,9 +41,9 @@ public class TeacherMarksViewModel : ViewModel
             }
         });
     }
-    
 
-    public TeacherMarksViewModel()
+
+    public TeacherSelectionMarksUserControlViewModel()
     {
         using (var context = new ApplicationContext())
         {
