@@ -3854,21 +3854,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\MyJournalLibrary\\MyJournalLibrary.csproj",
+      "projectUniqueName": "D:\\RiderProjects\\MyJournal\\MyJournalLibrary\\MyJournalLibrary.csproj",
       "projectName": "MyJournalLibrary",
-      "projectPath": "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\MyJournalLibrary\\MyJournalLibrary.csproj",
+      "projectPath": "D:\\RiderProjects\\MyJournal\\MyJournalLibrary\\MyJournalLibrary.csproj",
       "packagesPath": "C:\\Users\\fokypoky\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\MyJournalLibrary\\obj\\",
+      "outputPath": "D:\\RiderProjects\\MyJournal\\MyJournalLibrary\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\fokypoky\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\fokypoky\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -3918,7 +3916,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -13,43 +13,36 @@ namespace MyJournal.ViewModels.UserControlsViewModels;
 public class TeacherMarksViewModel : ViewModel
 {
     private List<Subject> _subjects;
-    private Subject _expandedSubject;
+    private Subject _selectedSubject;
     
-    public ICommand OnSubjectClassTreeViewSelectedItemChanged
-    {
-        get => new RelayCommand((object parameter) =>
-        {
-            if (parameter is Subject)
-            {
-                MessageBox.Show("SUBJECT");
-            }
-            if (parameter is Class)
-            {
-                Class selectedClass = (Class)parameter;
-                // остальная логика...
-                MessageBox.Show("CLASS");
-            }
-        });
-    }
-
-    public ICommand OnSubjectClassTreeViewItemExpanded
-    {
-        get => new RelayCommand((object parameter) =>
-        {
-            MessageBox.Show("EXPANDED");
-            /*if (parameter is Subject)
-            {
-                _expandedSubject = (Subject)parameter;
-            }*/
-        });
-    }
-
     public List<Subject> Subjects
     {
         get => _subjects;
         set => SetField(ref _subjects, value);
     }
+
+    public ICommand OnTreeViewItemDoubleClick
+    {
+        get => new RelayCommand((object parameter) =>
+        {
+            if (parameter is Subject)
+            {
+                _selectedSubject = (Subject)parameter;
+            }
+
+            if (parameter is Class)
+            {
+                var selectedClass = (Class)parameter;
+
+                if (_selectedSubject != null && selectedClass != null)
+                {
+                    MessageBox.Show($"SELECTED {_selectedSubject.SubjectTitle} {selectedClass.ClassNumber}");
+                }
+            }
+        });
+    }
     
+
     public TeacherMarksViewModel()
     {
         using (var context = new ApplicationContext())

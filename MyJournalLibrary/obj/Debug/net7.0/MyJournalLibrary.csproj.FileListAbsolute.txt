@@ -26,3 +26,17 @@ C:\Users\fokypoky\RiderProjects\MyJournal\MyJournalLibrary\obj\Debug\net7.0\refi
 C:\Users\fokypoky\RiderProjects\MyJournal\MyJournalLibrary\obj\Debug\net7.0\MyJournalLibrary.pdb
 C:\Users\fokypoky\RiderProjects\MyJournal\MyJournalLibrary\obj\Debug\net7.0\MyJournalLibrary.genruntimeconfig.cache
 C:\Users\fokypoky\RiderProjects\MyJournal\MyJournalLibrary\obj\Debug\net7.0\ref\MyJournalLibrary.dll
+D:\RiderProjects\MyJournal\MyJournalLibrary\bin\Debug\net7.0\MyJournalLibrary.deps.json
+D:\RiderProjects\MyJournal\MyJournalLibrary\bin\Debug\net7.0\MyJournalLibrary.runtimeconfig.json
+D:\RiderProjects\MyJournal\MyJournalLibrary\bin\Debug\net7.0\MyJournalLibrary.dll
+D:\RiderProjects\MyJournal\MyJournalLibrary\bin\Debug\net7.0\MyJournalLibrary.pdb
+D:\RiderProjects\MyJournal\MyJournalLibrary\obj\Debug\net7.0\MyJournalLibrary.csproj.AssemblyReference.cache
+D:\RiderProjects\MyJournal\MyJournalLibrary\obj\Debug\net7.0\MyJournalLibrary.GeneratedMSBuildEditorConfig.editorconfig
+D:\RiderProjects\MyJournal\MyJournalLibrary\obj\Debug\net7.0\MyJournalLibrary.AssemblyInfoInputs.cache
+D:\RiderProjects\MyJournal\MyJournalLibrary\obj\Debug\net7.0\MyJournalLibrary.AssemblyInfo.cs
+D:\RiderProjects\MyJournal\MyJournalLibrary\obj\Debug\net7.0\MyJournalLibrary.csproj.CoreCompileInputs.cache
+D:\RiderProjects\MyJournal\MyJournalLibrary\obj\Debug\net7.0\MyJournalLibrary.dll
+D:\RiderProjects\MyJournal\MyJournalLibrary\obj\Debug\net7.0\refint\MyJournalLibrary.dll
+D:\RiderProjects\MyJournal\MyJournalLibrary\obj\Debug\net7.0\MyJournalLibrary.pdb
+D:\RiderProjects\MyJournal\MyJournalLibrary\obj\Debug\net7.0\MyJournalLibrary.genruntimeconfig.cache
+D:\RiderProjects\MyJournal\MyJournalLibrary\obj\Debug\net7.0\ref\MyJournalLibrary.dll
