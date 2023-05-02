@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\
+C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\
 MyJournal
 none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
-D:\RiderProjects\MyJournal\MyJournal\App.xaml
-121625488730
+C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\App.xaml
+12-1539207303
 
-281386300172
-214-851717876
-Views\ConnectionSettingsWindow.xaml;Views\LoginWindow.xaml;Views\ParentWindow.xaml;Views\ProfileSettingsWindow.xaml;Views\StudentWindow.xaml;Views\TeacherWindow.xaml;Views\UserControls\ChatUserControl.xaml;Views\UserControls\MainUserControl.xaml;Views\UserControls\ProfileUserControl.xaml;Views\UserControls\TasksUserControl.xaml;Views\UserControls\TeacherSelectionMarksUserControl.xaml;Views\UserControls\TeacherTimetableUserControl.xaml;
+28-1049013920
+2141721147035
+Views\ConnectionSettingsWindow.xaml;Views\LoginWindow.xaml;Views\ParentWindow.xaml;Views\ProfileSettingsWindow.xaml;Views\StudentWindow.xaml;Views\TeacherWindow.xaml;Views\UserControls\ChatUserControl.xaml;Views\UserControls\MainUserControl.xaml;Views\UserControls\ProfileUserControl.xaml;Views\UserControls\TasksUserControl.xaml;Views\UserControls\TeacherMarksUserControl.xaml;Views\UserControls\TeacherTimetableUserControl.xaml;
 
-False
+True
 
