@@ -75,7 +75,7 @@ public class TeacherWindowViewModel : ViewModel
     {
         _mainUserControl = new MainUserControl();
         _chatUserControl = new ChatUserControl();
-        _marksUserControl = new TeacherSelectionMarksUserContorl();
+        _marksUserControl = new TeacherSelectionMarksUserControl();
         _profileUserControl = new ProfileUserControl();
         _tasksUserControl = new TasksUserControl();
         _timetableUserControl = new TeacherTimetableUserControl();

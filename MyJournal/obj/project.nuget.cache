@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rq0WrfPfGjpOTqEo3PN4JozDzThqmhcl5/FoH6VQXAlhNTjUwaRwKuJ9N47uSnHYVex5CIF0AsDqySp2PLU2YQ==",
+  "dgSpecHash": "UGOBmxeCr8QgDXEngPbSkKWVoxmXht+g9AN/cV0cvG+LUOLV8Dwo3YTJpA79hdjNDgSeTnKzMnI6X0qqmroEPg==",
   "success": true,
-  "projectFilePath": "D:\\RiderProjects\\MyJournal\\MyJournal\\MyJournal.csproj",
+  "projectFilePath": "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\MyJournal\\MyJournal.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\fokypoky\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\fokypoky\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.0-preview.1.23111.4\\microsoft.entityframeworkcore.8.0.0-preview.1.23111.4.nupkg.sha512",
@@ -14,8 +14,8 @@
     "C:\\Users\\fokypoky\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\8.0.0-preview.1.23110.8\\microsoft.extensions.caching.abstractions.8.0.0-preview.1.23110.8.nupkg.sha512",
     "C:\\Users\\fokypoky\\.nuget\\packages\\microsoft.extensions.caching.memory\\8.0.0-preview.1.23110.8\\microsoft.extensions.caching.memory.8.0.0-preview.1.23110.8.nupkg.sha512",
     "C:\\Users\\fokypoky\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\8.0.0-preview.1.23110.8\\microsoft.extensions.configuration.abstractions.8.0.0-preview.1.23110.8.nupkg.sha512",
-    "C:\\Users\\fokypoky\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\8.0.0-preview.1.23110.8\\microsoft.extensions.dependencyinjection.8.0.0-preview.1.23110.8.nupkg.sha512",
-    "C:\\Users\\fokypoky\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0-preview.1.23110.8\\microsoft.extensions.dependencyinjection.abstractions.8.0.0-preview.1.23110.8.nupkg.sha512",
+    "C:\\Users\\fokypoky\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\8.0.0-preview.3.23174.8\\microsoft.extensions.dependencyinjection.8.0.0-preview.3.23174.8.nupkg.sha512",
+    "C:\\Users\\fokypoky\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0-preview.3.23174.8\\microsoft.extensions.dependencyinjection.abstractions.8.0.0-preview.3.23174.8.nupkg.sha512",
     "C:\\Users\\fokypoky\\.nuget\\packages\\microsoft.extensions.dependencymodel\\8.0.0-preview.1.23110.8\\microsoft.extensions.dependencymodel.8.0.0-preview.1.23110.8.nupkg.sha512",
     "C:\\Users\\fokypoky\\.nuget\\packages\\microsoft.extensions.logging\\8.0.0-preview.1.23110.8\\microsoft.extensions.logging.8.0.0-preview.1.23110.8.nupkg.sha512",
     "C:\\Users\\fokypoky\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.0-preview.1.23110.8\\microsoft.extensions.logging.abstractions.8.0.0-preview.1.23110.8.nupkg.sha512",

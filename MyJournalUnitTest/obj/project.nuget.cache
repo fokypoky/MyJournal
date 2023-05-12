@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/IwZRBzqh2mw8CDILrJP0z+spVwhWbmXcaZ8zptpAWSPHMNAZzaeg8N8Ui40MBgZRA0MAMigvI0fBV7rWymYQw==",
+  "dgSpecHash": "wDmASQCK6lG/snt5jPF70jz6wn3FVpFgd2wA2bDcurTVOG3ZNUZ4UuffgUuzIW/XTLZOHgieoaXLpuMqw0PnxA==",
   "success": true,
-  "projectFilePath": "D:\\RiderProjects\\MyJournal\\MyJournalUnitTest\\MyJournalUnitTest.csproj",
+  "projectFilePath": "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\MyJournalUnitTest\\MyJournalUnitTest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\fokypoky\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\fokypoky\\.nuget\\packages\\microsoft.codecoverage\\17.3.2\\microsoft.codecoverage.17.3.2.nupkg.sha512",

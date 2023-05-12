@@ -172,10 +172,10 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
-      "Microsoft.Extensions.DependencyInjection/8.0.0-preview.1.23110.8": {
+      "Microsoft.Extensions.DependencyInjection/8.0.0-preview.3.23174.8": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0-preview.1.23110.8"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0-preview.3.23174.8"
         },
         "compile": {
           "lib/net7.0/Microsoft.Extensions.DependencyInjection.dll": {
@@ -191,7 +191,7 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
-      "Microsoft.Extensions.DependencyInjection.Abstractions/8.0.0-preview.1.23110.8": {
+      "Microsoft.Extensions.DependencyInjection.Abstractions/8.0.0-preview.3.23174.8": {
         "type": "package",
         "compile": {
           "lib/net7.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
@@ -1240,10 +1240,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Extensions.DependencyInjection/8.0.0-preview.1.23110.8": {
-      "sha512": "jy9e1IujAMK9LT4eRCY9OZB9aAL8vJgpZJT3OTPrRiBASuKZRzLqwoXfBJGNW69RybOafHcImK4jhkTX/Chezg==",
+    "Microsoft.Extensions.DependencyInjection/8.0.0-preview.3.23174.8": {
+      "sha512": "nAXWQZo2nsb8pf5F7F8obYmN6NDaSFrlbYqPyQHY92YOWML8FD7eUmZqnQg6l0KUG0SGxNUs9r7tlOtW8MAYEA==",
       "type": "package",
-      "path": "microsoft.extensions.dependencyinjection/8.0.0-preview.1.23110.8",
+      "path": "microsoft.extensions.dependencyinjection/8.0.0-preview.3.23174.8",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1266,15 +1266,15 @@
         "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.xml",
         "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.dll",
         "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.xml",
-        "microsoft.extensions.dependencyinjection.8.0.0-preview.1.23110.8.nupkg.sha512",
+        "microsoft.extensions.dependencyinjection.8.0.0-preview.3.23174.8.nupkg.sha512",
         "microsoft.extensions.dependencyinjection.nuspec",
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Extensions.DependencyInjection.Abstractions/8.0.0-preview.1.23110.8": {
-      "sha512": "ZGI9B2g/FiWwgkaHcvQ3kz4Db0FhZmDV4BQW7ToorZ0hn3DK0euvN2Law61h51M81Iz2AnkYJ6ghhazPzrRgEg==",
+    "Microsoft.Extensions.DependencyInjection.Abstractions/8.0.0-preview.3.23174.8": {
+      "sha512": "y66q3RrLqAw7G8Zn3M/C/eCeFUdhwNtyzh1cAiMWUu+I0rIGFKHSTLZKTzmQ3rOP894OamvknmN46sY8uWzRag==",
       "type": "package",
-      "path": "microsoft.extensions.dependencyinjection.abstractions/8.0.0-preview.1.23110.8",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/8.0.0-preview.3.23174.8",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1297,7 +1297,7 @@
         "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
         "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
         "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
-        "microsoft.extensions.dependencyinjection.abstractions.8.0.0-preview.1.23110.8.nupkg.sha512",
+        "microsoft.extensions.dependencyinjection.abstractions.8.0.0-preview.3.23174.8.nupkg.sha512",
         "microsoft.extensions.dependencyinjection.abstractions.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -3904,6 +3904,7 @@
   "projectFileDependencyGroups": {
     "net7.0-windows7.0": [
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.0-preview.1.23111.4",
+      "Microsoft.Extensions.DependencyInjection >= 8.0.0-preview.3.23174.8",
       "Microsoft.Xaml.Behaviors.Wpf >= 1.1.39",
       "MyJournalLibrary >= 1.0.0",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 8.0.0-preview.1",
@@ -3916,27 +3917,29 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\RiderProjects\\MyJournal\\MyJournal\\MyJournal.csproj",
+      "projectUniqueName": "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\MyJournal\\MyJournal.csproj",
       "projectName": "MyJournal",
-      "projectPath": "D:\\RiderProjects\\MyJournal\\MyJournal\\MyJournal.csproj",
+      "projectPath": "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\MyJournal\\MyJournal.csproj",
       "packagesPath": "C:\\Users\\fokypoky\\.nuget\\packages\\",
-      "outputPath": "D:\\RiderProjects\\MyJournal\\MyJournal\\obj\\",
+      "outputPath": "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\MyJournal\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\fokypoky\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\fokypoky\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net7.0-windows"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0-windows7.0": {
           "targetAlias": "net7.0-windows",
           "projectReferences": {
-            "D:\\RiderProjects\\MyJournal\\MyJournalLibrary\\MyJournalLibrary.csproj": {
-              "projectPath": "D:\\RiderProjects\\MyJournal\\MyJournalLibrary\\MyJournalLibrary.csproj"
+            "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\MyJournalLibrary\\MyJournalLibrary.csproj": {
+              "projectPath": "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\MyJournalLibrary\\MyJournalLibrary.csproj"
             }
           }
         }
@@ -3956,6 +3959,10 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[8.0.0-preview.1.23111.4, )"
+          },
+          "Microsoft.Extensions.DependencyInjection": {
+            "target": "Package",
+            "version": "[8.0.0-preview.3.23174.8, )"
           },
           "Microsoft.Xaml.Behaviors.Wpf": {
             "target": "Package",
@@ -3989,7 +3996,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   }

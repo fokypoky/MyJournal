@@ -3,9 +3,9 @@ using MyJournal.ViewModels.UserControlsViewModels;
 
 namespace MyJournal.Views.UserControls;
 
-public partial class TeacherSelectionMarksUserContorl : UserControl
+public partial class TeacherSelectionMarksUserControl : UserControl
 {
-    public TeacherSelectionMarksUserContorl()
+    public TeacherSelectionMarksUserControl()
     {
         InitializeComponent();
     }

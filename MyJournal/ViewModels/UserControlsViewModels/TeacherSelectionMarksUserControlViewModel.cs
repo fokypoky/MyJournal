@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Windows;
 using System.Windows.Input;
 using MyJournal.Infrastructure.Commands;
 using MyJournal.Models;
 using MyJournal.ViewModels.Base;
+using MyJournal.Views;
 using MyJournalLibrary.Entities;
 using MyJournalLibrary.Repositories.EntityRepositories;
 
@@ -36,13 +36,14 @@ public class TeacherSelectionMarksUserControlViewModel : ViewModel
 
                 if (_selectedSubject != null && selectedClass != null)
                 {
-                    MessageBox.Show($"SELECTED {_selectedSubject.SubjectTitle} {selectedClass.ClassNumber}");
+                    var window = new TeacherMarksWindow();
+                    window.Show();
+                    
+                    WindowMessanger.OnMessageSend(new ClassSubjectMessage() {Class = selectedClass, Subject = _selectedSubject});
                 }
             }
         });
     }
-
-
     public TeacherSelectionMarksUserControlViewModel()
     {
         using (var context = new ApplicationContext())

@@ -146,8 +146,6 @@ C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Vie
 C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\TeacherTimetableUserControl.baml
 C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\ProfileSettingsWindow.g.cs
 C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\ProfileSettingsWindow.baml
-C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\TeacherMarksUserControl.g.cs
-C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\TeacherMarksUserControl.baml
 C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\bin\Debug\net7.0-windows\Microsoft.Xaml.Behaviors.dll
 D:\RiderProjects\MyJournal\MyJournal\bin\Debug\net7.0-windows\MyJournal.exe
 D:\RiderProjects\MyJournal\MyJournal\bin\Debug\net7.0-windows\MyJournal.deps.json
@@ -218,3 +216,7 @@ D:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\MyJournal.genrunti
 D:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\ref\MyJournal.dll
 D:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\TeacherSelectionMarksUserControl.g.cs
 D:\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\TeacherSelectionMarksUserControl.baml
+C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\TeacherSelectionMarksUserControl.g.cs
+C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\UserControls\TeacherSelectionMarksUserControl.baml
+C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\TeacherMarksWindow.g.cs
+C:\Users\fokypoky\RiderProjects\MyJournal\MyJournal\obj\Debug\net7.0-windows\Views\TeacherMarksWindow.baml

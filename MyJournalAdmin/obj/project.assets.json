@@ -13,19 +13,21 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\RiderProjects\\MyJournal\\MyJournalAdmin\\MyJournalAdmin.csproj",
+      "projectUniqueName": "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\MyJournalAdmin\\MyJournalAdmin.csproj",
       "projectName": "MyJournalAdmin",
-      "projectPath": "D:\\RiderProjects\\MyJournal\\MyJournalAdmin\\MyJournalAdmin.csproj",
+      "projectPath": "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\MyJournalAdmin\\MyJournalAdmin.csproj",
       "packagesPath": "C:\\Users\\fokypoky\\.nuget\\packages\\",
-      "outputPath": "D:\\RiderProjects\\MyJournal\\MyJournalAdmin\\obj\\",
+      "outputPath": "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\MyJournalAdmin\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\fokypoky\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\fokypoky\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net7.0-windows"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -62,7 +64,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   }
