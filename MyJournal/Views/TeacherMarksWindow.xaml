@@ -11,7 +11,19 @@
     <Window.DataContext>
         <vmodel:TeacherMarksWindowViewModel/>
     </Window.DataContext>
+    <Window.Resources>
+        <Style TargetType="ComboBox">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
         <Menu>
             <MenuItem Header="Файл">
                 <MenuItem Header="Экспорт в excel"/>
@@ -21,6 +33,24 @@
                 <MenuItem Header="Динамика успеваемости"/>
             </MenuItem>
         </Menu>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <ComboBox MinWidth="100" Margin="5, 0,5,0" Background="#D9D9D9"/>
+            <ComboBox MinWidth="100" Margin="5, 0, 0, 0" Background="#D9D9D9"/>
+        </StackPanel>
         
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            
+        </Grid>
+        <Grid Grid.Row="3">
+            <StackPanel Orientation="Horizontal">
+                <Button MinWidth="150" Margin="5" BorderThickness="0"
+                        Background="#D9D9D9"
+                        Content="Сохранить изменения"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>
