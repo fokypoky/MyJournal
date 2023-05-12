@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WxOryCO0XDKi/kScv0iTg6XK/t6nVtXqfUK4I6cg2kgljl//iwVLY4Oi4D30fiEzgSobfn+nWGT8ltz++GnGeg==",
+  "dgSpecHash": "Zo7zu0JsVx74L/4LXCoFF1bnBmznn/Wzvi+anqjLXVW38tommDVy618MYvLuvyVewTl2DAzpY78/AHmYMs8gAQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\MyJournalLibrary\\MyJournalLibrary.csproj",
+  "projectFilePath": "D:\\RiderProjects\\MyJournal-2\\MyJournalLibrary\\MyJournalLibrary.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\fokypoky\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\fokypoky\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.0-preview.1.23111.4\\microsoft.entityframeworkcore.8.0.0-preview.1.23111.4.nupkg.sha512",

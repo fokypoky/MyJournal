@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\ChatServer\\ChatServer.csproj",
+      "projectUniqueName": "D:\\RiderProjects\\MyJournal-2\\ChatServer\\ChatServer.csproj",
       "projectName": "ChatServer",
-      "projectPath": "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\ChatServer\\ChatServer.csproj",
+      "projectPath": "D:\\RiderProjects\\MyJournal-2\\ChatServer\\ChatServer.csproj",
       "packagesPath": "C:\\Users\\fokypoky\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\ChatServer\\obj\\",
+      "outputPath": "D:\\RiderProjects\\MyJournal-2\\ChatServer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\fokypoky\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -61,7 +61,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

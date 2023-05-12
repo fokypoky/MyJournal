@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\MyJournalUnitTest\\MyJournalUnitTest.csproj": {}
+    "D:\\RiderProjects\\MyJournal-2\\MyJournalUnitTest\\MyJournalUnitTest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\MyJournalUnitTest\\MyJournalUnitTest.csproj": {
+    "D:\\RiderProjects\\MyJournal-2\\MyJournalUnitTest\\MyJournalUnitTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\MyJournalUnitTest\\MyJournalUnitTest.csproj",
+        "projectUniqueName": "D:\\RiderProjects\\MyJournal-2\\MyJournalUnitTest\\MyJournalUnitTest.csproj",
         "projectName": "MyJournalUnitTest",
-        "projectPath": "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\MyJournalUnitTest\\MyJournalUnitTest.csproj",
+        "projectPath": "D:\\RiderProjects\\MyJournal-2\\MyJournalUnitTest\\MyJournalUnitTest.csproj",
         "packagesPath": "C:\\Users\\fokypoky\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\fokypoky\\RiderProjects\\MyJournal\\MyJournalUnitTest\\obj\\",
+        "outputPath": "D:\\RiderProjects\\MyJournal-2\\MyJournalUnitTest\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\fokypoky\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -77,7 +77,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
