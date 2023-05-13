@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows;
 using MyJournal.Models;
 using MyJournal.ViewModels.Base;
 using MyJournalLibrary.Entities;
@@ -14,30 +13,36 @@ public class TeacherMarksWindowViewModel : ViewModel
     private string _windowTitle;
     private Class _selectedClass;
     private Subject _selectedSubject;
-    private List<Mark> _marks;
-    
+    private ObservableCollection<Mark> _marks = new ObservableCollection<Mark>();
     public string WindowTitle
     {
         get => _windowTitle;
         set => SetField(ref _windowTitle, value);
     }
 
-    public List<Mark> Marks
+    public ObservableCollection<Mark> Marks
     {
         get => _marks;
         set => SetField(ref _marks, value);
     }
     
+    #region Commands
+
+    #endregion
+
+    #region data initialization
     private void LoadInfo()
     {
+        WindowTitle = $"{_selectedSubject.SubjectTitle} - {_selectedClass.ClassNumber}";
         using (var context = new ApplicationContext())
         {
-            Marks = new MarksRepository(context)
-                .GetMarksByClassAndSubject(_selectedClass, _selectedSubject)
-                .ToList();
+            Marks =  new ObservableCollection<Mark>
+            ( 
+                new MarksRepository(context)
+                    .GetMarksByClassAndSubject(_selectedClass, _selectedSubject)
+                    .ToList()
+            );
         }
-
-        MessageBox.Show(Marks?.Count.ToString());
     }
     private void OnMessageReceived(object sender, EventArgs e)
     {
@@ -45,8 +50,7 @@ public class TeacherMarksWindowViewModel : ViewModel
         {
             _selectedClass = ((ClassSubjectMessage)e).Class;
             _selectedSubject = ((ClassSubjectMessage)e).Subject;
-
-            WindowTitle = $"{_selectedSubject.SubjectTitle} - {_selectedClass.ClassNumber}";
+            
             WindowMessanger.MessageSender -= OnMessageReceived;
             
             LoadInfo();
@@ -57,4 +61,6 @@ public class TeacherMarksWindowViewModel : ViewModel
     {
         WindowMessanger.MessageSender += OnMessageReceived;
     }
+
+    #endregion
 }

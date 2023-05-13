@@ -13,8 +13,10 @@ public class MarksRepository : EntityRepository<Mark>
     {
         return _context.Set<Mark>()
             .Include(m => m.Subject)
+            .Include(m => m.Task)
             .Include(m => m.Student)
                 .ThenInclude(s => s.Class)
+            .Include(m => m.Student.Contacts)
             .Where(m => m.Student.Class == @class && m.Subject == subject)
             .ToList();
     }
