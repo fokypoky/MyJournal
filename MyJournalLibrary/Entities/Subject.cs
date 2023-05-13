@@ -1,6 +1,6 @@
 ﻿namespace MyJournalLibrary.Entities;
 
-public partial class Subject
+public partial class    Subject
 {
     public int Id { get; set; }
 
@@ -12,4 +12,5 @@ public partial class Subject
     public virtual ICollection<Timetable> Timetables { get; } = new List<Timetable>();
     public virtual ICollection<ClassSubject> ClassSubjects { get; set; }
     public virtual ICollection<Class> Classes { get; set; }
+    public virtual ICollection<Mark> Marks { get; set; }
 }
