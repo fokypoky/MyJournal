@@ -4,6 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:MyJournal.Views"
+        xmlns:ef="clr-namespace:MyJournalLibrary.Entities;assembly=MyJournalLibrary"
         xmlns:vmodel="clr-namespace:MyJournal.ViewModels"
         mc:Ignorable="d"
         Title="{Binding WindowTitle}" 
@@ -11,11 +12,24 @@
     <Window.DataContext>
         <vmodel:TeacherMarksWindowViewModel/>
     </Window.DataContext>
+    
     <Window.Resources>
         <Style TargetType="ComboBox">
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
+        
+        <DataTemplate x:Key="StudentColumnCellTemplate"
+                      DataType="{x:Type ef:Mark}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Student.Contacts.Surname}"/>
+                <TextBlock Text="{Binding Student.Contacts.Name}"
+                           Margin="5, 0, 0, 0"/>
+                <TextBlock Text="{Binding Student.Contacts.Midname}"
+                           Margin="5, 0, 0, 0"/>
+            </StackPanel>
+        </DataTemplate>
+        
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -39,12 +53,17 @@
         </StackPanel>
         
         <Grid Grid.Row="2">
-            <DataGrid Name="MarksDataGrid" ItemsSource="{Binding Marks}">
+            <DataGrid ItemsSource="{Binding Marks}"
+                      AutoGenerateColumns="True"
+                      CanUserAddRows="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Ученики" Binding="{Binding Student}"/>
+                    <DataGridTemplateColumn 
+                        CellTemplate="{StaticResource StudentColumnCellTemplate}"
+                        Header="Ученики"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
+        
         <Grid Grid.Row="3">
             <StackPanel Orientation="Horizontal">
                 <Button MinWidth="150" Margin="5" BorderThickness="0"
