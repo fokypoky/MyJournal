@@ -54,7 +54,7 @@
         
         <Grid Grid.Row="2">
             <DataGrid ItemsSource="{Binding Marks}"
-                      AutoGenerateColumns="True"
+                      AutoGenerateColumns="False"
                       CanUserAddRows="False">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn 
