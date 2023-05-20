@@ -48,8 +48,14 @@
             </MenuItem>
         </Menu>
         <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <ComboBox MinWidth="100" Margin="5, 0,5,0" Background="#D9D9D9"/>
-            <ComboBox MinWidth="100" Margin="5, 0, 0, 0" Background="#D9D9D9"/>
+            <ComboBox MinWidth="100" Margin="5, 0,5,0" Background="#D9D9D9"
+                      SelectedItem="{Binding SelectedYear}"
+                      ItemsSource="{Binding MarkYears}"
+            />
+            <ComboBox MinWidth="100" Margin="5, 0, 0, 0" Background="#D9D9D9"
+                      SelectedItem="{Binding SelectedMonth}"
+                      ItemsSource="{Binding MarkMonths}"
+                      />
         </StackPanel>
         
         <Grid Grid.Row="2">
