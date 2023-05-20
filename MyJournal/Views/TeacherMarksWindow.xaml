@@ -59,7 +59,7 @@
         </StackPanel>
         
         <Grid Grid.Row="2">
-            <DataGrid ItemsSource="{Binding Marks}"
+            <DataGrid ItemsSource="{Binding SelectedMarks}"
                       AutoGenerateColumns="False"
                       CanUserAddRows="False">
                 <DataGrid.Columns>

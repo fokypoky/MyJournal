@@ -17,12 +17,13 @@ public class TeacherMarksWindowViewModel : ViewModel
     private Class _selectedClass;
     private Subject _selectedSubject;
     private ObservableCollection<Mark> _marks;
-    
+    private ObservableCollection<Mark> _selectedMarks;
+
     private ObservableCollection<int> _markYears;
-    private int _selectedYear;
+    private int _selectedYear = 0;
 
     private ObservableCollection<int> _markMonths;
-    private int _selectedMonth;
+    private int _selectedMonth = 0;
     
     public int SelectedYear
     {
@@ -30,6 +31,10 @@ public class TeacherMarksWindowViewModel : ViewModel
         set
         {
             SetField(ref _selectedYear, value);
+            if (_selectedMonth != 0)
+            {
+                UpdateSelectedMarksByDate();
+            }
         }
     }
 
@@ -39,6 +44,10 @@ public class TeacherMarksWindowViewModel : ViewModel
         set
         {
             SetField(ref _selectedMonth, value);
+            if (_selectedYear != 0)
+            {
+                UpdateSelectedMarksByDate();
+            }
         }
     }
     
@@ -48,12 +57,7 @@ public class TeacherMarksWindowViewModel : ViewModel
         set => SetField(ref _windowTitle, value);
     }
 
-    public ObservableCollection<Mark> Marks
-    {
-        get => _marks;
-        set => SetField(ref _marks, value);
-    }
-
+    #region Collections
     public ObservableCollection<int> MarkYears
     {
         get => _markYears;
@@ -66,6 +70,12 @@ public class TeacherMarksWindowViewModel : ViewModel
         set => SetField(ref _markMonths, value);
     }
 
+    public ObservableCollection<Mark> SelectedMarks
+    {
+        get => _selectedMarks;
+        set => SetField(ref _selectedMarks, value);
+    }
+    #endregion
     #region Commands
 
     public ICommand OnYearComboBoxItemChanged
@@ -76,14 +86,22 @@ public class TeacherMarksWindowViewModel : ViewModel
         });
     }
     #endregion
-
     #region data initialization
+
+    private void UpdateSelectedMarksByDate()
+    {
+        SelectedMarks = new ObservableCollection<Mark>(
+            from mark in _marks
+            where (mark.MarkDate.Year == SelectedYear && mark.MarkDate.Month == SelectedMonth)
+            select mark
+        );
+    }
     private void LoadInfo()
     {
         WindowTitle = $"{_selectedSubject.SubjectTitle} - {_selectedClass.ClassNumber}";
         using (var context = new ApplicationContext())
         {
-            Marks =  new ObservableCollection<Mark>
+            _marks =  new ObservableCollection<Mark>
             ( 
                 new MarksRepository(context)
                     .GetMarksByClassAndSubject(_selectedClass, _selectedSubject)
@@ -91,10 +109,10 @@ public class TeacherMarksWindowViewModel : ViewModel
             );
         }
 
-        MarkYears = new ObservableCollection<int>((from mark in Marks select mark.MarkDate.Year).ToList().Distinct());
+        MarkYears = new ObservableCollection<int>((from mark in _marks select mark.MarkDate.Year).ToList().Distinct());
         SelectedYear = MarkYears.Max();
         
-        MarkMonths = new ObservableCollection<int>((from mark in Marks where mark.MarkDate.Year == SelectedYear
+        MarkMonths = new ObservableCollection<int>((from mark in _marks where mark.MarkDate.Year == SelectedYear
             select mark.MarkDate.Month).ToList().Distinct());
     }
     private void OnMessageReceived(object sender, EventArgs e)
