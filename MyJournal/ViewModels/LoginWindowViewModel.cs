@@ -14,7 +14,7 @@ public class LoginWindowViewModel : ViewModel
 {
     private string _login;
     private string _password;
-    
+    private bool _needsToSaveLogin = false;
     public string Login
     {
         get => _login;
@@ -27,6 +27,19 @@ public class LoginWindowViewModel : ViewModel
         set => SetField(ref _password, value);
     }
 
+    public bool NeedsToSaveLogin
+    {
+        get => _needsToSaveLogin;
+        set => SetField(ref _needsToSaveLogin, value);
+    }
+
+    public ICommand RememberLogin
+    {
+        get => new RelayCommand((object parameter) =>
+        {
+            NeedsToSaveLogin = !NeedsToSaveLogin;
+        });
+    }
     public ICommand LoginButtonClick
     {
         get => new RelayCommand(OnLoginButtonClick, CanLoginButtonClicked);

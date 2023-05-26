@@ -47,8 +47,18 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Восстановить пароль"/>
-                <CheckBox Grid.Column="1" Background="#D9D9D9"/>
-                <TextBlock Grid.Column="1" Text="Запомнить"/>
+                <CheckBox Grid.Column="1" IsChecked="{Binding NeedsToSaveLogin}">
+                    <CheckBox.InputBindings>
+                        <MouseBinding MouseAction="LeftClick"
+                                      Command="{Binding RememberLogin}"/>
+                    </CheckBox.InputBindings>
+                </CheckBox>
+                <TextBlock Grid.Column="1" Text="Запомнить">
+                    <TextBlock.InputBindings>
+                        <MouseBinding MouseAction="LeftClick"
+                                      Command="{Binding RememberLogin}"/>
+                    </TextBlock.InputBindings>
+                </TextBlock>
             </Grid>
             
             <Button Content="Войти" BorderThickness="0"
