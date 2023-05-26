@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Windows;
 using System.Windows.Input;
 using MyJournal.Models;
 using MyJournal.ViewModels.Base;
@@ -6,6 +7,8 @@ using MyJournal.Views;
 using MyJournalLibrary.Repositories.FileRepositories;
 using UserRole = MyJournal.Models.UserRole;
 using MyJournal.Infrastructure.Commands;
+using MyJournalLibrary.Encrypting;
+using MyJournalLibrary.Encrypting.Implementation;
 using MyJournalLibrary.Repositories.EntityRepositories;
 
 namespace MyJournal.ViewModels;
@@ -15,6 +18,7 @@ public class LoginWindowViewModel : ViewModel
     private string _login;
     private string _password;
     private bool _needsToSaveLogin = false;
+    private IEncryptor _encryptor;
     public string Login
     {
         get => _login;
@@ -96,6 +100,14 @@ public class LoginWindowViewModel : ViewModel
                     break;
             }
 
+            if (NeedsToSaveLogin)
+            {
+                string login = _encryptor.Encrypt(Login);
+                string password = _encryptor.Encrypt(Password);
+
+                var repository = new JsonRepository<LoginData>("LoginData.json");
+                repository.WriteFile(new LoginData(login, password));
+            }
             if (needToClose)
             {
                 Application.Current.MainWindow.Close();
@@ -122,12 +134,23 @@ public class LoginWindowViewModel : ViewModel
     }
     public LoginWindowViewModel()
     {
+        _encryptor = new DefaultEncryptor();
+        
         JsonRepository<DatabaseConnection> repository = new JsonRepository<DatabaseConnection>("ConnectionSettings.json");
         var connection = repository.ReadFile();
         
         if (connection != null)
         {
             ApplicationContext.ConnectionString = connection.ToConnectionString();
+        }
+
+        if (File.Exists("LoginData.json"))
+        {
+            JsonRepository<LoginData> loginRepository = new JsonRepository<LoginData>("LoginData.json");
+            var loginData = loginRepository.ReadFile();
+
+            Login = _encryptor.Decrypt(loginData.Login);
+            Password = _encryptor.Decrypt(loginData.Password);
         }
     }
 }
