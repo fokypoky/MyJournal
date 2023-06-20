@@ -20,6 +20,9 @@ public class TaskConfiguration : IEntityTypeConfiguration<Task>
             .HasColumnName("task_text");
         builder.Property(e => e.TeacherId).HasColumnName("teacher_id");
 
+        builder.Property(e => e.StartDate).HasColumnName("task_start_date");
+        builder.Property(e => e.EndDate).HasColumnName("task_deadline_date");
+
         builder.HasOne(d => d.Class).WithMany(p => p.Tasks)
             .HasForeignKey(d => d.ClassId)
             .OnDelete(DeleteBehavior.ClientSetNull)

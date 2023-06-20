@@ -12,6 +12,9 @@ public partial class Task
 
     public int TeacherId { get; set; }
 
+    public DateTime StartDate { get; set; }
+    public DateTime EndDate { get; set; }
+
     public virtual Class Class { get; set; } = null!;
 
     public virtual ICollection<Mark> Marks { get; } = new List<Mark>();
