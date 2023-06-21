@@ -2,6 +2,6 @@
 
 public interface IEncryptor
 {
-    string Encrypt(string text);
-    string Decrypt(string text);
+    byte[] Encrypt(string text);
+    string Decrypt(byte[] text);
 }

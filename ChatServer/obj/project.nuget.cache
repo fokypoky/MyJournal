@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PZxLs+b8Lkz+MxtL2nCL/rYCRobzuKwcqRuHn2G4KAAsDX/978f61fh99vpxoUgVg+JUDk6nS6tSBMybyn3MQQ==",
+  "dgSpecHash": "eaVxAs/SFVpLMk2Gm8DSkm5+iDd31oKCxzxQrf5iRjjBFiNd8RBKxuaVEBdgPcgv9bSn4Q/V3ZSj0HZpNydfMg==",
   "success": true,
-  "projectFilePath": "D:\\RiderProjects\\MyJournal-2\\ChatServer\\ChatServer.csproj",
+  "projectFilePath": "C:\\Users\\fokypoky\\Source\\Repos\\fokypoky\\MyJournal\\ChatServer\\ChatServer.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

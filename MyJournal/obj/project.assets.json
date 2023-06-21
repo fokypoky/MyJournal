@@ -3917,11 +3917,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\RiderProjects\\MyJournal-2\\MyJournal\\MyJournal.csproj",
+      "projectUniqueName": "C:\\Users\\fokypoky\\Source\\Repos\\fokypoky\\MyJournal\\MyJournal\\MyJournal.csproj",
       "projectName": "MyJournal",
-      "projectPath": "D:\\RiderProjects\\MyJournal-2\\MyJournal\\MyJournal.csproj",
+      "projectPath": "C:\\Users\\fokypoky\\Source\\Repos\\fokypoky\\MyJournal\\MyJournal\\MyJournal.csproj",
       "packagesPath": "C:\\Users\\fokypoky\\.nuget\\packages\\",
-      "outputPath": "D:\\RiderProjects\\MyJournal-2\\MyJournal\\obj\\",
+      "outputPath": "C:\\Users\\fokypoky\\Source\\Repos\\fokypoky\\MyJournal\\MyJournal\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\fokypoky\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3938,8 +3938,8 @@
         "net7.0-windows7.0": {
           "targetAlias": "net7.0-windows",
           "projectReferences": {
-            "D:\\RiderProjects\\MyJournal-2\\MyJournalLibrary\\MyJournalLibrary.csproj": {
-              "projectPath": "D:\\RiderProjects\\MyJournal-2\\MyJournalLibrary\\MyJournalLibrary.csproj"
+            "C:\\Users\\fokypoky\\Source\\Repos\\fokypoky\\MyJournal\\MyJournalLibrary\\MyJournalLibrary.csproj": {
+              "projectPath": "C:\\Users\\fokypoky\\Source\\Repos\\fokypoky\\MyJournal\\MyJournalLibrary\\MyJournalLibrary.csproj"
             }
           }
         }
@@ -3996,7 +3996,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   }

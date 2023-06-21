@@ -1,14 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyJournal", "MyJournal\MyJournal.csproj", "{1CF9C4A0-8789-4F3F-870A-0069BA7B3DD7}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33403.182
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyJournal", "MyJournal\MyJournal.csproj", "{1CF9C4A0-8789-4F3F-870A-0069BA7B3DD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatServer", "ChatServer\ChatServer.csproj", "{E7294A65-CAC5-4159-A841-D0BAEFEA82C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatServer", "ChatServer\ChatServer.csproj", "{E7294A65-CAC5-4159-A841-D0BAEFEA82C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyJournalAdmin", "MyJournalAdmin\MyJournalAdmin.csproj", "{67C0A6CC-C19B-4531-84BC-168003DE8481}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyJournalAdmin", "MyJournalAdmin\MyJournalAdmin.csproj", "{67C0A6CC-C19B-4531-84BC-168003DE8481}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyJournalLibrary", "MyJournalLibrary\MyJournalLibrary.csproj", "{813EAD83-5768-4CDB-B9D8-BDE2EE238171}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyJournalLibrary", "MyJournalLibrary\MyJournalLibrary.csproj", "{813EAD83-5768-4CDB-B9D8-BDE2EE238171}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyJournalUnitTest", "MyJournalUnitTest\MyJournalUnitTest.csproj", "{26126FC6-8FD0-49F7-885F-49692B148F5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyJournalUnitTest", "MyJournalUnitTest\MyJournalUnitTest.csproj", "{26126FC6-8FD0-49F7-885F-49692B148F5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsoleAPP", "TestConsoleAPP\TestConsoleAPP.csproj", "{B877C2BB-3C0C-4ECB-BDF3-F54A2097D8C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,5 +41,15 @@ Global
 		{26126FC6-8FD0-49F7-885F-49692B148F5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26126FC6-8FD0-49F7-885F-49692B148F5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26126FC6-8FD0-49F7-885F-49692B148F5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B877C2BB-3C0C-4ECB-BDF3-F54A2097D8C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B877C2BB-3C0C-4ECB-BDF3-F54A2097D8C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B877C2BB-3C0C-4ECB-BDF3-F54A2097D8C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B877C2BB-3C0C-4ECB-BDF3-F54A2097D8C7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {065C0A1F-5A0E-48C4-8F8A-D35A8D73B0EF}
 	EndGlobalSection
 EndGlobal

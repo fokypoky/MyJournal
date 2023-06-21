@@ -1,4 +1,8 @@
-﻿using System.IO;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Text;
 using System.Windows;
 using System.Windows.Input;
 using MyJournal.Models;
@@ -9,6 +13,7 @@ using UserRole = MyJournal.Models.UserRole;
 using MyJournal.Infrastructure.Commands;
 using MyJournalLibrary.Encrypting;
 using MyJournalLibrary.Encrypting.Implementation;
+using MyJournalLibrary.Encrypting.Keys.Implementation;
 using MyJournalLibrary.Repositories.EntityRepositories;
 
 namespace MyJournal.ViewModels;
@@ -102,11 +107,13 @@ public class LoginWindowViewModel : ViewModel
 
             if (NeedsToSaveLogin)
             {
-                string login = _encryptor.Encrypt(Login);
-                string password = _encryptor.Encrypt(Password);
+                //string login = _encryptor.Encrypt(Login);
+                //string password = _encryptor.Encrypt(Password);
+                string encryptedLogin = Convert.ToBase64String(_encryptor.Encrypt(Login));
+                string encryptedPassword = Convert.ToBase64String(_encryptor.Encrypt(Password));
 
                 var repository = new JsonRepository<LoginData>("LoginData.json");
-                repository.WriteFile(new LoginData(login, password));
+                repository.WriteFile(new LoginData(encryptedLogin, encryptedPassword));
             }
             if (needToClose)
             {
@@ -134,7 +141,11 @@ public class LoginWindowViewModel : ViewModel
     }
     public LoginWindowViewModel()
     {
-        _encryptor = new DefaultEncryptor();
+        ApplicationData.AESKey = new AESKey(
+            Encoding.UTF8.GetBytes("MyJournalAESKey"),
+            new byte[] { 142, 11, 13, 188, 138, 80, 185, 126, 5, 27, 33, 33, 75, 18, 210, 232}
+        );
+        _encryptor = new AESEncryptor(ApplicationData.AESKey);
         
         JsonRepository<DatabaseConnection> repository = new JsonRepository<DatabaseConnection>("ConnectionSettings.json");
         var connection = repository.ReadFile();
@@ -149,8 +160,10 @@ public class LoginWindowViewModel : ViewModel
             JsonRepository<LoginData> loginRepository = new JsonRepository<LoginData>("LoginData.json");
             var loginData = loginRepository.ReadFile();
 
-            Login = _encryptor.Decrypt(loginData.Login);
-            Password = _encryptor.Decrypt(loginData.Password);
+            Login = _encryptor.Decrypt(Convert.FromBase64String(loginData.Login));
+            Password = _encryptor.Decrypt(Convert.FromBase64String(loginData.Password));
+            //Login = _encryptor.Decrypt(loginData.Login);
+            //Password = _encryptor.Decrypt(loginData.Password);
         }
     }
 }

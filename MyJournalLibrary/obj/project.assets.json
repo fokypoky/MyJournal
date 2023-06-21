@@ -3854,11 +3854,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\RiderProjects\\MyJournal-2\\MyJournalLibrary\\MyJournalLibrary.csproj",
+      "projectUniqueName": "C:\\Users\\fokypoky\\Source\\Repos\\fokypoky\\MyJournal\\MyJournalLibrary\\MyJournalLibrary.csproj",
       "projectName": "MyJournalLibrary",
-      "projectPath": "D:\\RiderProjects\\MyJournal-2\\MyJournalLibrary\\MyJournalLibrary.csproj",
+      "projectPath": "C:\\Users\\fokypoky\\Source\\Repos\\fokypoky\\MyJournal\\MyJournalLibrary\\MyJournalLibrary.csproj",
       "packagesPath": "C:\\Users\\fokypoky\\.nuget\\packages\\",
-      "outputPath": "D:\\RiderProjects\\MyJournal-2\\MyJournalLibrary\\obj\\",
+      "outputPath": "C:\\Users\\fokypoky\\Source\\Repos\\fokypoky\\MyJournal\\MyJournalLibrary\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\fokypoky\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3918,7 +3918,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   }
