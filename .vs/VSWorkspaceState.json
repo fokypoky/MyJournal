@@ -1,7 +1,13 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\MyJournal",
+    "\\MyJournalLibrary",
+    "\\MyJournalLibrary\\Encrypting",
+    "\\MyJournalLibrary\\Encrypting\\Implementation",
+    "\\MyJournal\\ViewModels",
+    "\\MyJournal\\Views"
   ],
-  "SelectedNode": "\\MyJournal.sln",
+  "SelectedNode": "\\MyJournal\\Views\\TeacherMarksWindow.xaml",
   "PreviewInSolutionExplorer": false
 }

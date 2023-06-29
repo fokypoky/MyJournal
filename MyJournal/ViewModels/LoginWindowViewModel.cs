@@ -53,7 +53,7 @@ public class LoginWindowViewModel : ViewModel
     {
         get => new RelayCommand(OnLoginButtonClick, CanLoginButtonClicked);
     }
-    
+
     private void OnLoginButtonClick(object parameter)
     {
         using (var db = new ApplicationContext())
@@ -107,8 +107,6 @@ public class LoginWindowViewModel : ViewModel
 
             if (NeedsToSaveLogin)
             {
-                //string login = _encryptor.Encrypt(Login);
-                //string password = _encryptor.Encrypt(Password);
                 string encryptedLogin = Convert.ToBase64String(_encryptor.Encrypt(Login));
                 string encryptedPassword = Convert.ToBase64String(_encryptor.Encrypt(Password));
 
@@ -162,8 +160,6 @@ public class LoginWindowViewModel : ViewModel
 
             Login = _encryptor.Decrypt(Convert.FromBase64String(loginData.Login));
             Password = _encryptor.Decrypt(Convert.FromBase64String(loginData.Password));
-            //Login = _encryptor.Decrypt(loginData.Login);
-            //Password = _encryptor.Decrypt(loginData.Password);
         }
     }
 }

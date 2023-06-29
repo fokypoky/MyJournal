@@ -9,8 +9,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using Microsoft.Xaml.Behaviors;
 using MyJournal.ViewModels;
 using MyJournal.Views;
+using MyJournal.Views.Behaviors;
 using MyJournalLibrary.Entities;
 using System;
 using System.Diagnostics;

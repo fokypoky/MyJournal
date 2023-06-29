@@ -12,7 +12,7 @@ public partial class Student
 
     public virtual Contact Contacts { get; set; } = null!;
     public virtual ICollection<ParentStudent> ParentStudents { get; set; }
-    public virtual ICollection<Mark> Marks { get; } = new List<Mark>();
+    public virtual ICollection<Mark> Marks { get; set; } = new List<Mark>();
     public virtual ICollection<Parent> Parents { get; set; }
 
 }
