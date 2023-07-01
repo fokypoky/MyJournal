@@ -26,17 +26,27 @@ public class TeacherMarksWindowViewModel : ViewModel
     private ObservableCollection<int> _markYears;
     private ObservableCollection<int> _markMonths;
 
+    private List<DateTime> _markDates;
+
     private DataTable _marksTable;
 
     public int SelectedYear
     {
         get => _selectedYear;
-        set => SetField(ref _selectedYear, value);
+        set
+        {
+            SetField(ref _selectedYear, value);
+            OnDatePeriodChanged();
+        }
     }
     public int SelectedMonth
     {
         get => _selectedMonth;
-        set => SetField(ref _selectedMonth, value);
+        set
+        {
+            SetField(ref _selectedMonth, value);
+            OnDatePeriodChanged();
+        }
     }
     public DataView MarksDataView
     {
@@ -78,7 +88,13 @@ public class TeacherMarksWindowViewModel : ViewModel
     {
         get => new RelayCommand((object parameter) =>
         {
-            string todayDate = DateTime.Now.ToString("dd.MM");
+            /*if (DateTime.Now.Month != SelectedMonth && DateTime.Now.Year != SelectedYear)
+            {
+                return;
+            }
+            */
+            
+            string todayDate = DateTime.Now.ToString("dd");
             foreach (DataColumn column in _marksTable.Columns)
             {
                 if (column.ColumnName == todayDate)
@@ -87,14 +103,14 @@ public class TeacherMarksWindowViewModel : ViewModel
                     return;
                 }
             }
-            AddMarkColumn(todayDate);
+            AddMarkTableColumn(todayDate);
             OnPropertyChanged("MarksDataView");
         });
     }
     #endregion
     
     #region data initialization
-    private void AddMarkColumn(string columnTitle)
+    private void AddMarkTableColumn(string columnTitle)
     {
         var tempTable = new DataTable();
         for (int i = 0; i < _marksTable.Columns.Count; i++)
@@ -121,8 +137,7 @@ public class TeacherMarksWindowViewModel : ViewModel
 
             tempTable.Rows.Add(newRow);
         }
-
-        //var newMarkColumn = new DataColumn(columnTitle);
+        
         tempTable.Columns.Add(new DataColumn(columnTitle));
 
         _marksTable.Clear();
@@ -192,17 +207,17 @@ public class TeacherMarksWindowViewModel : ViewModel
                 .OrderBy(s => s.Contacts.Surname));
         }
 
-        var dates = (
+        _markDates = (
             from student in Students
             from mark in student.Marks
             where mark.SubjectId == _selectedSubject.Id
-            select mark.MarkDate).Distinct();
+            select mark.MarkDate).Distinct().ToList();
 
         MarkYears = new ObservableCollection<int>(
-            (from date in dates select date.Year).Distinct()
+            (from date in _markDates select date.Year).Distinct()
         );
         MarkMonths = new ObservableCollection<int>(
-            (from date in dates select date.Month).Distinct()
+            (from date in _markDates select date.Month).Distinct()
         );
         
         InitializeMarksDataTable();
@@ -226,6 +241,58 @@ public class TeacherMarksWindowViewModel : ViewModel
         OnPropertyChanged(nameof(MarksDataView));
     }
 
+    private void OnDatePeriodChanged()
+    {
+        if (SelectedMonth == 0 || SelectedYear == 0)
+        {
+            return;
+        }
+        FillMarksTable();
+        OnPropertyChanged(nameof(MarksDataView));
+    }
+
+    private void FillMarksTable()
+    {
+        _marksTable.Rows.Clear();
+        _marksTable.Columns.Clear();
+        
+        var selectedPeriodDates = (
+            from date in _markDates
+            where date.Year == SelectedYear && date.Month == SelectedMonth
+            select date
+        );
+        
+        AddMarkTableColumn("Ученики");
+        
+        var columnNames = new List<string>();
+        
+        foreach (var date in selectedPeriodDates)
+        {
+            columnNames.Add(date.ToString("dd"));
+        }
+        AddMarkColumnsRange(columnNames);
+
+        foreach (var student in Students)
+        {
+            var row = _marksTable.NewRow();
+            for (int i = 0; i < _marksTable.Columns.Count; i++)
+            {
+                if (i == 0)
+                {
+                    row[i] = $"{student.Contacts.Surname} {student.Contacts.Name} {student.Contacts.Midname}";
+                    continue;
+                }
+
+                row[i] = student.Marks
+                    .Where(m => m.SubjectId == _selectedSubject.Id && 
+                                m.MarkDate.Year == SelectedYear && m.MarkDate.Month == SelectedMonth
+                                && m.MarkDate.Day == Convert.ToInt32(_marksTable.Columns[i].ColumnName))
+                    .FirstOrDefault().MarkValue.ToString();
+            }
+
+            _marksTable.Rows.Add(row);
+        }
+    }
     public TeacherMarksWindowViewModel()
     {
         WindowMessanger.MessageSender += OnMessageReceived;
