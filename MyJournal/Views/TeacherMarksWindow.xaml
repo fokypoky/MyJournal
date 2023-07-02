@@ -66,13 +66,45 @@
         <!--Оценки-->
         <Grid Grid.Row="2">
             <DataGrid
+                SelectionMode="Single"
+                SelectionUnit="Cell"
+                x:Name="MarksDataGrid"
                 ItemsSource="{Binding MarksDataView,
                 UpdateSourceTrigger=PropertyChanged,
                 Mode=OneWay}"
+                
+                CurrentCell="{Binding CellInfo, Mode=OneWayToSource}"
+                
                 CanUserAddRows="False"
                 CanUserSortColumns="False"
-                CanUserDeleteRows="False"
-            />
+                CanUserDeleteRows="False">
+                
+                <i:Interaction.Triggers>
+                    
+                    <!--~1~ Индекс строки @1@
+                    <i:EventTrigger EventName="SelectedCellsChanged">
+                        <i:InvokeCommandAction
+                            Command="{Binding OnCellRowChanged}"
+                            CommandParameter="{Binding SelectedIndex, ElementName=MarksDataGrid}"/>
+                    </i:EventTrigger>
+                    
+                    ~1~ Имя столбца @1@
+                    <i:EventTrigger EventName="BeginningEdit">
+                        <i:InvokeCommandAction
+                            Command="{Binding OnCellColumnChanged}"
+                            CommandParameter="{Binding CurrentCell.Column.Header, ElementName=MarksDataGrid}"
+                            />
+                    </i:EventTrigger>-->
+                    
+                    <!-- Изменение ячейки -->
+                    <i:EventTrigger EventName="CellEditEnding">
+                        <i:InvokeCommandAction
+                            Command="{Binding OnMarksTableCellEditedCommand}"
+                            />
+                    </i:EventTrigger>
+                    
+                </i:Interaction.Triggers>
+            </DataGrid>
         </Grid>
 
 

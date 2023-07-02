@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
+using System.Runtime.InteropServices.JavaScript;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -30,6 +31,20 @@ public class TeacherMarksWindowViewModel : ViewModel
 
     private DataTable _marksTable;
 
+    private int _selectedRowIndex;
+    private int _selectedColumnIndex;
+
+    private DataGridCellInfo _cellInfo;
+
+    public DataGridCellInfo CellInfo
+    {
+        get => _cellInfo;
+        set
+        {
+            SetField(ref _cellInfo, value);
+        }
+    }
+    
     public int SelectedYear
     {
         get => _selectedYear;
@@ -77,11 +92,62 @@ public class TeacherMarksWindowViewModel : ViewModel
     #endregion
 
     #region Commands
-    public ICommand LoadCommand
+    
+    public ICommand OnMarksTableCellEditedCommand
     {
-        get => new RelayCommand((object p) =>
+        get => new RelayCommand((object parameter) =>
         {
-            
+            if (parameter != null)
+            {
+                //var newValueList = (DataRowView)parameter; // target value at 0 position
+                //string newValue = newValueList[0].ToString();
+                var rw = (DataRowView)CellInfo.Item;
+                MessageBox.Show(rw[0].ToString());
+                return;
+                var info = (DataGridCellInfo)parameter;
+                var row = (DataRowView)info.Item;
+                row.EndEdit();
+
+                string newValue = row[0].ToString();
+                
+                //_marksTable.Rows[_selectedRowIndex][_selectedColumnIndex] = newValueList[0].ToString();
+                _marksTable.Rows[_selectedRowIndex][_selectedColumnIndex] = newValue;
+                OnPropertyChanged(nameof(MarksDataView));
+            }
+        });
+    }
+
+    public ICommand OnCellColumnChanged
+    {
+        get => new RelayCommand((object parameter) =>
+        {
+            for (int i = 0; i < _marksTable.Columns.Count; i++)
+            {
+                if (_marksTable.Columns[i].ColumnName == parameter)
+                {
+                    _selectedColumnIndex = i;
+                }
+            }
+        });
+    }
+    public ICommand OnCellRowChanged
+    {
+        get => new RelayCommand((object parameter) =>
+        {
+            if (parameter != null)
+            {
+                MessageBox.Show(parameter.ToString());
+                _selectedRowIndex = (int)parameter;
+            }
+        });
+    }
+    
+
+    public ICommand OnMarksTableSelectedCellChanged
+    {
+        get => new RelayCommand((object parameter) =>
+        {
+            MessageBox.Show("sdfsdf");
         });
     }
     public ICommand AddMarkColumnCommand
@@ -289,7 +355,7 @@ public class TeacherMarksWindowViewModel : ViewModel
                                 && m.MarkDate.Day == Convert.ToInt32(_marksTable.Columns[i].ColumnName))
                     .FirstOrDefault().MarkValue.ToString();
             }
-
+            
             _marksTable.Rows.Add(row);
         }
     }
