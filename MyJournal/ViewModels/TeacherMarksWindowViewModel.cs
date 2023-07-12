@@ -21,6 +21,8 @@ public class TeacherMarksWindowViewModel : ViewModel
     private Class _selectedClass;
     private Subject _selectedSubject;
     private ObservableCollection<Student> _students;
+    private List<int> _aviableMarkValues = new List<int>() { 5, 4, 3, 2 };
+    private int _selectedNewMarkValue;
 
     private int _selectedYear;
     private int _selectedMonth;
@@ -28,23 +30,21 @@ public class TeacherMarksWindowViewModel : ViewModel
     private ObservableCollection<int> _markMonths;
 
     private List<DateTime> _markDates;
-
     private DataTable _marksTable;
+    private int _selectedCellRowIndex;
 
-    private int _selectedRowIndex;
-    private int _selectedColumnIndex;
+    private DataGridCellInfo _selectedCellInfo;
 
-    private DataGridCellInfo _cellInfo;
-
-    public DataGridCellInfo CellInfo
+    public int SelectedCellRowIndex
     {
-        get => _cellInfo;
-        set
-        {
-            SetField(ref _cellInfo, value);
-        }
+        get => _selectedCellRowIndex;
+        set => SetField(ref _selectedCellRowIndex, value);
     }
-    
+    public int SelectedNewMarkValue
+    {
+        get => _selectedNewMarkValue;
+        set => SetField(ref _selectedNewMarkValue, value);
+    }
     public int SelectedYear
     {
         get => _selectedYear;
@@ -89,77 +89,80 @@ public class TeacherMarksWindowViewModel : ViewModel
         get => _markMonths;
         set => SetField(ref _markMonths, value);
     }
+
+    public List<int> AviableMarkValues
+    {
+        get => _aviableMarkValues;
+        set => SetField(ref _aviableMarkValues, value);
+    }
     #endregion
 
     #region Commands
-    
-    public ICommand OnMarksTableCellEditedCommand
+    public ICommand OnSelectedCellChanged
+    {
+        get => new RelayCommand((object parameter) =>
+        {
+            if (parameter is DataGridCellInfo)
+            {
+                _selectedCellInfo = (DataGridCellInfo)parameter;
+            }
+        });
+    }
+    public ICommand SetSelectedRowIndexCommand
     {
         get => new RelayCommand((object parameter) =>
         {
             if (parameter != null)
             {
-                //var newValueList = (DataRowView)parameter; // target value at 0 position
-                //string newValue = newValueList[0].ToString();
-                var rw = (DataRowView)CellInfo.Item;
-                MessageBox.Show(rw[0].ToString());
-                return;
-                var info = (DataGridCellInfo)parameter;
-                var row = (DataRowView)info.Item;
-                row.EndEdit();
-
-                string newValue = row[0].ToString();
-                
-                //_marksTable.Rows[_selectedRowIndex][_selectedColumnIndex] = newValueList[0].ToString();
-                _marksTable.Rows[_selectedRowIndex][_selectedColumnIndex] = newValue;
-                OnPropertyChanged(nameof(MarksDataView));
+                if ((int)parameter < 0)
+                {
+                    return;
+                }
+                _selectedCellRowIndex = (int)parameter;
             }
         });
     }
-
-    public ICommand OnCellColumnChanged
+    public ICommand UpdateMarkCommand
     {
         get => new RelayCommand((object parameter) =>
         {
+            if (SelectedNewMarkValue == 0)
+            {
+                MessageBox.Show("Новое значение не выбрано");
+                return;
+            }
+
+            int selectedCellColumnIndex = 0;
+            string selectedCellColumnName = _selectedCellInfo.Column.Header.ToString();
+
             for (int i = 0; i < _marksTable.Columns.Count; i++)
             {
-                if (_marksTable.Columns[i].ColumnName == parameter)
+                if (_marksTable.Columns[i].ColumnName == selectedCellColumnName)
                 {
-                    _selectedColumnIndex = i;
+                    selectedCellColumnIndex = i;
                 }
             }
-        });
-    }
-    public ICommand OnCellRowChanged
-    {
-        get => new RelayCommand((object parameter) =>
-        {
-            if (parameter != null)
-            {
-                MessageBox.Show(parameter.ToString());
-                _selectedRowIndex = (int)parameter;
-            }
-        });
-    }
-    
 
-    public ICommand OnMarksTableSelectedCellChanged
-    {
-        get => new RelayCommand((object parameter) =>
-        {
-            MessageBox.Show("sdfsdf");
+            if (selectedCellColumnIndex <= 0 || SelectedCellRowIndex < 0)
+            {
+                MessageBox.Show("Неверный индекс ячейки");
+                return;
+            }
+
+            _marksTable.Rows[SelectedCellRowIndex][selectedCellColumnIndex] = SelectedNewMarkValue;
+            OnPropertyChanged(nameof(MarksDataView));
         });
     }
     public ICommand AddMarkColumnCommand
     {
         get => new RelayCommand((object parameter) =>
         {
-            /*if (DateTime.Now.Month != SelectedMonth && DateTime.Now.Year != SelectedYear)
+            if (DateTime.Now.Month != SelectedMonth && DateTime.Now.Year != SelectedYear)
             {
                 return;
             }
-            */
-            
+
+
             string todayDate = DateTime.Now.ToString("dd");
             foreach (DataColumn column in _marksTable.Columns)
             {

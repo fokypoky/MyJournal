@@ -37,7 +37,7 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="20*"/>
+            <RowDefinition Height="22*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
 
@@ -65,63 +65,118 @@
         
         <!--Оценки-->
         <Grid Grid.Row="2">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
             <DataGrid
-                SelectionMode="Single"
-                SelectionUnit="Cell"
+                SelectedIndex="{Binding SelectedCellRowIndex}"
+                Grid.Column="0"
+                SelectionMode="Extended"
+                SelectionUnit="FullRow"
                 x:Name="MarksDataGrid"
                 ItemsSource="{Binding MarksDataView,
                 UpdateSourceTrigger=PropertyChanged,
                 Mode=OneWay}"
-                
-                CurrentCell="{Binding CellInfo, Mode=OneWayToSource}"
-                
                 CanUserAddRows="False"
                 CanUserSortColumns="False"
                 CanUserDeleteRows="False">
                 
                 <i:Interaction.Triggers>
-                    
-                    <!--~1~ Индекс строки @1@
+
                     <i:EventTrigger EventName="SelectedCellsChanged">
+                        <!--<i:InvokeCommandAction
+                            Command="{Binding SetSelectedRowIndexCommand}"
+                            CommandParameter="{Binding SelectedIndex, ElementName=MarksDataGrid}"
+                        />-->
                         <i:InvokeCommandAction
-                            Command="{Binding OnCellRowChanged}"
-                            CommandParameter="{Binding SelectedIndex, ElementName=MarksDataGrid}"/>
-                    </i:EventTrigger>
-                    
-                    ~1~ Имя столбца @1@
-                    <i:EventTrigger EventName="BeginningEdit">
-                        <i:InvokeCommandAction
-                            Command="{Binding OnCellColumnChanged}"
-                            CommandParameter="{Binding CurrentCell.Column.Header, ElementName=MarksDataGrid}"
-                            />
-                    </i:EventTrigger>-->
-                    
-                    <!-- Изменение ячейки -->
-                    <i:EventTrigger EventName="CellEditEnding">
-                        <i:InvokeCommandAction
-                            Command="{Binding OnMarksTableCellEditedCommand}"
+                            Command="{Binding OnSelectedCellChanged}"
+                            CommandParameter="{Binding CurrentCell, ElementName=MarksDataGrid}"
                             />
                     </i:EventTrigger>
                     
+                    <!-- 
+                        Триггеры:
+                            SelectedCellsChanged
+                            BeginningEdit
+                            CellEditEnding
+                    -->
+
                 </i:Interaction.Triggers>
             </DataGrid>
+            
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="10*"/>
+                </Grid.RowDefinitions>
+                
+                <TextBlock Grid.Row="0" Text="Задания"
+                           TextAlignment="Center"
+                           />
+                
+                <ListView Grid.Row="1">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn>
+                                <GridViewColumn.Header>
+                                    <TextBlock Text="Дата"/>
+                                </GridViewColumn.Header>
+                            </GridViewColumn>
+                            <GridViewColumn>
+                                <GridViewColumn.Header>
+                                    <TextBlock Text="Задание"/>
+                                </GridViewColumn.Header>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+
         </Grid>
 
 
         <!--Кнопки управления-->
         <Grid Grid.Row="3">
-            <StackPanel Orientation="Horizontal">
-                <Button MinWidth="150" Margin="5" BorderThickness="0"
-                        Background="#D9D9D9"
-                        Content="Добавить столбец с оценками"
-                        Command="{Binding AddMarkColumnCommand}"
-                        />
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+            <Border Grid.Column="0" BorderBrush="Black" 
+                    BorderThickness="0.5">
+                <StackPanel Orientation="Horizontal">
+                    <Button MinWidth="150" Margin="5" BorderThickness="0"
+                            Background="#D9D9D9"
+                            Content="Добавить столбец с оценками"
+                            Command="{Binding AddMarkColumnCommand}"
+                    />
 
-                <Button MinWidth="150" Margin="5" BorderThickness="0"
-                        Background="#D9D9D9"
-                        Content="Сохранить изменения"
-                        />
-            </StackPanel>
+                    <Button MinWidth="150" Margin="5" BorderThickness="0"
+                            Background="#D9D9D9"
+                            Content="Сохранить изменения"
+                    />
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="1" BorderBrush="Black" 
+                    BorderThickness="0.5">
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox MinWidth="150" Margin="5" x:Name="NewMarkComboBox"
+                              ItemsSource="{Binding AviableMarkValues}"
+                              SelectedItem="{Binding SelectedNewMarkValue}"/>
+                        
+                    <Button MinWidth="150" Margin="5"
+                            Content="Изменить оценку"
+                            BorderThickness="0"
+                            Background="#D9D9D9"
+                            Command="{Binding UpdateMarkCommand}"
+                            />
+                </StackPanel>
+            </Border>
+
         </Grid>
     </Grid>
 </Window>
