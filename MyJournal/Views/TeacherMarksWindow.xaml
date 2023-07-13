@@ -87,23 +87,17 @@
                 <i:Interaction.Triggers>
 
                     <i:EventTrigger EventName="SelectedCellsChanged">
-                        <!--<i:InvokeCommandAction
-                            Command="{Binding SetSelectedRowIndexCommand}"
-                            CommandParameter="{Binding SelectedIndex, ElementName=MarksDataGrid}"
-                        />-->
                         <i:InvokeCommandAction
                             Command="{Binding OnSelectedCellChanged}"
                             CommandParameter="{Binding CurrentCell, ElementName=MarksDataGrid}"
                             />
                     </i:EventTrigger>
-                    
                     <!-- 
                         Триггеры:
                             SelectedCellsChanged
                             BeginningEdit
                             CellEditEnding
                     -->
-
                 </i:Interaction.Triggers>
             </DataGrid>
             
@@ -117,19 +111,28 @@
                            TextAlignment="Center"
                            />
                 
-                <ListView Grid.Row="1">
+                <ListView Grid.Row="1" ItemsSource="{Binding CurrentPeriodTasks}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn>
+
+                            <GridViewColumn DisplayMemberBinding="{Binding StartDate}">
                                 <GridViewColumn.Header>
-                                    <TextBlock Text="Дата"/>
+                                    <TextBlock Text="Дата выдачи"/>
                                 </GridViewColumn.Header>
                             </GridViewColumn>
-                            <GridViewColumn>
+
+                            <GridViewColumn DisplayMemberBinding="{Binding EndDate}">
+                                <GridViewColumn.Header>
+                                    <TextBlock Text="Дата сдачи"/>
+                                </GridViewColumn.Header>
+                            </GridViewColumn>
+
+                            <GridViewColumn DisplayMemberBinding="{Binding TaskText}">
                                 <GridViewColumn.Header>
                                     <TextBlock Text="Задание"/>
                                 </GridViewColumn.Header>
                             </GridViewColumn>
+
                         </GridView>
                     </ListView.View>
                 </ListView>

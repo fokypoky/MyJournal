@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
-using System.Runtime.InteropServices.JavaScript;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -34,6 +33,8 @@ public class TeacherMarksWindowViewModel : ViewModel
     private int _selectedCellRowIndex;
 
     private DataGridCellInfo _selectedCellInfo;
+
+    private ObservableCollection<Task> _currentPeriodTasks;
 
     public int SelectedCellRowIndex
     {
@@ -74,6 +75,12 @@ public class TeacherMarksWindowViewModel : ViewModel
     }
 
     #region Collections
+
+    public ObservableCollection<Task> CurrentPeriodTasks
+    {
+        get => _currentPeriodTasks;
+        set => SetField(ref _currentPeriodTasks, value);
+    }
     public ObservableCollection<Student> Students
     {
         get => _students;
@@ -316,6 +323,16 @@ public class TeacherMarksWindowViewModel : ViewModel
         {
             return;
         }
+
+        using (var context = new ApplicationContext())
+        {
+            CurrentPeriodTasks?.Clear();
+            CurrentPeriodTasks = new ObservableCollection<Task>(
+                new TasksRepository(context).GetByClassSubjectAndPeriod(_selectedClass, _selectedSubject, SelectedYear,
+                    SelectedMonth)
+            );
+        }
+
         FillMarksTable();
         OnPropertyChanged(nameof(MarksDataView));
     }
