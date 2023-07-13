@@ -13,8 +13,10 @@ public class TasksRepository : EntityRepository<Task>
     public ICollection<Task> GetByClassSubjectAndPeriod(Class @class, Subject subject, int year, int month)
     {
         return _context.Set<Task>()
-            .Where(t => t.ClassId == @class.Id && t.SubjectId == subject.Id)
+            .Where(t => t.ClassId == @class.Id && t.SubjectId == subject.Id
+                                               && ((t.StartDate.Year == year && t.StartDate.Month == month) ||
+                                                   (t.EndDate.Year == year && t.EndDate.Month == month))
+            )
             .ToList();
-
     }
 }
