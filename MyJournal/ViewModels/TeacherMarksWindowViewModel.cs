@@ -369,11 +369,18 @@ public class TeacherMarksWindowViewModel : ViewModel
                     continue;
                 }
 
-                row[i] = student.Marks
-                    .Where(m => m.SubjectId == _selectedSubject.Id && 
-                                m.MarkDate.Year == SelectedYear && m.MarkDate.Month == SelectedMonth
-                                && m.MarkDate.Day == Convert.ToInt32(_marksTable.Columns[i].ColumnName))
-                    .FirstOrDefault().MarkValue.ToString();
+                int currentDay = Convert.ToInt32(_marksTable.Columns[i].ColumnName);
+                var studentMarks = new List<Mark>();
+
+                foreach (var mark in student.Marks)
+                {
+                    if (mark.MarkDate.Year == SelectedYear && mark.MarkDate.Month == SelectedMonth &&
+                        mark.MarkDate.Day == currentDay && mark.SubjectId == _selectedSubject.Id)
+                    {
+                        row[i] = mark.MarkValue.ToString();
+                        break;
+                    }
+                }
             }
             
             _marksTable.Rows.Add(row);
