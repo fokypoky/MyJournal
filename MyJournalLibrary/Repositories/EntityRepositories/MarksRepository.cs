@@ -20,5 +20,14 @@ public class MarksRepository : EntityRepository<Mark>
             .Where(m => m.Student.Class == @class && m.Subject == subject)
             .ToList();
     }
-    
+
+    public override void AddRange(IEnumerable<Mark> marks)
+    {
+        //foreach (var mark in marks)
+        //{
+        //    _context.Set<Mark>().Add(mark);
+        //}
+        _context.Set<Mark>().AddRange(marks);
+        _context.SaveChanges();
+    }
 }

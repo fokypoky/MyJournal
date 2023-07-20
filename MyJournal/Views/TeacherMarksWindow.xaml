@@ -160,6 +160,7 @@
                     <Button MinWidth="150" Margin="5" BorderThickness="0"
                             Background="#D9D9D9"
                             Content="Сохранить изменения"
+                            Command="{Binding SaveChangesCommand}"
                     />
                 </StackPanel>
             </Border>

@@ -36,6 +36,7 @@ public class TeacherMarksWindowViewModel : ViewModel
 
     private ObservableCollection<Task> _currentPeriodTasks;
 
+    #region Public Fields
     public int SelectedCellRowIndex
     {
         get => _selectedCellRowIndex;
@@ -73,7 +74,7 @@ public class TeacherMarksWindowViewModel : ViewModel
         get => _windowTitle;
         set => SetField(ref _windowTitle, value);
     }
-
+    #endregion
     #region Collections
 
     public ObservableCollection<Task> CurrentPeriodTasks
@@ -105,6 +106,107 @@ public class TeacherMarksWindowViewModel : ViewModel
     #endregion
 
     #region Commands
+
+    public ICommand SaveChangesCommand
+    {
+        get => new RelayCommand((object parameter) =>
+        {
+            if (_marksTable.Columns.Count <= 1)
+            {
+                MessageBox.Show("Нет оценок");
+                return;
+            }
+
+            var aviableMarkValuesString = new List<string>();
+            foreach (int value in AviableMarkValues)
+            {
+                aviableMarkValuesString.Add(value.ToString());
+            }
+
+            var newMarks = new List<Mark>();
+            var oldMarks = new List<Mark>();
+
+            for (int i = 0; i < _marksTable.Rows.Count; i++) // i - строки
+            {
+                for (int j = 1; j < _marksTable.Columns.Count; j++) // Columns[0] содержит имена учеников, поэтому int j = 1
+                {
+                    // проверка валидности оценки
+
+                    string markValueString = _marksTable.Rows[i][j].ToString();
+                    if (String.IsNullOrEmpty(markValueString))
+                    {
+                        continue;
+                    }
+                    else if (!aviableMarkValuesString.Contains(markValueString))
+                    {
+                        continue;
+                    }
+
+                    int markValue = Convert.ToInt32(markValueString);
+                    int currentMarkDay = Convert.ToInt32(_marksTable.Columns[j].ColumnName);
+
+                    DateTime currentMarkDate = new DateTime(SelectedYear, SelectedMonth, currentMarkDay);
+                    
+                    // проверка существования оценки
+
+                    bool isMarkExists = false;
+                    int markIndex = -1;
+
+                    for (int k = 0; k < Students[i].Marks.Count; k++)
+                    {
+                        var mark = Students[i].Marks.ElementAt(k);
+                        if (mark.MarkDate.Date == currentMarkDate.Date)
+                        {
+                            isMarkExists = true;
+                            markIndex = k;
+                            break;
+                        } 
+                    }
+
+                    // изменение оценки
+                    if (isMarkExists)
+                    {
+                        if (Students[i].Marks.ElementAt(markIndex).MarkValue != markValue)
+                        {
+                            Students[i].Marks.ElementAt(markIndex).MarkValue = markValue;
+                            oldMarks.Add(Students[i].Marks.ElementAt(markIndex));
+                        }
+                    }
+                    else
+                    {
+                        // TODO: сделать нормальную привязку к заданию у mark 
+                        var mark = new Mark()
+                        {
+                            MarkDate = new DateTime(SelectedYear, SelectedMonth, currentMarkDay),
+                            MarkValue = markValue,
+                            //Student = Students[i],
+                            StudentId = Students[i].Id,
+                            //Subject = _selectedSubject,
+                            SubjectId = _selectedSubject.Id,
+                            TeacherId = ApplicationData.UserId
+                        };
+                        newMarks.Add(mark);
+                    }
+                }
+            }
+
+            using (var context = new ApplicationContext())
+            {
+                var repository = new MarksRepository(context);
+
+                if (newMarks.Count > 0)
+                {
+                    repository.AddRange(newMarks);
+                }
+
+                if (oldMarks.Count > 0)
+                {
+                    repository.UpdateRange(oldMarks);
+                }
+            }
+            MessageBox.Show("Изменения сохранены");
+        });
+    }
     public ICommand OnSelectedCellChanged
     {
         get => new RelayCommand((object parameter) =>

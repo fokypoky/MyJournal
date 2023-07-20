@@ -9,6 +9,7 @@ public class MarkConfiguration : IEntityTypeConfiguration<Mark>
     public void Configure(EntityTypeBuilder<Mark> builder)
     {
         builder.HasKey(e => e.Id).HasName("marks_pkey");
+        builder.Property(e => e.Id).ValueGeneratedOnAdd();
 
         builder.ToTable("marks");
 
@@ -19,6 +20,7 @@ public class MarkConfiguration : IEntityTypeConfiguration<Mark>
             .HasColumnName("mark_date");
         builder.Property(e => e.StudentId).HasColumnName("student_id");
         builder.Property(e => e.TaskId).HasColumnName("task_id");
+        
         builder.Property(e => e.TeacherId).HasColumnName("teacher_id");
         builder.Property(e => e.SubjectId).HasColumnName("subject_id");
         
@@ -37,7 +39,6 @@ public class MarkConfiguration : IEntityTypeConfiguration<Mark>
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("marks_teacher_id_fkey");
         
-        //builder.HasOne(e => e.)
         builder.HasOne(d => d.Subject)
             .WithMany(s => s.Marks)
             .OnDelete(DeleteBehavior.SetNull)

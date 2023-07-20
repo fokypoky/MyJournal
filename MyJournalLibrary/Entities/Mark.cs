@@ -13,7 +13,7 @@ public partial class Mark
 
     public int TeacherId { get; set; }
 
-    public int TaskId { get; set; }
+    public int? TaskId { get; set; }
 
     public virtual Student Student { get; set; } = null!;
 

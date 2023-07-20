@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using MyJournalLibrary;
 using MyJournalLibrary.Entities;
@@ -26,6 +27,7 @@ internal class ApplicationContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseNpgsql(ConnectionString);
+        AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         optionsBuilder.LogTo(m => Debug.WriteLine(m));
     }
 
@@ -42,7 +44,5 @@ internal class ApplicationContext : DbContext
         modelBuilder.ApplyConfiguration(new TaskConfiguration());
         modelBuilder.ApplyConfiguration(new TimetableConfiguration());
         modelBuilder.ApplyConfiguration(new UserRoleConfiguration());
-        
-        
     }
 }

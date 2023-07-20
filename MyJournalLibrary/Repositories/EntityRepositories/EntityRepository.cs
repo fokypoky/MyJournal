@@ -22,7 +22,7 @@ public class EntityRepository<T> : IEntityRepository<T> where T : class
     public virtual void AddRange(IEnumerable<T> entities)
     {
         _context.AddRange(entities);
-        _context.SaveChangesAsync();
+        _context.SaveChanges();
     }
 
     public virtual void Remove(T entity)
@@ -40,5 +40,11 @@ public class EntityRepository<T> : IEntityRepository<T> where T : class
     public virtual void Update(T oldEntity, T newEntity)
     {
         throw new NotImplementedException();
+    }
+
+    public virtual void UpdateRange(IEnumerable<T> entities)
+    {
+        _context.UpdateRange(entities);
+        _context.SaveChanges();
     }
 }
