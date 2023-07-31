@@ -4,6 +4,7 @@ using MyJournal.Infrastructure.Commands;
 using MyJournal.ViewModels.Base;
 using MyJournal.ViewModels.Controls;
 using MyJournal.Views.UserControls;
+using MyJournal.Views.UserControls.Teacher;
 
 namespace MyJournal.ViewModels;
 
@@ -76,8 +77,8 @@ public class TeacherWindowViewModel : ViewModel
         _mainUserControl = new MainUserControl();
         _chatUserControl = new ChatUserControl();
         _marksUserControl = new TeacherSelectionMarksUserControl();
-        _profileUserControl = new ProfileUserControl();
-        _tasksUserControl = new TasksUserControl();
+        _profileUserControl = new TeacherProfileUserControl();
+        _tasksUserControl = new TeacherTasksUserControl();
         _timetableUserControl = new TeacherTimetableUserControl();
 
         _currentUserControl = _mainUserControl;

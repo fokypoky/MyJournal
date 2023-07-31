@@ -8,7 +8,7 @@ using System.Linq;
 using MyJournal.Models;
 using MyJournalLibrary.Repositories.EntityRepositories;
 
-namespace MyJournal.ViewModels.UserControlsViewModels;
+namespace MyJournal.ViewModels.UserControlsViewModels.Teacher;
 
 public class TeacherTimetableViewModel : ViewModel
 {
@@ -92,12 +92,12 @@ public class TeacherTimetableViewModel : ViewModel
     private string DayLanguageFormatter(DateTime date)
     {
         string day = CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetDayName(date.DayOfWeek);
-        
+
         StringBuilder builder = new StringBuilder(day);
 
-        if(Char.IsLower(builder[0]))
+        if (char.IsLower(builder[0]))
         {
-            builder[0] = Char.ToUpper(builder[0]);
+            builder[0] = char.ToUpper(builder[0]);
         }
 
         return builder.ToString();
@@ -112,11 +112,11 @@ public class TeacherTimetableViewModel : ViewModel
     public TeacherTimetableViewModel()
     {
         // заполняем дни недели
-        int dayOfWeekNow = ((int)DateTime.Today.DayOfWeek); 
-        
+        int dayOfWeekNow = (int)DateTime.Today.DayOfWeek;
+
         var date = DateTime.Now.Subtract(new TimeSpan(dayOfWeekNow - 1, 0, 0, 0));
 
-        for(int i = 0; i < 7; i++)
+        for (int i = 0; i < 7; i++)
         {
             _datesOfWeek[i] = date.AddDays(i);
         }
@@ -129,6 +129,6 @@ public class TeacherTimetableViewModel : ViewModel
             var employee = employeeService.GetByContactId(ApplicationData.UserId);
             _timetable = timetableService.GetTimetableByEmployee(employee).ToList();
         }
-        
+
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System.Windows.Controls;
-using MyJournal.ViewModels.UserControlsViewModels;
 
-namespace MyJournal.Views.UserControls;
+namespace MyJournal.Views.UserControls.Teacher;
 
 public partial class TeacherSelectionMarksUserControl : UserControl
 {

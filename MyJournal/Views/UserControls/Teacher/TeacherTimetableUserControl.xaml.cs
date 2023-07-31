@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace MyJournal.Views.UserControls;
+namespace MyJournal.Views.UserControls.Teacher;
 
 public partial class TeacherTimetableUserControl : UserControl
 {

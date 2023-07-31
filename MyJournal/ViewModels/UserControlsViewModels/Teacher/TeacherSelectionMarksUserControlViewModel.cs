@@ -8,13 +8,13 @@ using MyJournal.Views;
 using MyJournalLibrary.Entities;
 using MyJournalLibrary.Repositories.EntityRepositories;
 
-namespace MyJournal.ViewModels.UserControlsViewModels;
+namespace MyJournal.ViewModels.UserControlsViewModels.Teacher;
 
 public class TeacherSelectionMarksUserControlViewModel : ViewModel
 {
     private List<Subject> _subjects;
     private Subject _selectedSubject;
-    
+
     public List<Subject> Subjects
     {
         get => _subjects;
@@ -23,7 +23,7 @@ public class TeacherSelectionMarksUserControlViewModel : ViewModel
 
     public ICommand OnTreeViewItemDoubleClick
     {
-        get => new RelayCommand((object parameter) =>
+        get => new RelayCommand((parameter) =>
         {
             if (parameter is Subject)
             {
@@ -38,8 +38,8 @@ public class TeacherSelectionMarksUserControlViewModel : ViewModel
                 {
                     var window = new TeacherMarksWindow();
                     window.Show();
-                    
-                    WindowMessanger.OnMessageSend(new ClassSubjectMessage() {Class = selectedClass, Subject = _selectedSubject});
+
+                    WindowMessanger.OnMessageSend(new ClassSubjectMessage() { Class = selectedClass, Subject = _selectedSubject });
                 }
             }
         });
