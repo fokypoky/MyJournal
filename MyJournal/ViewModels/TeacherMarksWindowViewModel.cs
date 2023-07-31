@@ -484,31 +484,6 @@ public class TeacherMarksWindowViewModel : ViewModel
 
                 _marksTable.Rows.Add(row);
             }
-
-            continue;
-
-            for (int i = 0; i < _marksTable.Columns.Count; i++)
-            {
-                if (i == 0)
-                {
-                    row[i] = $"{student.Contacts.Surname} {student.Contacts.Name} {student.Contacts.Midname}";
-                    continue;
-                }
-
-                int currentDay = Convert.ToInt32(_marksTable.Columns[i].ColumnName);
-                
-                foreach (var mark in student.Marks)
-                {
-                    if (mark.MarkDate.Year == SelectedYear && mark.MarkDate.Month == SelectedMonth &&
-                        mark.MarkDate.Day == currentDay && mark.SubjectId == _selectedSubject.Id)
-                    {
-                        row[i] = mark.MarkValue.ToString();
-                        break;
-                    }
-                }
-            }
-            
-            _marksTable.Rows.Add(row);
         }
     }
     public TeacherMarksWindowViewModel()
