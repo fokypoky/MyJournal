@@ -4,12 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:MyJournal.ViewModels.Controls"
+             xmlns:vmodel="clr-namespace:MyJournal.ViewModels.UserControlsViewModels.Teacher"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vmodel:TeacherTasksUserControlViewModel/>
+    </UserControl.DataContext>
     <Grid>
-        <TextBlock HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Text="Домашние задания"
-                   FontSize="50"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="12*"/>
+        </Grid.RowDefinitions>
+
+        
+
     </Grid>
 </UserControl>
