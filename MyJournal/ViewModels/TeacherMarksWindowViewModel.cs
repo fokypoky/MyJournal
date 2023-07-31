@@ -448,8 +448,8 @@ public class TeacherMarksWindowViewModel : ViewModel
             from date in _markDates
             where date.Year == SelectedYear && date.Month == SelectedMonth
             select date
-        );
-        
+        ).OrderBy(d => d.Day);
+
         AddMarkTableColumn("Ученики");
         
         var columnNames = new List<string>();
@@ -463,6 +463,30 @@ public class TeacherMarksWindowViewModel : ViewModel
         foreach (var student in Students)
         {
             var row = _marksTable.NewRow();
+            using (var context = new ApplicationContext())
+            {
+                var marksRepository = new MarksRepository(context);
+
+                for (int i = 0; i < _marksTable.Columns.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        row[i] = $"{student.Contacts.Surname} {student.Contacts.Name} {student.Contacts.Midname}";
+                        continue;
+                    }
+
+                    var currentMarkDate = new DateTime(SelectedYear, SelectedMonth,
+                        Convert.ToInt32(_marksTable.Columns[i].ColumnName));
+                    
+                    var mark = marksRepository.GetByStudentSubjectAndDate(student, _selectedSubject, currentMarkDate);
+                    row[i] = mark?.MarkValue.ToString();
+                }
+
+                _marksTable.Rows.Add(row);
+            }
+
+            continue;
+
             for (int i = 0; i < _marksTable.Columns.Count; i++)
             {
                 if (i == 0)
@@ -472,8 +496,7 @@ public class TeacherMarksWindowViewModel : ViewModel
                 }
 
                 int currentDay = Convert.ToInt32(_marksTable.Columns[i].ColumnName);
-                var studentMarks = new List<Mark>();
-
+                
                 foreach (var mark in student.Marks)
                 {
                     if (mark.MarkDate.Year == SelectedYear && mark.MarkDate.Month == SelectedMonth &&

@@ -13,7 +13,7 @@ public class MarksRepository : EntityRepository<Mark>
     {
         return _context.Set<Mark>()
             .Include(m => m.Subject)
-            .Include(m => m.Task)
+            //.Include(m => m.Task)
             .Include(m => m.Student)
                 .ThenInclude(s => s.Class)
             .Include(m => m.Student.Contacts)
@@ -21,12 +21,15 @@ public class MarksRepository : EntityRepository<Mark>
             .ToList();
     }
 
+    public Mark? GetByStudentSubjectAndDate(Student student, Subject subject, DateTime date)
+    {
+        return _context.Set<Mark>()
+            .Where(m => m.StudentId == student.Id && m.SubjectId == subject.Id
+            && m.MarkDate.Date == date.Date)
+            .FirstOrDefault();
+    }
     public override void AddRange(IEnumerable<Mark> marks)
     {
-        //foreach (var mark in marks)
-        //{
-        //    _context.Set<Mark>().Add(mark);
-        //}
         _context.Set<Mark>().AddRange(marks);
         _context.SaveChanges();
     }

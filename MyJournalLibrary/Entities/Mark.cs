@@ -17,7 +17,7 @@ public partial class Mark
 
     public virtual Student Student { get; set; } = null!;
 
-    public virtual Task Task { get; set; } = null!;
+    public virtual Task? Task { get; set; }
 
     public virtual Employee Teacher { get; set; } = null!;
 
