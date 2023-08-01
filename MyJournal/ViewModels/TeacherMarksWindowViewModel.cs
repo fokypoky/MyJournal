@@ -395,10 +395,19 @@ public class TeacherMarksWindowViewModel : ViewModel
         MarkYears = new ObservableCollection<int>(
             (from date in _markDates select date.Year).Distinct()
         );
+        if (!MarkYears.Contains(DateTime.Now.Year))
+        {
+            MarkYears.Add(DateTime.Now.Year);
+        }
+
         MarkMonths = new ObservableCollection<int>(
             (from date in _markDates select date.Month).Distinct()
         );
-        
+        if (!MarkMonths.Contains(DateTime.Now.Month))
+        {
+            MarkMonths.Add(DateTime.Now.Month);
+        }
+
         InitializeMarksDataTable();
     }
 
