@@ -126,70 +126,67 @@ public class TeacherMarksWindowViewModel : ViewModel
             var newMarks = new List<Mark>();
             var oldMarks = new List<Mark>();
 
-            for (int i = 0; i < _marksTable.Rows.Count; i++) // i - строки
+            for (int i = 0; i < _marksTable.Rows.Count; i++)
             {
-                for (int j = 1; j < _marksTable.Columns.Count; j++) // Columns[0] содержит имена учеников, поэтому int j = 1
+                Student student = Students[i];
+                List<Mark> studentMarks;
+
+                using (var context = new ApplicationContext())
                 {
-                    // проверка валидности оценки
+                    studentMarks = new MarksRepository(context).GetByStudentAndSubject(student, _selectedSubject).ToList();
+                }
 
-                    string markValueString = _marksTable.Rows[i][j].ToString();
-                    if (String.IsNullOrEmpty(markValueString))
+                for (int j = 1; j < _marksTable.Columns.Count; j++)
+                {
+                    if (String.IsNullOrEmpty(_marksTable.Rows[i][j].ToString()))
                     {
                         continue;
                     }
-                    else if (!aviableMarkValuesString.Contains(markValueString))
-                    {
-                        continue;
-                    }
+                    int markValue = Convert.ToInt32(_marksTable.Rows[i][j].ToString());
+                    var markDate = new DateTime(SelectedYear, SelectedMonth,
+                        Convert.ToInt32(_marksTable.Columns[j].ColumnName));
 
-                    int markValue = Convert.ToInt32(markValueString);
-                    int currentMarkDay = Convert.ToInt32(_marksTable.Columns[j].ColumnName);
-
-                    DateTime currentMarkDate = new DateTime(SelectedYear, SelectedMonth, currentMarkDay);
-                    
-                    // проверка существования оценки
-
-                    bool isMarkExists = false;
+                    bool markExists = false;
                     int markIndex = -1;
-
-                    for (int k = 0; k < Students[i].Marks.Count; k++)
+                    foreach (var mark in studentMarks)
                     {
-                        var mark = Students[i].Marks.ElementAt(k);
-                        if (mark.MarkDate.Date == currentMarkDate.Date)
+                        if (mark.MarkDate.Date == markDate.Date)
                         {
-                            isMarkExists = true;
-                            markIndex = k;
+                            markExists = true;
+                            markIndex = studentMarks.IndexOf(mark);
                             break;
-                        } 
+                        }
                     }
 
-                    // изменение оценки
-                    if (isMarkExists)
+                    if (markExists)
                     {
-                        if (Students[i].Marks.ElementAt(markIndex).MarkValue != markValue)
+                        var mark = studentMarks[markIndex];
+                        if (mark.MarkValue != markValue)
                         {
-                            Students[i].Marks.ElementAt(markIndex).MarkValue = markValue;
-                            oldMarks.Add(Students[i].Marks.ElementAt(markIndex));
+                            var updatedMark = new Mark()
+                            {
+                                Id = mark.Id,
+                                MarkDate = mark.MarkDate, MarkValue = markValue,
+                                StudentId = student.Id, SubjectId = _selectedSubject.Id,
+                                TaskId = mark.TaskId, TeacherId = mark.TeacherId
+                            };
+                            oldMarks.Add(updatedMark);
                         }
                     }
                     else
                     {
-                        // TODO: сделать нормальную привязку к заданию у mark 
                         var mark = new Mark()
                         {
-                            MarkDate = new DateTime(SelectedYear, SelectedMonth, currentMarkDay),
-                            MarkValue = markValue,
-                            //Student = Students[i],
-                            StudentId = Students[i].Id,
-                            //Subject = _selectedSubject,
-                            SubjectId = _selectedSubject.Id,
+                            MarkDate = new DateTime(SelectedYear, SelectedMonth,
+                                Convert.ToInt32(_marksTable.Columns[j].ColumnName)),
+                            MarkValue = markValue, StudentId = student.Id, SubjectId = _selectedSubject.Id,
                             TeacherId = ApplicationData.UserId
                         };
                         newMarks.Add(mark);
                     }
                 }
             }
-
+            
             using (var context = new ApplicationContext())
             {
                 var repository = new MarksRepository(context);
@@ -204,6 +201,10 @@ public class TeacherMarksWindowViewModel : ViewModel
                     repository.UpdateRange(oldMarks);
                 }
             }
+
+            oldMarks.Clear();
+            newMarks.Clear();
+
             MessageBox.Show("Изменения сохранены");
         });
     }
