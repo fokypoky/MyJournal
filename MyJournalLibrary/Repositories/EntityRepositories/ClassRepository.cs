@@ -13,5 +13,12 @@ public class ClassRepository : EntityRepository<Class>
         return _context.Set<Class>()
             .Where(c => c.Leader.Id == employee.Id)
             .ToList();
-    } 
+    }
+
+    public ICollection<Class> GetByEmployeeId(int employeeId)
+    {
+        return _context.Set<Class>()
+            .Where(c => c.LeaderId == employeeId)
+            .ToList();
+    }
 }
