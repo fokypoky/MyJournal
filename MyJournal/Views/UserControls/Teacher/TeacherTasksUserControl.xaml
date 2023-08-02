@@ -6,17 +6,72 @@
              xmlns:local="clr-namespace:MyJournal.ViewModels.Controls"
              xmlns:vmodel="clr-namespace:MyJournal.ViewModels.UserControlsViewModels.Teacher"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             d:Background="White">
     <UserControl.DataContext>
         <vmodel:TeacherTasksUserControlViewModel/>
     </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <Style TargetType="ComboBox">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="MinWidth" Value="100"/>
+            <Setter Property="MaxHeight" Value="30"/>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="MinHeight" Value="30"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Margin" Value="7,5,7,0"/>
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="12*"/>
+            <RowDefinition Height="14*"/>
         </Grid.RowDefinitions>
 
+        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <StackPanel Orientation="Horizontal">
+                <ComboBox ItemsSource="{Binding Classes}"/>
+                <ComboBox ItemsSource="{Binding Subjects}"/>
+                <ComboBox/>
+                <ComboBox/>
+            </StackPanel>
+        </Grid>
         
+        <Grid Grid.Row="1" Grid.Column="0">
+            <ListView ItemsSource="{Binding Tasks}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Задание" 
+                                        DisplayMemberBinding="{Binding TaskText}"/>
+                        <GridViewColumn Header="Выдано"
+                                        DisplayMemberBinding="{Binding StartDate}"/>
+                        <GridViewColumn Header="Сдавать"
+                                        DisplayMemberBinding="{Binding EndDate}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Border BorderThickness="0.5" BorderBrush="Black">
+                <StackPanel>
+                    <Button Content="Добавить задание"
+                            Command="{Binding AddTaskCommand}"/>
+                    <Button Content="Удалить задание"
+                            Command="{Binding RemoveTaskCommand}"/>
+                    <Button Content="Сохранить изменения"
+                            Command="{Binding SaveChangesCommand}"/>
+                </StackPanel>
+            </Border>
+        </Grid>
 
     </Grid>
 </UserControl>
