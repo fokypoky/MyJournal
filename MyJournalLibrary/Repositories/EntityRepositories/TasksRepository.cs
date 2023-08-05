@@ -20,11 +20,19 @@ public class TasksRepository : EntityRepository<Task>
             .ToList();
     }
 
-    public ICollection<DateTime> GetPeriodsByClassAndSubject(Class @class, Subject subject)
+    public ICollection<int> GetTaskYearsByClassAndSubject(Class @class, Subject subject)
     {
         return _context.Set<Task>()
             .Where(t => t.ClassId == @class.Id && t.SubjectId == subject.Id)
-            .Select(t => t.StartDate).Distinct()
+            .Select(t => t.StartDate.Year).Distinct()
+            .ToList();
+    }
+
+    public ICollection<int> GetTaskMonthByClassSubjectAndYear(Class @class, Subject subject, int year)
+    {
+        return _context.Set<Task>()
+            .Where(t => t.ClassId == @class.Id && t.SubjectId == subject.Id && t.StartDate.Year == year)
+            .Select(t => t.StartDate.Month).Distinct()
             .ToList();
     }
 }
