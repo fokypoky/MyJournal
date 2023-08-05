@@ -16,4 +16,11 @@ public class SubjectsRepository : EntityRepository<Subject>
             .Include(s => s.Classes)
             .Where(s => s.Employees.Contains(employee)).ToList();
     }
+
+    public ICollection<Subject> GetByClass(Class @class)
+    {
+        return _context.Set<Subject>()
+            .Where(s => s.ClassSubjects.Any(cs => cs.ClassId == @class.Id))
+            .ToList();
+    }
 }
