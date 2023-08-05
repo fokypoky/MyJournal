@@ -19,4 +19,12 @@ public class TasksRepository : EntityRepository<Task>
             )
             .ToList();
     }
+
+    public ICollection<DateTime> GetPeriodsByClassAndSubject(Class @class, Subject subject)
+    {
+        return _context.Set<Task>()
+            .Where(t => t.ClassId == @class.Id && t.SubjectId == subject.Id)
+            .Select(t => t.StartDate).Distinct()
+            .ToList();
+    }
 }
