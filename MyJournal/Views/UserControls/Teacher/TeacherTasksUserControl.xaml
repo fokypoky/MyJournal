@@ -38,15 +38,19 @@
 
         <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
             <StackPanel Orientation="Horizontal">
-                <ComboBox ItemsSource="{Binding Classes}"/>
-                <ComboBox ItemsSource="{Binding Subjects}"/>
+                <ComboBox ItemsSource="{Binding Classes}"
+                          DisplayMemberPath="ClassNumber"
+                          SelectedItem="{Binding SelectedClass}"/>
+                <ComboBox ItemsSource="{Binding Subjects}"
+                          DisplayMemberPath="SubjectTitle"/>
                 <ComboBox/>
                 <ComboBox/>
             </StackPanel>
         </Grid>
         
         <Grid Grid.Row="1" Grid.Column="0">
-            <ListView ItemsSource="{Binding Tasks}">
+            <ListView ItemsSource="{Binding Tasks}"
+                      SelectedItem="{Binding SelectedTask}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Задание" 

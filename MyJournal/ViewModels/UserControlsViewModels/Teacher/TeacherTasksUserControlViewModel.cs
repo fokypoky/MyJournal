@@ -6,8 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using MyJournal.Infrastructure.Commands;
+using MyJournal.Models;
 using MyJournal.ViewModels.Base;
 using MyJournalLibrary.Entities;
+using MyJournalLibrary.Repositories.EntityRepositories;
 using Task = MyJournalLibrary.Entities.Task;
 
 namespace MyJournal.ViewModels.UserControlsViewModels.Teacher
@@ -20,10 +22,23 @@ namespace MyJournal.ViewModels.UserControlsViewModels.Teacher
         
         private ObservableCollection<Class> _classes;
         private ObservableCollection<Subject> _subjects;
+
+        private Class _selectedClass;
+
         public Task SelectedTask
         {
             get => _selectedTask;
             set => SetField(ref _selectedTask, value);
+        }
+
+        public Class SelectedClass
+        {
+            get => _selectedClass;
+            set
+            {
+                SetField(ref _selectedClass, value);
+                LoadSubjects();
+            }
         }
         #region Collections
         public ObservableCollection<Task> Tasks
@@ -65,9 +80,23 @@ namespace MyJournal.ViewModels.UserControlsViewModels.Teacher
             });
         }
         #endregion
+
+        private void LoadSubjects()
+        {
+            using (var context = new ApplicationContext())
+            {
+                Subjects = new ObservableCollection<Subject>(
+                    new SubjectsRepository(context).GetByClass(SelectedClass)
+                );
+            }
+        }
         public TeacherTasksUserControlViewModel()
         {
-            
+            using (var context = new ApplicationContext())
+            {
+                Classes = new ObservableCollection<Class>(
+                    new ClassRepository(context).GetByEmployeeId(ApplicationData.UserId));
+            }
         }
     }
 }
