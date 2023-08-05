@@ -42,9 +42,12 @@
                           DisplayMemberPath="ClassNumber"
                           SelectedItem="{Binding SelectedClass}"/>
                 <ComboBox ItemsSource="{Binding Subjects}"
-                          DisplayMemberPath="SubjectTitle"/>
-                <ComboBox/>
-                <ComboBox/>
+                          DisplayMemberPath="SubjectTitle"
+                          SelectedItem="{Binding SelectedSubject}"/>
+                <ComboBox ItemsSource="{Binding TaskYears}"
+                          SelectedItem="{Binding SelectedYear}"/>
+                <ComboBox ItemsSource="{Binding TaskMonths}"
+                          SelectedItem="{Binding SelectedMonth}"/>
             </StackPanel>
         </Grid>
         

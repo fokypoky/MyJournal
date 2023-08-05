@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using MyJournal.Infrastructure.Commands;
 using MyJournal.Models;
@@ -23,14 +24,47 @@ namespace MyJournal.ViewModels.UserControlsViewModels.Teacher
         private ObservableCollection<Class> _classes;
         private ObservableCollection<Subject> _subjects;
 
-        private Class _selectedClass;
+        private ObservableCollection<int> _taskYears;
+        private ObservableCollection<int> _taskMonths;
 
+        private Class _selectedClass;
+        private Subject _selectedSubject;
+
+        private int _selectedYear;
+        private int _selectedMonth;
+
+        public int SelectedYear
+        {
+            get => _selectedYear;
+            set
+            {
+                SetField(ref _selectedYear, value);
+                LoadMonths();
+            }
+        }
+        public int SelectedMonth
+        {
+            get => _selectedMonth;
+            set
+            {
+                SetField(ref _selectedMonth, value);
+                LoadCurrentPeriodTasks();
+            }
+        }
         public Task SelectedTask
         {
             get => _selectedTask;
             set => SetField(ref _selectedTask, value);
         }
-
+        public Subject SelectedSubject
+        {
+            get => _selectedSubject;
+            set
+            {
+                SetField(ref _selectedSubject, value);
+                LoadYears();
+            }
+        }
         public Class SelectedClass
         {
             get => _selectedClass;
@@ -56,6 +90,16 @@ namespace MyJournal.ViewModels.UserControlsViewModels.Teacher
             get => _subjects;
             set => SetField(ref _subjects, value);
         }
+        public ObservableCollection<int> TaskYears
+        {
+            get => _taskYears;
+            set => SetField(ref _taskYears, value);
+        }
+        public ObservableCollection<int> TaskMonths
+        {
+            get => _taskMonths;
+            set => SetField(ref _taskMonths, value);
+        }
         #endregion
         #region Commands
         public ICommand AddTaskCommand
@@ -80,13 +124,53 @@ namespace MyJournal.ViewModels.UserControlsViewModels.Teacher
             });
         }
         #endregion
-
+        #region ComboBox collections loading
         private void LoadSubjects()
         {
             using (var context = new ApplicationContext())
             {
                 Subjects = new ObservableCollection<Subject>(
                     new SubjectsRepository(context).GetByClass(SelectedClass)
+                );
+            }
+        }
+        private void LoadTaskDates()
+        {
+            using (var context = new ApplicationContext())
+            {
+                var tasksRepository = new TasksRepository(context);
+            }
+        }
+
+        private void LoadYears()
+        {
+            using (var context = new ApplicationContext())
+            {
+                TaskYears = new ObservableCollection<int>(
+                    new TasksRepository(context).GetTaskYearsByClassAndSubject(SelectedClass, SelectedSubject)
+                );
+            }
+        }
+
+        private void LoadMonths()
+        {
+            using (var context = new ApplicationContext())
+            {
+                TaskMonths = new ObservableCollection<int>(
+                    new TasksRepository(context).GetTaskMonthByClassSubjectAndYear(SelectedClass, SelectedSubject,
+                        SelectedYear)
+                );
+            }
+        }
+        #endregion
+
+        private void LoadCurrentPeriodTasks()
+        {
+            using (var context = new ApplicationContext())
+            {
+                Tasks = new ObservableCollection<Task>(
+                    new TasksRepository(context).GetByClassSubjectAndStartDatePeriod(SelectedClass, SelectedSubject,
+                        SelectedYear, SelectedMonth)
                 );
             }
         }
