@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace MyJournal.Views.Windows
+namespace MyJournal.Views.Windows.Teacher
 {
     /// <summary>
     /// Interaction logic for TeacherAddingTaskWindow.xaml
