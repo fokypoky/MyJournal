@@ -2,9 +2,9 @@
 
 namespace MyJournal.Views;
 
-public partial class TeacherWindow : Window
+public partial class MainWindow : Window
 {
-    public TeacherWindow()
+    public MainWindow()
     {
         InitializeComponent();
     }

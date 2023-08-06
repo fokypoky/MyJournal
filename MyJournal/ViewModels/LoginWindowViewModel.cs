@@ -75,8 +75,8 @@ public class LoginWindowViewModel : ViewModel
                 case "employee":
                     ApplicationData.UserRole = UserRole.Employee;
                     
-                    TeacherWindow teacherWindow = new TeacherWindow();
-                    teacherWindow.Show();
+                    Views.MainWindow mainWindow = new Views.MainWindow();
+                    mainWindow.Show();
                     
                     needToClose = true;
                     
