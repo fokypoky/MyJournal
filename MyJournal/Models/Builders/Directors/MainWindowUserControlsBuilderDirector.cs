@@ -31,6 +31,7 @@ public class MainWindowUserControlsBuilderDirector
             case UserRole.Parent:
                 break;
             case UserRole.Student:
+                Builder = new StudentMainWindowUserControlsBuilder();
                 break;
             default:
                 break;
