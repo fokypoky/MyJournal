@@ -10,7 +10,7 @@ namespace MyJournal.Models.Builders.Directors;
 
 public class MainWindowUserControlsBuilderDirector
 {
-    public Interfaces.MainWindowUserControlsBuilder Builder { get; set; }
+    public MainWindowUserControlsBuilder Builder { get; set; }
     
     public void Construct()
     {

@@ -74,35 +74,17 @@ public class LoginWindowViewModel : ViewModel
             {
                 case "employee":
                     ApplicationData.UserRole = UserRole.Employee;
-                    
-                    Views.MainWindow mainWindow = new Views.MainWindow();
-                    mainWindow.Show();
-                    
-                    needToClose = true;
-                    
                     break;
                 case "student":
                     ApplicationData.UserRole = UserRole.Student;
-                    
-                    StudentWindow studentWindow = new StudentWindow();
-                    studentWindow.Show();
-                    
-                    needToClose = true;
-                    
                     break;
                 case "parent":
                     ApplicationData.UserRole = UserRole.Student;
-
-                    ParentWindow parentWindow = new ParentWindow();
-                    parentWindow.Show();
-                    
-                    needToClose = true;
-                    
                     break;
                 default:
                     ApplicationData.UserRole = UserRole.None;
                     MessageBox.Show("Недостаточно привилегий");
-                    break;
+                    return;
             }
 
             if (NeedsToSaveLogin)
@@ -113,6 +95,10 @@ public class LoginWindowViewModel : ViewModel
                 var repository = new JsonRepository<LoginData>("LoginData.json");
                 repository.WriteFile(new LoginData(encryptedLogin, encryptedPassword));
             }
+
+            Views.MainWindow mainWindow = new Views.MainWindow();
+            mainWindow.Show();
+
             if (needToClose)
             {
                 Application.Current.MainWindow.Close();

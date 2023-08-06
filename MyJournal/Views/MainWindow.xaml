@@ -10,7 +10,7 @@
         MinHeight="720" MinWidth="1280">
     
     <Window.DataContext>
-        <vmodel:TeacherWindowViewModel/>
+        <vmodel:MainWindowViewModel/>
     </Window.DataContext>
     
     <Window.Resources>

@@ -10,12 +10,12 @@ namespace MyJournal.Models.Builders.Interfaces;
 
 public abstract class MainWindowUserControlsBuilder
 {
-    UserControl MainUserControl {get; set; }
-    UserControl ChatUserControl { get; set; }
-    UserControl MarksUserControl { get; set; }
-    UserControl ProfileUserControl { get; set; }
-    UserControl TasksUserControl { get; set; }
-    UserControl TimeTableUserControl { get; set; }
+   public UserControl MainUserControl {get; set; }
+   public UserControl ChatUserControl { get; set; }
+   public UserControl MarksUserControl { get; set; }
+   public UserControl ProfileUserControl { get; set; }
+   public UserControl TasksUserControl { get; set; }
+   public UserControl TimeTableUserControl { get; set; }
     public virtual void BuildMainUserControl() => MainUserControl = new MainUserControl();
     public virtual void BuildChatUserControl() => ChatUserControl = new ChatUserControl();
     public abstract void BuildMarksUserControl();

@@ -1,6 +1,8 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
 using MyJournal.Infrastructure.Commands;
+using MyJournal.Models;
+using MyJournal.Models.Builders.Directors;
 using MyJournal.ViewModels.Base;
 using MyJournal.ViewModels.Controls;
 using MyJournal.Views.UserControls;
@@ -8,7 +10,7 @@ using MyJournal.Views.UserControls.Teacher;
 
 namespace MyJournal.ViewModels;
 
-public class TeacherWindowViewModel : ViewModel
+public class MainWindowViewModel : ViewModel
 {
     private UserControl _mainUserControl;
     private UserControl _chatUserControl;
@@ -72,14 +74,18 @@ public class TeacherWindowViewModel : ViewModel
             CurrentUserControl = _timetableUserControl;
         });
     }
-    public TeacherWindowViewModel()
+    public MainWindowViewModel()
     {
-        _mainUserControl = new MainUserControl();
-        _chatUserControl = new ChatUserControl();
-        _marksUserControl = new TeacherSelectionMarksUserControl();
-        _profileUserControl = new TeacherProfileUserControl();
-        _tasksUserControl = new TeacherTasksUserControl();
-        _timetableUserControl = new TeacherTimetableUserControl();
+        MainWindowUserControlsBuilderDirector director =
+            new MainWindowUserControlsBuilderDirector(ApplicationData.UserRole);
+        director.Construct();
+
+        _mainUserControl = director.Builder.MainUserControl;
+        _chatUserControl = director.Builder.ChatUserControl;
+        _marksUserControl = director.Builder.MarksUserControl;
+        _profileUserControl = director.Builder.ProfileUserControl;
+        _tasksUserControl = director.Builder.TasksUserControl;
+        _timetableUserControl = director.Builder.TimeTableUserControl;
 
         _currentUserControl = _mainUserControl;
     }
