@@ -116,6 +116,13 @@ namespace MyJournal.ViewModels.UserControlsViewModels.Teacher
 
             });
         }
+        public ICommand UpdateTaskCommand
+        {
+            get => new RelayCommand((object parameter) =>
+            {
+
+            });
+        }
         public ICommand SaveChangesCommand
         {
             get => new RelayCommand((object parameter) =>

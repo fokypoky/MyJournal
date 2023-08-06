@@ -16,13 +16,17 @@
         <Style TargetType="ComboBox">
             <Setter Property="Margin" Value="5"/>
             <Setter Property="MinWidth" Value="100"/>
-            <Setter Property="MaxHeight" Value="30"/>
+            <Setter Property="MaxHeight" Value="40"/>
         </Style>
 
         <Style TargetType="Button">
             <Setter Property="MinHeight" Value="30"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Margin" Value="7,5,7,0"/>
+        </Style>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
         </Style>
     </UserControl.Resources>
 
@@ -33,21 +37,33 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="14*"/>
+            <RowDefinition Height="12*"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
             <StackPanel Orientation="Horizontal">
-                <ComboBox ItemsSource="{Binding Classes}"
-                          DisplayMemberPath="ClassNumber"
-                          SelectedItem="{Binding SelectedClass}"/>
-                <ComboBox ItemsSource="{Binding Subjects}"
-                          DisplayMemberPath="SubjectTitle"
-                          SelectedItem="{Binding SelectedSubject}"/>
-                <ComboBox ItemsSource="{Binding TaskYears}"
-                          SelectedItem="{Binding SelectedYear}"/>
-                <ComboBox ItemsSource="{Binding TaskMonths}"
-                          SelectedItem="{Binding SelectedMonth}"/>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="Класс"/>
+                    <ComboBox ItemsSource="{Binding Classes}"
+                              DisplayMemberPath="ClassNumber"
+                              SelectedItem="{Binding SelectedClass}"/>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="Предмет"/>
+                    <ComboBox ItemsSource="{Binding Subjects}"
+                              DisplayMemberPath="SubjectTitle"
+                              SelectedItem="{Binding SelectedSubject}"/>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="Год"/>
+                    <ComboBox ItemsSource="{Binding TaskYears}"
+                              SelectedItem="{Binding SelectedYear}"/>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="Месяц"/>
+                    <ComboBox ItemsSource="{Binding TaskMonths}"
+                              SelectedItem="{Binding SelectedMonth}"/>
+                </StackPanel>
             </StackPanel>
         </Grid>
         
@@ -74,6 +90,8 @@
                             Command="{Binding AddTaskCommand}"/>
                     <Button Content="Удалить задание"
                             Command="{Binding RemoveTaskCommand}"/>
+                    <Button Content="Изменить задание"
+                            Command="{Binding UpdateTaskCommand}"/>
                     <Button Content="Сохранить изменения"
                             Command="{Binding SaveChangesCommand}"/>
                 </StackPanel>
