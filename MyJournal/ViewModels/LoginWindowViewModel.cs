@@ -79,7 +79,7 @@ public class LoginWindowViewModel : ViewModel
                     ApplicationData.UserRole = UserRole.Student;
                     break;
                 case "parent":
-                    ApplicationData.UserRole = UserRole.Student;
+                    ApplicationData.UserRole = UserRole.Parent;
                     break;
                 default:
                     ApplicationData.UserRole = UserRole.None;
