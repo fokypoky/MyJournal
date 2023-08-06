@@ -143,13 +143,6 @@ namespace MyJournal.ViewModels.UserControlsViewModels.Teacher
                 WindowMessanger.OnMessageSend(new TaskMessage() { Task = SelectedTask, Type = TaskMessageType.Send});
             });
         }
-        public ICommand SaveChangesCommand
-        {
-            get => new RelayCommand((object parameter) =>
-            {
-
-            });
-        }
         #endregion
         #region ComboBox collections loading
         private void LoadSubjects()
@@ -210,22 +203,33 @@ namespace MyJournal.ViewModels.UserControlsViewModels.Teacher
                 switch (message.Type)
                 {
                     case TaskMessageType.Add:
+                    
                         using (var context = new ApplicationContext())
                         {
                             var tasksRepository = new TasksRepository(context);
                             tasksRepository.Add(message.Task);
                         }
+                        
                         if (Tasks != null)
                         {
                             Tasks.Add(message.Task);
                         }
+
+                        MessageBox.Show("Задание добавлено");
                         break;
+                    
                     case TaskMessageType.Edit:
+                        
                         using (var context = new ApplicationContext())
                         {
                             var tasksRepository = new TasksRepository(context);
                             tasksRepository.Update(message.Task);
                         }
+
+                        MessageBox.Show("Задание изменено");
+                        break;
+
+                    case TaskMessageType.Send:
                         break;
                 }
             }

@@ -92,8 +92,6 @@
                             Command="{Binding RemoveTaskCommand}"/>
                     <Button Content="Изменить задание"
                             Command="{Binding UpdateTaskCommand}"/>
-                    <Button Content="Сохранить изменения"
-                            Command="{Binding SaveChangesCommand}"/>
                 </StackPanel>
             </Border>
         </Grid>
