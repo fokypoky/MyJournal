@@ -16,7 +16,7 @@ public class EntityRepository<T> : IEntityRepository<T> where T : class
     public virtual void Add(T entity)
     {
         _context.Add(entity);
-        _context.SaveChangesAsync();
+        _context.SaveChanges();
     }
 
     public virtual void AddRange(IEnumerable<T> entities)
@@ -28,13 +28,13 @@ public class EntityRepository<T> : IEntityRepository<T> where T : class
     public virtual void Remove(T entity)
     {
         _context.Remove(entity);
-        _context.SaveChangesAsync();
+        _context.SaveChanges();
     }
 
     public virtual void RemoveRange(IEnumerable<T> entities)
     {
         _context.RemoveRange(entities);
-        _context.SaveChangesAsync();
+        _context.SaveChanges();
     }
 
     public virtual void Update(T entity)
