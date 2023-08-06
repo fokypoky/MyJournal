@@ -9,5 +9,6 @@ namespace MyJournal.Models;
 public enum TaskMessageType
 {
     Add,
-    Edit
+    Edit,
+    Send
 }
