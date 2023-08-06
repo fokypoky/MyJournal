@@ -5,9 +5,15 @@
     <Compile Update="Views\Windows\Teacher\TeacherAddingTaskWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Windows\Teacher\TeacherEditingTaskWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\Windows\Teacher\TeacherAddingTaskWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Windows\Teacher\TeacherEditingTaskWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
