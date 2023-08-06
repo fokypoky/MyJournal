@@ -2,6 +2,18 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="Views\UserControls\Student\StudentMarksUserControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\UserControls\Student\StudentProfileUserControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\UserControls\Student\StudentTasksUserControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\UserControls\Student\StudentTimetableUserControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Windows\Teacher\TeacherAddingTaskWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -10,6 +22,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Views\UserControls\Student\StudentMarksUserControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\UserControls\Student\StudentProfileUserControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\UserControls\Student\StudentTasksUserControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\UserControls\Student\StudentTimetableUserControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Windows\Teacher\TeacherAddingTaskWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
