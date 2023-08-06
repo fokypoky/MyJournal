@@ -9,6 +9,8 @@ using System.Windows.Input;
 using MyJournal.Infrastructure.Commands;
 using MyJournal.Models;
 using MyJournal.ViewModels.Base;
+using MyJournal.Views.Windows;
+using MyJournal.Views.Windows.Teacher;
 using MyJournalLibrary.Entities;
 using MyJournalLibrary.Repositories.EntityRepositories;
 using Task = MyJournalLibrary.Entities.Task;
@@ -106,7 +108,16 @@ namespace MyJournal.ViewModels.UserControlsViewModels.Teacher
         {
             get => new RelayCommand((object parameter) =>
             {
+                if (SelectedClass == null && SelectedSubject == null)
+                {
+                    MessageBox.Show("Сначала выберите класс и предмет");
+                    return;
+                }
 
+                var window = new TeacherAddingTaskWindow();
+                window.Show();
+
+                WindowMessanger.OnMessageSend(new ClassSubjectMessage() {Class = SelectedClass, Subject = SelectedSubject});
             });
         }
         public ICommand RemoveTaskCommand
@@ -181,8 +192,33 @@ namespace MyJournal.ViewModels.UserControlsViewModels.Teacher
                 );
             }
         }
+
+        private void OnMessageReceived(object sender, EventArgs e)
+        {
+            if (e is TaskMessage)
+            {
+                var task = (TaskMessage)e;
+                switch (task.Type)
+                {
+                    case TaskMessageType.Add:
+                        using (var context = new ApplicationContext())
+                        {
+                            var tasksRepository = new TasksRepository(context);
+                            tasksRepository.Add(task.Task);
+                        }
+                        if (Tasks != null)
+                        {
+                            Tasks.Add(task.Task);
+                        }
+                        break;
+                    case TaskMessageType.Edit:
+                        break;
+                }
+            }
+        }
         public TeacherTasksUserControlViewModel()
         {
+            WindowMessanger.MessageSender += OnMessageReceived;
             using (var context = new ApplicationContext())
             {
                 Classes = new ObservableCollection<Class>(
