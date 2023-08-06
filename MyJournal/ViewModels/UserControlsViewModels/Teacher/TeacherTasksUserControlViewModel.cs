@@ -124,7 +124,22 @@ namespace MyJournal.ViewModels.UserControlsViewModels.Teacher
         {
             get => new RelayCommand((object parameter) =>
             {
+                if (SelectedTask == null)
+                {
+                    MessageBox.Show("Задание не выбрано");
+                    return;
+                }
 
+                using (var context = new ApplicationContext())
+                {
+                    var tasksRepository = new TasksRepository(context);
+                    tasksRepository.Remove(SelectedTask);
+                }
+
+                MessageBox.Show("Задание удалено");
+                
+                Tasks.Remove(SelectedTask);
+                SelectedTask = null;
             });
         }
         public ICommand UpdateTaskCommand
