@@ -7,6 +7,6 @@ public interface IEntityRepository<T>
     void AddRange(IEnumerable<T> entities);
     void Remove(T entity);
     void RemoveRange(IEnumerable<T> entities);
-    void Update(T oldEntity, T newEntity);
+    void Update(T entity);
     void UpdateRange(IEnumerable<T> entities);
 }

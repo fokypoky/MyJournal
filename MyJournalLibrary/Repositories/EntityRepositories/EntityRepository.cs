@@ -37,7 +37,7 @@ public class EntityRepository<T> : IEntityRepository<T> where T : class
         _context.SaveChangesAsync();
     }
 
-    public virtual void Update(T oldEntity, T newEntity)
+    public virtual void Update(T entity)
     {
         throw new NotImplementedException();
     }
