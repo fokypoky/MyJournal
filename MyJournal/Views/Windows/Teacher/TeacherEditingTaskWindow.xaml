@@ -6,13 +6,58 @@
         xmlns:local="clr-namespace:MyJournal.Views.Windows.Teacher"
         xmlns:vmodel="clr-namespace:MyJournal.ViewModels.WindowsViewModels.Teacher"
         mc:Ignorable="d"
-        Title="TeacherEditingTaskWindow" Height="450" Width="800">
+        Title="Изменить задание" Height="300" Width="600"
+        ResizeMode="NoResize">
     
     <Window.DataContext>
         <vmodel:TeacherEditingTaskWindowViewModel/>
     </Window.DataContext>
     
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <TextBlock Text="Текст задания"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Margin="3, 0,0,0"/>
+            <TextBox BorderThickness="0"
+                Text="{Binding Task.TaskText, 
+                UpdateSourceTrigger=PropertyChanged, 
+                Mode=TwoWay}"
+                     Background="#F0F0F0"
+                     Margin="10, 3, 3, 3"
+                     Width="508"
+                     FontSize="13.5"
+                     Height="22"
+                     TextAlignment="Center"
+                     VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="Дата выдачи задания"/>
+                <DatePicker SelectedDate="{Binding Task.StartDate,
+                    UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <TextBlock Text="Дата сдачи"/>
+                <DatePicker SelectedDate="{Binding Task.EndDate,
+                    UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+            </StackPanel>
+        </Grid>
         
+        <Button Grid.Row="2" BorderThickness="0"
+                Background="#F0F0F0"
+                Margin="3"
+                Content="Изменить задание"
+                Command="{Binding UpdateTaskCommand}"/>
     </Grid>
 </Window>

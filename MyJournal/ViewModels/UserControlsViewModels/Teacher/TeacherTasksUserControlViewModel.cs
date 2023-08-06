@@ -108,7 +108,7 @@ namespace MyJournal.ViewModels.UserControlsViewModels.Teacher
         {
             get => new RelayCommand((object parameter) =>
             {
-                if (SelectedClass == null && SelectedSubject == null)
+                if (SelectedClass == null || SelectedSubject == null)
                 {
                     MessageBox.Show("Сначала выберите класс и предмет");
                     return;
@@ -131,7 +131,16 @@ namespace MyJournal.ViewModels.UserControlsViewModels.Teacher
         {
             get => new RelayCommand((object parameter) =>
             {
+                if (SelectedTask == null)
+                {
+                    MessageBox.Show("Задание не выбрано");
+                    return;
+                }
 
+                var window = new TeacherEditingTaskWindow();
+                window.Show();
+
+                WindowMessanger.OnMessageSend(new TaskMessage() { Task = SelectedTask, Type = TaskMessageType.Send});
             });
         }
         public ICommand SaveChangesCommand
@@ -197,21 +206,26 @@ namespace MyJournal.ViewModels.UserControlsViewModels.Teacher
         {
             if (e is TaskMessage)
             {
-                var task = (TaskMessage)e;
-                switch (task.Type)
+                var message = (TaskMessage)e;
+                switch (message.Type)
                 {
                     case TaskMessageType.Add:
                         using (var context = new ApplicationContext())
                         {
                             var tasksRepository = new TasksRepository(context);
-                            tasksRepository.Add(task.Task);
+                            tasksRepository.Add(message.Task);
                         }
                         if (Tasks != null)
                         {
-                            Tasks.Add(task.Task);
+                            Tasks.Add(message.Task);
                         }
                         break;
                     case TaskMessageType.Edit:
+                        using (var context = new ApplicationContext())
+                        {
+                            var tasksRepository = new TasksRepository(context);
+                            tasksRepository.Update(message.Task);
+                        }
                         break;
                 }
             }
