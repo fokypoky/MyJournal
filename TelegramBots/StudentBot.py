@@ -2,7 +2,7 @@ import telebot
 from telebot import types
 import SQLDatabase
 
-bot = telebot.TeleBot('5755828154:AAE1aXWX0bzBiaxIRkQPevTDU2TdAHV_2Iw')
+bot = telebot.TeleBot('secret')
 database = SQLDatabase.SQLDatabase()
 
 
