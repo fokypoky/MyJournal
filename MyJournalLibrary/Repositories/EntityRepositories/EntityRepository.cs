@@ -39,7 +39,8 @@ public class EntityRepository<T> : IEntityRepository<T> where T : class
 
     public virtual void Update(T entity)
     {
-        throw new NotImplementedException();
+        _context.Update(entity);
+        _context.SaveChanges();
     }
 
     public virtual void UpdateRange(IEnumerable<T> entities)
