@@ -17,4 +17,15 @@ public class TimetableRepository : EntityRepository<TimetableRepository>
             .Include(t => t.Auditory)
             .ToList();
     }
+
+    public ICollection<Timetable> GetByStudent(Student student)
+    {
+        return _context.Set<Timetable>()
+            .Where(t => t.ClassId == student.ClassId)
+            .Include(t => t.Subject)
+            .Include(t => t.Auditory)
+            .Include(t => t.Teacher)
+                .ThenInclude(t => t.Contacts)
+            .ToList();
+    }
 }
