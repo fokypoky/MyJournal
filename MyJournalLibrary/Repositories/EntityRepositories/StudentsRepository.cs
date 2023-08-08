@@ -17,4 +17,13 @@ public class StudentsRepository : EntityRepository<Student>
             .Where(s => s.ClassId == @class.Id)
             .ToList();
     }
+
+    public Student GetByIdWithContactsClassAndSubjects(int studentId)
+    {
+        return _context.Set<Student>()
+            .Where(s => s.Id == studentId)
+            .Include(s => s.Contacts)
+            .Include(s => s.Class)
+            .FirstOrDefault();
+    }
 }
