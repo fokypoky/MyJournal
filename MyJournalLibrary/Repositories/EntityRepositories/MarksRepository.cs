@@ -16,6 +16,14 @@ public class MarksRepository : EntityRepository<Mark>
             .Select(m => m.MarkDate.Year).Distinct()
             .ToList();
     }
+
+    public ICollection<int> GetMarkMonthsByStudentSubjectAndYear(Student student, Subject subject, int year)
+    {
+        return _context.Set<Mark>()
+            .Where(m => m.StudentId == student.Id && m.SubjectId == subject.Id && m.MarkDate.Year == year)
+            .Select(m => m.MarkDate.Month).Distinct()
+            .ToList();
+    }
     public ICollection<Mark> GetMarksByClassAndSubject(Class @class, Subject subject)
     {
         return _context.Set<Mark>()
