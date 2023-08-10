@@ -4,13 +4,89 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MyJournal.Views.UserControls.Student"
+             xmlns:vmodel="clr-namespace:MyJournal.ViewModels.UserControlsViewModels.Student"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              d:Background="White">
+    <UserControl.DataContext>
+        <vmodel:StudentMarksUserControlViewModel/>
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <Style x:Key="TextBlockAtRow0Style">
+            <Setter Property="TextBlock.FontSize" Value="13.5"/>
+        </Style>
+
+        <Style x:Key="ComboBoxAtRow0Style">
+            <Setter Property="ComboBox.MinWidth" Value="100"/>
+        </Style>
+
+        <Style x:Key="StackPanelsAtRow0Style">
+            <Setter Property="StackPanel.Margin" Value="6,0,0,0"/>
+        </Style>
+
+        <Style x:Key="TasksHeaderTextBlockStyle">
+            <Setter Property="TextBlock.FontSize" Value="13.5"/>
+            <Setter Property="TextBlock.FontWeight" Value="SemiBold"/>
+            <Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
+            <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="Border">
+            <Setter Property="BorderThickness" Value="0.5"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
-        <TextBlock Text="Оценки студента"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   FontSize="30"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="13*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <StackPanel Grid.Row="0" Orientation="Horizontal"
+                        VerticalAlignment="Center">
+
+                <StackPanel Style="{StaticResource StackPanelsAtRow0Style}">
+                    <TextBlock Text="Предмет" TextAlignment="Center"
+                               Style="{StaticResource TextBlockAtRow0Style}"/>
+                    <ComboBox ItemsSource="{Binding Student.Class.Subjects}"
+                              DisplayMemberPath="SubjectTitle"
+                              SelectedItem="{Binding SelectedSubject}"
+                              Style="{StaticResource ComboBoxAtRow0Style}"/>
+                </StackPanel>
+
+                <StackPanel Style="{StaticResource StackPanelsAtRow0Style}">
+                    <TextBlock Text="Год" TextAlignment="Center"
+                               Style="{StaticResource TextBlockAtRow0Style}"/>
+                    <ComboBox Style="{StaticResource ComboBoxAtRow0Style}"
+                              ItemsSource="{Binding Years}"
+                              SelectedItem="{Binding SelectedYear}"/>
+                </StackPanel>
+
+                <StackPanel Style="{StaticResource StackPanelsAtRow0Style}">
+                    <TextBlock Text="Месяц" TextAlignment="Center"
+                               Style="{StaticResource TextBlockAtRow0Style}"/>
+                    <ComboBox Style="{StaticResource ComboBoxAtRow0Style}"
+                              ItemsSource="{Binding Months}"
+                              SelectedItem="{Binding SelectedMonth}"/>
+                </StackPanel>
+
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <ListView ItemsSource="{Binding Marks}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Оценка" DisplayMemberBinding="{Binding MarkValue}"/>
+                        <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding MarkDate}"/>
+                        <GridViewColumn Header="Учитель" DisplayMemberBinding="{Binding Teacher.Contacts.Surname}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+
     </Grid>
 </UserControl>
