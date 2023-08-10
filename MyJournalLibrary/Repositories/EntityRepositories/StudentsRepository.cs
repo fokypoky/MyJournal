@@ -24,6 +24,7 @@ public class StudentsRepository : EntityRepository<Student>
             .Where(s => s.Id == studentId)
             .Include(s => s.Contacts)
             .Include(s => s.Class)
+            .ThenInclude(m => m.Subjects)
             .FirstOrDefault();
     }
 }
