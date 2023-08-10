@@ -42,4 +42,12 @@ public class TasksRepository : EntityRepository<Task>
             .Select(t => t.StartDate.Month).Distinct()
             .ToList();
     }
+
+    public ICollection<Task> GetExpiringTasksByClassSubjectAndDate(Class @class, Subject subject, DateTime currentDate)
+    {
+        return _context.Set<Task>()
+            .Where(t => t.ClassId == @class.Id && t.SubjectId == subject.Id
+                                               && (currentDate.DayOfYear - t.EndDate.DayOfYear <= 7)
+            ).ToList();
+    }
 }
