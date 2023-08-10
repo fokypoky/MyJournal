@@ -2,6 +2,18 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="Views\UserControls\Parent\ParentMarksUserControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\UserControls\Parent\ParentProfileUserControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\UserControls\Parent\ParentTasksUserControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\UserControls\Parent\ParentTimetableUserControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\UserControls\Student\StudentMarksUserControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -22,6 +34,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Views\UserControls\Parent\ParentMarksUserControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\UserControls\Parent\ParentProfileUserControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\UserControls\Parent\ParentTasksUserControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\UserControls\Parent\ParentTimetableUserControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\UserControls\Student\StudentMarksUserControl.xaml">
       <SubType>Designer</SubType>
     </Page>
