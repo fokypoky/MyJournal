@@ -29,6 +29,7 @@ public class MainWindowUserControlsBuilderDirector
                 Builder = new TeacherMainWindowUserControlsBuilder();
                 break;
             case UserRole.Parent:
+                Builder = new ParentMainWindowUserControlsBuilder();
                 break;
             case UserRole.Student:
                 Builder = new StudentMainWindowUserControlsBuilder();
