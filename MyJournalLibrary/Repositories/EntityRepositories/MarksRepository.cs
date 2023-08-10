@@ -9,6 +9,15 @@ public class MarksRepository : EntityRepository<Mark>
     {
     }
 
+    public ICollection<Mark> GetWithTeacherAndContactsByStudentSubjectAndPeriod(Student student, Subject subject,
+        int year, int month)
+    {
+        return _context.Set<Mark>()
+            .Where(m => m.StudentId == student.Id && m.SubjectId == subject.Id && m.MarkDate.Year == year && m.MarkDate.Month == month)
+            .Include(m => m.Teacher)
+                .ThenInclude(t => t.Contacts)
+            .ToList();
+    }
     public ICollection<int> GetMarkYearsByStudentAndSubject(Student student, Subject subject)
     {
         return _context.Set<Mark>()
