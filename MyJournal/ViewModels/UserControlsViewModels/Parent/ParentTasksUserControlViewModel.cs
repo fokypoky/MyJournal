@@ -38,6 +38,7 @@ public class ParentTasksUserControlViewModel : ViewModel
 		set
 		{
 			SetField(ref _selectedStudent, value);
+			FillSubjectsComboBox();
 		}
 	}
 
@@ -115,6 +116,25 @@ public class ParentTasksUserControlViewModel : ViewModel
 	{
 		get => _studentSubjects;
 		set => SetField(ref _studentSubjects, value);
+	}
+
+	#endregion
+
+	#region ComboBox filling
+
+	private void FillSubjectsComboBox()
+	{
+		if (SelectedStudent is null)
+		{
+			return;
+		}
+
+		using (var context = new ApplicationContext())
+		{
+			StudentSubjects = new ObservableCollection<Subject>(
+				new SubjectsRepository(context).GetByStudent(SelectedStudent)
+			);
+		}
 	}
 
 	#endregion

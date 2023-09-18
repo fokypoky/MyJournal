@@ -78,7 +78,13 @@
                 <TextBlock Text="Предмет" Style="{StaticResource TextBlockAtRow0Style}"/>
                 <ComboBox Style="{StaticResource ComboBoxAtRow0Style}"
                           ItemsSource="{Binding StudentSubjects}"
-                          SelectedItem="{Binding SelectedSubject}"/>
+                          SelectedItem="{Binding SelectedSubject}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding SubjectTitle}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
             </StackPanel>
 
             <!-- Выбор года -->
