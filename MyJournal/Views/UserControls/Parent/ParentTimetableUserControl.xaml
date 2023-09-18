@@ -4,12 +4,213 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MyJournal.Views.UserControls.Parent"
+             xmlns:vmodel="clr-namespace:MyJournal.ViewModels.UserControlsViewModels.Parent"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              d:Background="White">
+
+    <UserControl.DataContext>
+        <vmodel:ParentTimetableUserControlViewModel/>
+    </UserControl.DataContext>
+    
+    <UserControl.Resources>
+        <Style x:Key="TimeTableDayTextBlockStyle">
+            <Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
+            <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+            <Setter Property="TextBlock.FontSize" Value="15"/>
+            <Setter Property="TextBlock.FontWeight" Value="SemiBold"/>
+        </Style>
+        <Style TargetType="ListView">
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
-        <TextBlock Text="Расписание родителя" HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   FontSize="35"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="13.5*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Border BorderThickness="0.5" BorderBrush="Black"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Ученик" HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="16"
+                           Margin="10,0,0,0"/>
+                <ComboBox ItemsSource="{Binding Students}"
+                          DisplayMemberPath="Contacts.Name"
+                          SelectedItem="{Binding SelectedStudent}"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          MinWidth="150" Margin="8,0,0,0"/>
+            </StackPanel>
+        </Grid>
+        
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+                
+                <TextBlock Grid.Row="0"
+                           Text="Понедельник"
+                           Style="{StaticResource TimeTableDayTextBlockStyle}"/>
+                
+                <ListView Grid.Row="1">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Предмет"/>
+                            <GridViewColumn Header="Время"/>
+                            <GridViewColumn Header="Аудитория"/>
+                            <GridViewColumn Header="Преподаватель"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+            <Grid Grid.Column="0" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0"
+                           Text="Вторник"
+                           Style="{StaticResource TimeTableDayTextBlockStyle}"/>
+
+                <ListView Grid.Row="1">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Предмет"/>
+                            <GridViewColumn Header="Время"/>
+                            <GridViewColumn Header="Аудитория"/>
+                            <GridViewColumn Header="Преподаватель"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+            <Grid Grid.Column="0" Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0"
+                           Text="Среда"
+                           Style="{StaticResource TimeTableDayTextBlockStyle}"/>
+
+                <ListView Grid.Row="1">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Предмет"/>
+                            <GridViewColumn Header="Время"/>
+                            <GridViewColumn Header="Аудитория"/>
+                            <GridViewColumn Header="Преподаватель"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+            <Grid Grid.Column="0" Grid.Row="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0"
+                           Text="Четверг"
+                           Style="{StaticResource TimeTableDayTextBlockStyle}"/>
+
+                <ListView Grid.Row="1">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Предмет"/>
+                            <GridViewColumn Header="Время"/>
+                            <GridViewColumn Header="Аудитория"/>
+                            <GridViewColumn Header="Преподаватель"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+
+
+            <Grid Grid.Column="1" Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0"
+                           Text="Пятница"
+                           Style="{StaticResource TimeTableDayTextBlockStyle}"/>
+
+                <ListView Grid.Row="1">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Предмет"/>
+                            <GridViewColumn Header="Время"/>
+                            <GridViewColumn Header="Аудитория"/>
+                            <GridViewColumn Header="Преподаватель"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+            <Grid Grid.Column="1" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0"
+                           Foreground="#DC3030"
+                           Text="Суббота"
+                           Style="{StaticResource TimeTableDayTextBlockStyle}"/>
+
+                <ListView Grid.Row="1">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Предмет"/>
+                            <GridViewColumn Header="Время"/>
+                            <GridViewColumn Header="Аудитория"/>
+                            <GridViewColumn Header="Преподаватель"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+            <Grid Grid.Column="1" Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0"
+                           Text="Воскресенье"
+                           Foreground="#DC3030"
+                           Style="{StaticResource TimeTableDayTextBlockStyle}"/>
+
+                <ListView Grid.Row="1">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Предмет"/>
+                            <GridViewColumn Header="Время"/>
+                            <GridViewColumn Header="Аудитория"/>
+                            <GridViewColumn Header="Преподаватель"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </Grid>
+
     </Grid>
 </UserControl>
