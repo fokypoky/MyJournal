@@ -37,6 +37,10 @@
             <Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
             <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
         </Style>
+        
+        <Style x:Key="StudentNameComboBoxStyle">
+            <Setter Property="TextBlock.Margin" Value="5,0,0,0"/>
+        </Style>
 
     </UserControl.Resources>
 
@@ -50,9 +54,23 @@
             <!-- Выбор ученика -->
             <StackPanel Style="{StaticResource StackPanelsAtRow0Style}">
                 <TextBlock Text="Ученик" Style="{StaticResource TextBlockAtRow0Style}"/>
+                
                 <ComboBox Style="{StaticResource ComboBoxAtRow0Style}"
                           ItemsSource="{Binding Students}"
-                          SelectedItem="{Binding SelectedStudent}"/>
+                          SelectedItem="{Binding SelectedStudent}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Contacts.Name}"
+                                           Style="{StaticResource StudentNameComboBoxStyle}"
+                                           Margin="0"/>
+                                <TextBlock Text="{Binding Contacts.Midname}"
+                                           Style="{StaticResource StudentNameComboBoxStyle}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
             </StackPanel>
 
             <!-- Выбор предмета -->

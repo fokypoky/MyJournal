@@ -4,14 +4,18 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MyJournal.Models;
 using MyJournal.ViewModels.Base;
 using MyJournalLibrary.Entities;
+using MyJournalLibrary.Repositories.EntityRepositories;
 using Task = MyJournalLibrary.Entities.Task;
 
 namespace MyJournal.ViewModels.UserControlsViewModels.Parent;
 
 public class ParentTasksUserControlViewModel : ViewModel
 {
+	private MyJournalLibrary.Entities.Parent _parent;
+
 	private MyJournalLibrary.Entities.Student _selectedStudent;
 	private Task _selectedTask;
 	private int _selectedYear;
@@ -114,4 +118,16 @@ public class ParentTasksUserControlViewModel : ViewModel
 	}
 
 	#endregion
+
+	public ParentTasksUserControlViewModel()
+	{
+		using (var context = new ApplicationContext())
+		{
+			_parent = new ParentsRepository(context).GetByUserId(ApplicationData.UserId);
+
+			Students = new ObservableCollection<MyJournalLibrary.Entities.Student>(
+				new StudentsRepository(context).GetWithContactsByParent(_parent)
+			);
+		}
+	}
 }
