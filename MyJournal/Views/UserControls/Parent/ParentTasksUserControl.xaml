@@ -50,25 +50,33 @@
             <!-- Выбор ученика -->
             <StackPanel Style="{StaticResource StackPanelsAtRow0Style}">
                 <TextBlock Text="Ученик" Style="{StaticResource TextBlockAtRow0Style}"/>
-                <ComboBox Style="{StaticResource ComboBoxAtRow0Style}"/>
+                <ComboBox Style="{StaticResource ComboBoxAtRow0Style}"
+                          ItemsSource="{Binding Students}"
+                          SelectedItem="{Binding SelectedStudent}"/>
             </StackPanel>
 
             <!-- Выбор предмета -->
             <StackPanel Style="{StaticResource StackPanelsAtRow0Style}">
                 <TextBlock Text="Предмет" Style="{StaticResource TextBlockAtRow0Style}"/>
-                <ComboBox Style="{StaticResource ComboBoxAtRow0Style}"/>
+                <ComboBox Style="{StaticResource ComboBoxAtRow0Style}"
+                          ItemsSource="{Binding StudentSubjects}"
+                          SelectedItem="{Binding SelectedSubject}"/>
             </StackPanel>
 
             <!-- Выбор года -->
             <StackPanel Style="{StaticResource StackPanelsAtRow0Style}">
                 <TextBlock Text="Год"/>
-                <ComboBox Style="{StaticResource ComboBoxAtRow0Style}"/>
+                <ComboBox Style="{StaticResource ComboBoxAtRow0Style}"
+                          ItemsSource="{Binding TaskYears}"
+                          SelectedItem="{Binding SelectedYear}"/>
             </StackPanel>
 
             <!-- Выбор месяца -->
             <StackPanel Style="{StaticResource StackPanelsAtRow0Style}">
                 <TextBlock Text="Месяц" Style="{StaticResource TextBlockAtRow0Style}"/>
-                <ComboBox Style="{StaticResource ComboBoxAtRow0Style}"/>
+                <ComboBox Style="{StaticResource ComboBoxAtRow0Style}"
+                          ItemsSource="{Binding TaskMonths}"
+                          SelectedItem="{Binding SelectedMonth}"/>
             </StackPanel>
         </StackPanel>
 
