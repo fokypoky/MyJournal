@@ -4,12 +4,119 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MyJournal.Views.UserControls.Parent"
+             xmlns:vmodel="clr-namespace:MyJournal.ViewModels.UserControlsViewModels.Parent"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              d:Background="White">
+    
+    <UserControl.DataContext>
+        <vmodel:ParentTasksUserControlViewModel/>
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <Style x:Key="TextBlockAtRow0Style">
+            <Setter Property="TextBlock.FontSize" Value="13.5"/>
+        </Style>
+
+        <Style x:Key="ComboBoxAtRow0Style">
+            <Setter Property="ComboBox.MinWidth" Value="100"/>
+        </Style>
+
+        <Style x:Key="StackPanelsAtRow0Style">
+            <Setter Property="StackPanel.Margin" Value="6,0,0,0"/>
+        </Style>
+
+        <Style TargetType="Border">
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="0.5"/>
+        </Style>
+
+        <Style x:Key="TasksHeaderTextBlockStyle">
+            <Setter Property="TextBlock.FontSize" Value="13.5"/>
+            <Setter Property="TextBlock.FontWeight" Value="SemiBold"/>
+            <Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
+            <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+        </Style>
+
+    </UserControl.Resources>
+
     <Grid>
-        <TextBlock Text="ДЗ родителя" HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   FontSize="35"/>
-</Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="13*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" VerticalAlignment="Center" Orientation="Horizontal">
+            <!-- Выбор ученика -->
+            <StackPanel Style="{StaticResource StackPanelsAtRow0Style}">
+                <TextBlock Text="Ученик" Style="{StaticResource TextBlockAtRow0Style}"/>
+                <ComboBox Style="{StaticResource ComboBoxAtRow0Style}"/>
+            </StackPanel>
+
+            <!-- Выбор предмета -->
+            <StackPanel Style="{StaticResource StackPanelsAtRow0Style}">
+                <TextBlock Text="Предмет" Style="{StaticResource TextBlockAtRow0Style}"/>
+                <ComboBox Style="{StaticResource ComboBoxAtRow0Style}"/>
+            </StackPanel>
+
+            <!-- Выбор года -->
+            <StackPanel Style="{StaticResource StackPanelsAtRow0Style}">
+                <TextBlock Text="Год"/>
+                <ComboBox Style="{StaticResource ComboBoxAtRow0Style}"/>
+            </StackPanel>
+
+            <!-- Выбор месяца -->
+            <StackPanel Style="{StaticResource StackPanelsAtRow0Style}">
+                <TextBlock Text="Месяц" Style="{StaticResource TextBlockAtRow0Style}"/>
+                <ComboBox Style="{StaticResource ComboBoxAtRow0Style}"/>
+            </StackPanel>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="20*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Row="0" Grid.Column="0"/>
+            <Border Grid.Row="0" Grid.Column="1"/>
+            <Border Grid.Row="1" Grid.Column="0"/>
+            <Border Grid.Row="1" Grid.Column="1"/>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" 
+                       Text="Все задания" 
+                       Style="{StaticResource TasksHeaderTextBlockStyle}"/>
+
+            <TextBlock Grid.Row="0" Grid.Column="1"
+                     Text="Скоро сдавать"
+                     Style="{StaticResource TasksHeaderTextBlockStyle}"/>
+
+            <!-- Все задания -->
+            <ListView Grid.Row="1" Grid.Column="0">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Задание"/>
+                        <GridViewColumn Header="Выдано"/>
+                        <GridViewColumn Header="Сдавать"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <!-- Скоро сдавать -->
+            <ListView Grid.Row="1" Grid.Column="1">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Задание"/>
+                        <GridViewColumn Header="Выдано"/>
+                        <GridViewColumn Header="Сдавать"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+
+    </Grid>
 </UserControl>
