@@ -128,23 +128,23 @@
                      Style="{StaticResource TasksHeaderTextBlockStyle}"/>
 
             <!-- Все задания -->
-            <ListView Grid.Row="1" Grid.Column="0">
+            <ListView Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Tasks}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Задание"/>
-                        <GridViewColumn Header="Выдано"/>
-                        <GridViewColumn Header="Сдавать"/>
+                        <GridViewColumn Header="Задание" DisplayMemberBinding="{Binding TaskText}"/>
+                        <GridViewColumn Header="Выдано" DisplayMemberBinding="{Binding StartDate}"/>
+                        <GridViewColumn Header="Сдавать" DisplayMemberBinding="{Binding EndDate}"/>
                     </GridView>
                 </ListView.View>
             </ListView>
 
             <!-- Скоро сдавать -->
-            <ListView Grid.Row="1" Grid.Column="1">
+            <ListView Grid.Row="1" Grid.Column="1" ItemsSource="{Binding DeadlineTasks}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Задание"/>
-                        <GridViewColumn Header="Выдано"/>
-                        <GridViewColumn Header="Сдавать"/>
+                        <GridViewColumn Header="Задание" DisplayMemberBinding="{Binding TaskText}"/>
+                        <GridViewColumn Header="Выдано" DisplayMemberBinding="{Binding StartDate}"/>
+                        <GridViewColumn Header="Сдавать" DisplayMemberBinding="{Binding EndDate}"/>
                     </GridView>
                 </ListView.View>
             </ListView>

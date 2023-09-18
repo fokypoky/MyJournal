@@ -67,6 +67,7 @@ public class ParentTasksUserControlViewModel : ViewModel
 		set
 		{
 			SetField(ref _selectedMonth, value);
+			FillTasksData();
 		}
 	}
 
@@ -166,6 +167,27 @@ public class ParentTasksUserControlViewModel : ViewModel
 			TaskMonths = new ObservableCollection<int>(
 				new TasksRepository(context).GetTaskMonthByStudentSubjectAndYear(SelectedStudent, SelectedSubject,
 					SelectedYear)
+			);
+		}
+	}
+
+	private void FillTasksData()
+	{
+		if (SelectedStudent is null || SelectedSubject is null || SelectedYear == 0 || SelectedMonth == 0)
+		{
+			return;
+		}
+
+		using (var context = new ApplicationContext())
+		{
+			var tasksRepository = new TasksRepository(context);
+
+			Tasks = new ObservableCollection<Task>(
+				tasksRepository.GetByStudentSubjectAndPeriod(SelectedStudent, SelectedSubject,
+					SelectedYear, SelectedMonth)
+			);
+			DeadlineTasks = new ObservableCollection<Task>(
+				tasksRepository.GetExpiringTasksByStudentSubjectAndDate(SelectedStudent, SelectedSubject, DateTime.Now)
 			);
 		}
 	}
