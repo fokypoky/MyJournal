@@ -27,4 +27,12 @@ public class StudentsRepository : EntityRepository<Student>
             .ThenInclude(m => m.Subjects)
             .FirstOrDefault();
     }
+
+    public ICollection<Student>? GetWithContactsByParent(Parent parent)
+    {
+	    return _context.Set<Student>()
+		    .Where(s => s.ParentStudents.Any(ps => ps.ParentId == parent.Id))?
+		    .Include(s => s.Contacts)
+		    .ToList();
+    }
 }
