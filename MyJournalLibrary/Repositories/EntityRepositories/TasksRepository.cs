@@ -20,6 +20,16 @@ public class TasksRepository : EntityRepository<Task>
             .ToList();
     }
 
+    public ICollection<Task> GetByStudentSubjectAndPeriod(Student student, Subject subject, int year, int month)
+    {
+		return _context.Set<Task>()
+			.Where(t => t.ClassId == student.ClassId && t.SubjectId == subject.Id
+			                                   && ((t.StartDate.Year == year && t.StartDate.Month == month) ||
+			                                       (t.EndDate.Year == year && t.EndDate.Month == month))
+			)
+			.ToList();
+	}
+
     public ICollection<Task> GetByClassSubjectAndStartDatePeriod(Class @class, Subject subject, int year, int month)
     {
         return _context.Set<Task>()
