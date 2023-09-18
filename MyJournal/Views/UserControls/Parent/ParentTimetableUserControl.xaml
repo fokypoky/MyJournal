@@ -69,13 +69,13 @@
                            Text="Понедельник"
                            Style="{StaticResource TimeTableDayTextBlockStyle}"/>
                 
-                <ListView Grid.Row="1">
+                <ListView Grid.Row="1" ItemsSource="{Binding MondayTimetable}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Предмет"/>
-                            <GridViewColumn Header="Время"/>
-                            <GridViewColumn Header="Аудитория"/>
-                            <GridViewColumn Header="Преподаватель"/>
+                            <GridViewColumn Header="Предмет" DisplayMemberBinding="{Binding Subject.SubjectTitle}"/>
+                            <GridViewColumn Header="Время" DisplayMemberBinding="{Binding LessonTime}"/>
+                            <GridViewColumn Header="Аудитория" DisplayMemberBinding="{Binding Auditory.AuditoryNumber}"/>
+                            <GridViewColumn Header="Преподаватель" DisplayMemberBinding="{Binding Teacher.Contacts.Surname}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -90,13 +90,13 @@
                            Text="Вторник"
                            Style="{StaticResource TimeTableDayTextBlockStyle}"/>
 
-                <ListView Grid.Row="1">
+                <ListView Grid.Row="1" ItemsSource="{Binding TuesdayTimetable}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Предмет"/>
-                            <GridViewColumn Header="Время"/>
-                            <GridViewColumn Header="Аудитория"/>
-                            <GridViewColumn Header="Преподаватель"/>
+                            <GridViewColumn Header="Предмет" DisplayMemberBinding="{Binding Subject.SubjectTitle}"/>
+                            <GridViewColumn Header="Время" DisplayMemberBinding="{Binding LessonTime}"/>
+                            <GridViewColumn Header="Аудитория" DisplayMemberBinding="{Binding Auditory.AuditoryNumber}"/>
+                            <GridViewColumn Header="Преподаватель" DisplayMemberBinding="{Binding Teacher.Contacts.Surname}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -111,13 +111,13 @@
                            Text="Среда"
                            Style="{StaticResource TimeTableDayTextBlockStyle}"/>
 
-                <ListView Grid.Row="1">
+                <ListView Grid.Row="1" ItemsSource="{Binding WednesdayTimetable}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Предмет"/>
-                            <GridViewColumn Header="Время"/>
-                            <GridViewColumn Header="Аудитория"/>
-                            <GridViewColumn Header="Преподаватель"/>
+                            <GridViewColumn Header="Предмет" DisplayMemberBinding="{Binding Subject.SubjectTitle}"/>
+                            <GridViewColumn Header="Время" DisplayMemberBinding="{Binding LessonTime}"/>
+                            <GridViewColumn Header="Аудитория" DisplayMemberBinding="{Binding Auditory.AuditoryNumber}"/>
+                            <GridViewColumn Header="Преподаватель" DisplayMemberBinding="{Binding Teacher.Contacts.Surname}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -132,13 +132,13 @@
                            Text="Четверг"
                            Style="{StaticResource TimeTableDayTextBlockStyle}"/>
 
-                <ListView Grid.Row="1">
+                <ListView Grid.Row="1" ItemsSource="{Binding ThursdayTimetable}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Предмет"/>
-                            <GridViewColumn Header="Время"/>
-                            <GridViewColumn Header="Аудитория"/>
-                            <GridViewColumn Header="Преподаватель"/>
+                            <GridViewColumn Header="Предмет" DisplayMemberBinding="{Binding Subject.SubjectTitle}"/>
+                            <GridViewColumn Header="Время" DisplayMemberBinding="{Binding LessonTime}"/>
+                            <GridViewColumn Header="Аудитория" DisplayMemberBinding="{Binding Auditory.AuditoryNumber}"/>
+                            <GridViewColumn Header="Преподаватель" DisplayMemberBinding="{Binding Teacher.Contacts.Surname}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -155,13 +155,13 @@
                            Text="Пятница"
                            Style="{StaticResource TimeTableDayTextBlockStyle}"/>
 
-                <ListView Grid.Row="1">
+                <ListView Grid.Row="1" ItemsSource="{Binding FridayTimetable}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Предмет"/>
-                            <GridViewColumn Header="Время"/>
-                            <GridViewColumn Header="Аудитория"/>
-                            <GridViewColumn Header="Преподаватель"/>
+                            <GridViewColumn Header="Предмет" DisplayMemberBinding="{Binding Subject.SubjectTitle}"/>
+                            <GridViewColumn Header="Время" DisplayMemberBinding="{Binding LessonTime}"/>
+                            <GridViewColumn Header="Аудитория" DisplayMemberBinding="{Binding Auditory.AuditoryNumber}"/>
+                            <GridViewColumn Header="Преподаватель" DisplayMemberBinding="{Binding Teacher.Contacts.Surname}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -177,13 +177,13 @@
                            Text="Суббота"
                            Style="{StaticResource TimeTableDayTextBlockStyle}"/>
 
-                <ListView Grid.Row="1">
+                <ListView Grid.Row="1" ItemsSource="{Binding SaturdayTimetable}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Предмет"/>
-                            <GridViewColumn Header="Время"/>
-                            <GridViewColumn Header="Аудитория"/>
-                            <GridViewColumn Header="Преподаватель"/>
+                            <GridViewColumn Header="Предмет" DisplayMemberBinding="{Binding Subject.SubjectTitle}"/>
+                            <GridViewColumn Header="Время" DisplayMemberBinding="{Binding LessonTime}"/>
+                            <GridViewColumn Header="Аудитория" DisplayMemberBinding="{Binding Auditory.AuditoryNumber}"/>
+                            <GridViewColumn Header="Преподаватель" DisplayMemberBinding="{Binding Teacher.Contacts.Surname}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -199,13 +199,13 @@
                            Foreground="#DC3030"
                            Style="{StaticResource TimeTableDayTextBlockStyle}"/>
 
-                <ListView Grid.Row="1">
+                <ListView Grid.Row="1" ItemsSource="{Binding SundayTimetable}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Предмет"/>
-                            <GridViewColumn Header="Время"/>
-                            <GridViewColumn Header="Аудитория"/>
-                            <GridViewColumn Header="Преподаватель"/>
+                            <GridViewColumn Header="Предмет" DisplayMemberBinding="{Binding Subject.SubjectTitle}"/>
+                            <GridViewColumn Header="Время" DisplayMemberBinding="{Binding LessonTime}"/>
+                            <GridViewColumn Header="Аудитория" DisplayMemberBinding="{Binding Auditory.AuditoryNumber}"/>
+                            <GridViewColumn Header="Преподаватель" DisplayMemberBinding="{Binding Teacher.Contacts.Surname}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
