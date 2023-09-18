@@ -23,4 +23,11 @@ public class SubjectsRepository : EntityRepository<Subject>
             .Where(s => s.ClassSubjects.Any(cs => cs.ClassId == @class.Id))
             .ToList();
     }
+
+    public ICollection<Subject> GetByStudent(Student student)
+    {
+        return _context.Set<Subject>()
+	        .Where(s => s.ClassSubjects.Any(cs => cs.ClassId == student.ClassId))
+	        .ToList();
+    }
 }
