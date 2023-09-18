@@ -57,6 +57,7 @@ public class ParentTasksUserControlViewModel : ViewModel
 		set
 		{
 			SetField(ref _selectedYear, value);
+			FillMonthsComboBox();
 		}
 	}
 
@@ -149,6 +150,22 @@ public class ParentTasksUserControlViewModel : ViewModel
 		{
 			TaskYears = new ObservableCollection<int>(
 				new TasksRepository(context).GetTaskYearsByStudentAndSubject(SelectedStudent, SelectedSubject)
+			);
+		}
+	}
+
+	private void FillMonthsComboBox()
+	{
+		if (SelectedStudent is null || SelectedSubject is null || SelectedYear == 0)
+		{
+			return;
+		}
+
+		using (var context = new ApplicationContext())
+		{
+			TaskMonths = new ObservableCollection<int>(
+				new TasksRepository(context).GetTaskMonthByStudentSubjectAndYear(SelectedStudent, SelectedSubject,
+					SelectedYear)
 			);
 		}
 	}
