@@ -13,4 +13,16 @@ public class ParentsRepository : EntityRepository<Parent>
     {
 	    return _context.Set<Parent>().Where(p => p.ContactsId == userId)?.FirstOrDefault();
     }
+
+    public Parent? GetByUserIdWithContactsStudentsAndStudentContacts(int userId)
+    {
+	    return _context.Set<Parent>()
+		    .Where(p => p.ContactsId == userId)
+		    .Include(p => p.Contacts)
+		    .Include(p => p.Students)
+				.ThenInclude(s => s.Contacts)
+            .Include(p => p.Students)
+				.ThenInclude(s => s.Class)
+		    .FirstOrDefault();
+    }
 }
