@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyJournalAdmin.Views.Windows.Login"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="550" Width="800"
+        Title="LoginWindow" Height="550" Width="350"
         ResizeMode="NoResize">
 
     <Window.Resources>
