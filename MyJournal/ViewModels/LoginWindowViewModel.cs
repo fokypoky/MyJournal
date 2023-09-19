@@ -68,8 +68,7 @@ public class LoginWindowViewModel : ViewModel
             }
             
             ApplicationData.UserId = contact.Id;
-            bool needToClose = false; // нужно ли закрывать окно
-            
+
             switch (contact.UserRole.Rolename.ToLower())
             {
                 case "employee":
@@ -99,9 +98,15 @@ public class LoginWindowViewModel : ViewModel
             Views.MainWindow mainWindow = new Views.MainWindow();
             mainWindow.Show();
 
-            if (needToClose)
+            if (ApplicationData.UserRole != UserRole.None)
             {
-                Application.Current.MainWindow.Close();
+	            if (parameter is not Window)
+	            {
+		            return;
+	            }
+
+                var window = (Window)parameter;
+                window.Close();
             }
             
         }

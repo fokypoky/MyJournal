@@ -7,7 +7,8 @@
         xmlns:vmodel="clr-namespace:MyJournal.ViewModels"
         mc:Ignorable="d"
         Title="Login" Height="550" Width="350"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize"
+        x:Name="LoginWindow">
     <Window.DataContext>
         <vmodel:LoginWindowViewModel/>
     </Window.DataContext>
@@ -64,7 +65,9 @@
             <Button Content="Войти" BorderThickness="0"
                     Height="51"
                     Margin="0,10,0,0"
-                    Command="{Binding LoginButtonClick}"/>
+                    Command="{Binding LoginButtonClick}"
+                    CommandParameter="{Binding ElementName=LoginWindow}"
+                    />
             
         </StackPanel>
         
