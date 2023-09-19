@@ -101,3 +101,5 @@ C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournalAdmin\bin\Debug\net7.
 C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournalAdmin\bin\Debug\net7.0-windows\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournalAdmin\obj\Debug\net7.0-windows\MyJournalAdmin.csproj.AssemblyReference.cache
 C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournalAdmin\obj\Debug\net7.0-windows\MyJournalAdmin.csproj.CopyComplete
+C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournalAdmin\bin\Debug\net7.0-windows\MyJournalLibrary.dll
+C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournalAdmin\bin\Debug\net7.0-windows\MyJournalLibrary.pdb
