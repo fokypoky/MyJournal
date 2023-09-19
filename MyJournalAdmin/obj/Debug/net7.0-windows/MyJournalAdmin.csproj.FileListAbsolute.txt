@@ -66,12 +66,9 @@ C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournalAdmin\bin\Debug\net7.
 C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournalAdmin\bin\Debug\net7.0-windows\MyJournalAdmin.runtimeconfig.json
 C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournalAdmin\bin\Debug\net7.0-windows\MyJournalAdmin.dll
 C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournalAdmin\bin\Debug\net7.0-windows\MyJournalAdmin.pdb
-C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournalAdmin\obj\Debug\net7.0-windows\MyJournalAdmin.csproj.AssemblyReference.cache
-C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournalAdmin\obj\Debug\net7.0-windows\MainWindow.g.cs
 C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournalAdmin\obj\Debug\net7.0-windows\App.g.cs
 C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournalAdmin\obj\Debug\net7.0-windows\MyJournalAdmin_MarkupCompile.cache
 C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournalAdmin\obj\Debug\net7.0-windows\MyJournalAdmin_MarkupCompile.lref
-C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournalAdmin\obj\Debug\net7.0-windows\MainWindow.baml
 C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournalAdmin\obj\Debug\net7.0-windows\MyJournalAdmin.g.resources
 C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournalAdmin\obj\Debug\net7.0-windows\MyJournalAdmin.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournalAdmin\obj\Debug\net7.0-windows\MyJournalAdmin.AssemblyInfoInputs.cache
@@ -82,3 +79,5 @@ C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournalAdmin\obj\Debug\net7.
 C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournalAdmin\obj\Debug\net7.0-windows\MyJournalAdmin.pdb
 C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournalAdmin\obj\Debug\net7.0-windows\MyJournalAdmin.genruntimeconfig.cache
 C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournalAdmin\obj\Debug\net7.0-windows\ref\MyJournalAdmin.dll
+C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournalAdmin\obj\Debug\net7.0-windows\Views\Windows\Login\LoginWindow.g.cs
+C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournalAdmin\obj\Debug\net7.0-windows\Views\Windows\Login\LoginWindow.baml
