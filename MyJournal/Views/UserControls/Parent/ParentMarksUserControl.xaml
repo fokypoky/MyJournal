@@ -4,12 +4,91 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MyJournal.Views.UserControls.Parent"
+             xmlns:vmodel="clr-namespace:MyJournal.ViewModels.UserControlsViewModels.Parent"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              d:Background="White">
+    
+    <UserControl.DataContext>
+        <vmodel:ParentMarksUserControlViewModel/>
+    </UserControl.DataContext>
+    
+    <UserControl.Resources>
+        <Style x:Key="TextBlockAtRow0Style">
+            <Setter Property="TextBlock.FontSize" Value="13.5"/>
+        </Style>
+
+        <Style x:Key="ComboBoxAtRow0Style">
+            <Setter Property="ComboBox.MinWidth" Value="100"/>
+        </Style>
+
+        <Style x:Key="StackPanelsAtRow0Style">
+            <Setter Property="StackPanel.Margin" Value="6,0,0,0"/>
+        </Style>
+
+        <Style TargetType="Border">
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="0.5"/>
+        </Style>
+
+        <Style x:Key="StudentNameComboBoxStyle">
+            <Setter Property="TextBlock.Margin" Value="5,0,0,0"/>
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
-           <TextBlock Text="Оценки родителя" HorizontalAlignment="Center"
-                      VerticalAlignment="Center"
-                      FontSize="35"/> 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="13*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0"/>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center">
+            
+            <!-- Выбор ученика -->
+            <StackPanel Style="{StaticResource StackPanelsAtRow0Style}">
+                <TextBlock Text="Ученик" Style="{StaticResource TextBlockAtRow0Style}"/>
+                <ComboBox Style="{StaticResource ComboBoxAtRow0Style}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate></DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+            
+            <!-- Выбор предмета -->
+            <StackPanel Style="{StaticResource StackPanelsAtRow0Style}">
+                <TextBlock Text="Предмет" Style="{StaticResource TextBlockAtRow0Style}"/>
+                <ComboBox Style="{StaticResource ComboBoxAtRow0Style}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate></DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+            
+            <!-- Выбор года -->
+            <StackPanel Style="{StaticResource StackPanelsAtRow0Style}">
+                <TextBlock Text="Год" Style="{StaticResource TextBlockAtRow0Style}"/>
+                <ComboBox Style="{StaticResource ComboBoxAtRow0Style}"/>
+            </StackPanel>
+
+            <!-- Выбор месяца -->
+            <StackPanel Style="{StaticResource StackPanelsAtRow0Style}">
+                <TextBlock Text="Месяц" Style="{StaticResource TextBlockAtRow0Style}"/>
+                <ComboBox Style="{StaticResource ComboBoxAtRow0Style}"/>
+            </StackPanel>
+        </StackPanel>
+        
+        <ListView Grid.Row="1">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Оценка"/>
+                    <GridViewColumn Header="Дата"/>
+                    <GridViewColumn Header="Учитель"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
     </Grid>
+
 </UserControl>
