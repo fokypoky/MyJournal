@@ -13,31 +13,43 @@
         <vmodel:MainWindowViewModel/>
     </Window.DataContext>
 
+    <Window.Resources>
+        <Style TargetType="Frame">
+            <Setter Property="NavigationUIVisibility" Value="Hidden"/>
+        </Style>
+    </Window.Resources>
+
     <Grid>
         <TabControl>
 
             <TabItem>
                 <TabItem.Header>Персонал</TabItem.Header>
+                <Frame Content="{Binding EmployeesManagementUserControl}"/>
             </TabItem>
             
             <TabItem>
                 <TabItem.Header>Ученики</TabItem.Header>
+                <Frame Content="{Binding StudentsManagementUserControl}"/>
             </TabItem>
             
             <TabItem>
                 <TabItem.Header>Расписание</TabItem.Header>
+                <Frame Content="{Binding TimetableManagementUserControl}"/>
             </TabItem>
 
             <TabItem>
                 <TabItem.Header>Аудитории</TabItem.Header>
+                <Frame Content="{Binding AuditoriesManagementUserControl}"/>
             </TabItem>
 
             <TabItem>
                 <TabItem.Header>Предметы</TabItem.Header>
+                <Frame Content="{Binding SubjectsManagementUserControl}"/>
             </TabItem>
 
             <TabItem>
                 <TabItem.Header>Классы</TabItem.Header>
+                <Frame Content="{Binding ClassesManagementUserControl}"/>
             </TabItem>
 
         </TabControl>    
