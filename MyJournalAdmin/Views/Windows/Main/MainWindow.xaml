@@ -6,13 +6,41 @@
         xmlns:local="clr-namespace:MyJournalAdmin.Views.Windows.Main"
         xmlns:vmodel="clr-namespace:MyJournalAdmin.ViewModels.Windows.Main"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Администратор" MinHeight="450" MinWidth="800"
+        Height="450" Width="800">
 
     <Window.DataContext>
         <vmodel:MainWindowViewModel/>
     </Window.DataContext>
 
     <Grid>
-        
+        <TabControl>
+
+            <TabItem>
+                <TabItem.Header>Персонал</TabItem.Header>
+            </TabItem>
+            
+            <TabItem>
+                <TabItem.Header>Ученики</TabItem.Header>
+            </TabItem>
+            
+            <TabItem>
+                <TabItem.Header>Расписание</TabItem.Header>
+            </TabItem>
+
+            <TabItem>
+                <TabItem.Header>Аудитории</TabItem.Header>
+            </TabItem>
+
+            <TabItem>
+                <TabItem.Header>Предметы</TabItem.Header>
+            </TabItem>
+
+            <TabItem>
+                <TabItem.Header>Классы</TabItem.Header>
+            </TabItem>
+
+        </TabControl>    
     </Grid>
+
 </Window>
