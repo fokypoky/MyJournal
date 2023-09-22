@@ -6,13 +6,53 @@
         xmlns:local="clr-namespace:MyJournalAdmin.Views.Windows.Settings"
         xmlns:vmodel="clr-namespace:MyJournalAdmin.ViewModels.Windows.Settings"
         mc:Ignorable="d"
-        Title="Настройки подключения" Height="450" Width="800">
+        Title="Настройки подключения" Height="550" Width="350"
+        ResizeMode="NoResize"
+        x:Name="ConnectionSettingsWindow">
 
     <Window.DataContext>
         <vmodel:ConnectionsSettingsWindowViewModel/>
     </Window.DataContext>
 
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Inter"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="#F0F0F0"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="25"/>
+        </Style>
+    </Window.Resources>
+
     <Grid>
-        
+        <StackPanel Width="293" 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+            <TextBlock Text="Настройки подключения к базе данных"
+                       TextAlignment="Center" FontSize="14"
+                       Margin="5"/>
+
+            <TextBlock Text="Host" Margin="5"/>
+            <TextBox Text="{Binding Host, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <TextBlock Text="Port" Margin="5"/>
+            <TextBox Text="{Binding Port, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <TextBlock Text="Database" Margin="5"/>
+            <TextBox Text="{Binding Database, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <TextBlock Text="Username" Margin="5"/>
+            <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <TextBlock Text="Password" Margin="5"/>
+            <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Button Content="Применить настройки" Height="51" 
+                    BorderThickness="0"
+                    Margin="0,10,0,0"
+                    Command="{Binding ApplySettingsCommand}"
+                    CommandParameter="{Binding ElementName=ConnectionSettingsWindow}"/>
+        </StackPanel>
     </Grid>
 </Window>
