@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using System.Windows;
 using System.Windows.Input;
 using MyJournalAdmin.Infrastructure.Commands;
@@ -13,6 +9,7 @@ using MyJournalAdmin.Views.Notifiers.Implementation;
 using MyJournalAdmin.Views.Notifiers.Interfaces;
 using MyJournalAdmin.Views.Windows.Main;
 using MyJournalLibrary.Repositories.EntityRepositories;
+using MyJournalLibrary.Repositories.FileRepositories;
 
 namespace MyJournalAdmin.ViewModels.Windows.Login
 {
@@ -93,6 +90,13 @@ namespace MyJournalAdmin.ViewModels.Windows.Login
 				var mainWindow = new MainWindow();
 				mainWindow.Show();
 
+				if (NeedsToSaveLogin)
+				{
+					var jsonRepository = new JsonRepository<LoginData>("LoginData.json");
+					var loginData = new LoginData(Login, Password);
+					jsonRepository.WriteFile(loginData);
+				}
+
 				if (parameter is Window)
 				{
 					var currentWindow = (Window) parameter;
@@ -124,6 +128,23 @@ namespace MyJournalAdmin.ViewModels.Windows.Login
 		public LoginWindowViewModel()
 		{
 			Notifier = new MessageBoxNotifier();
+
+			var jsonRepository = new JsonRepository<DatabaseConnection>("ConnectionSettings.json");
+			var connection = jsonRepository.ReadFile();
+
+			if (connection != null)
+			{
+				ApplicationContext.ConnectionString = connection.ToConnectionString();
+			}
+
+			if (File.Exists("LoginData.json"))
+			{
+				JsonRepository<LoginData> loginRepository = new JsonRepository<LoginData>("LoginData.json");
+				var loginData = loginRepository.ReadFile();
+
+				Login = loginData.Login;
+				Password = loginData.Password;
+			}
 		}
 
 	}
