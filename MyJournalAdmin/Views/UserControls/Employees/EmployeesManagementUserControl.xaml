@@ -6,13 +6,107 @@
              xmlns:local="clr-namespace:MyJournalAdmin.Views.UserControls.Employees"
              xmlns:vmodel="clr-namespace:MyJournalAdmin.ViewModels.UserControls.Employees"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             d:Background="White">
 
     <UserControl.DataContext>
         <vmodel:EmployeesManagementUserControlViewModel/>
     </UserControl.DataContext>
+    
+    <UserControl.Resources>
+        <Style x:Key="ActionButtonsStyle">
+            <Setter Property="Button.BorderThickness" Value="0"/>
+            <Setter Property="Button.Background" Value="#D9D9D9"/>
+            <Setter Property="Button.FontSize" Value="11"/>
+            <Setter Property="Button.Margin" Value="3,5,4,0"/>
+            <Setter Property="Button.MinHeight" Value="20"/>
+        </Style>
+        
+        <Style x:Key="SearchingTextBlockStyle">
+            <Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
+            <Setter Property="TextBlock.VerticalAlignment" Value="Bottom"/>
+            <Setter Property="TextBlock.FontSize" Value="12"/>
+        </Style>
+
+        <Style x:Key="SearchingTextBoxStyle">
+            <Setter Property="TextBox.VerticalAlignment" Value="Center"/>
+            <Setter Property="TextBox.BorderThickness" Value="0"/>
+            <Setter Property="TextBox.Background" Value="#F0F0F0"/>
+            
+            
+        </Style>
+
+    </UserControl.Resources>
 
     <Grid>
-        <TextBlock Text="Employees" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32"/>
+
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="9*"/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2.5*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <DataGrid Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Background="White">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Фамилия"/>
+                <DataGridTextColumn Header="Имя"/>
+                <DataGridTextColumn Header="Отчество"/>
+                <DataGridTextColumn Header="Телефон"/>
+                <DataGridTextColumn Header="E-mail"/>
+                <DataGridTextColumn Header="Пол"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <Button Content="Добавить" 
+                Style="{StaticResource ActionButtonsStyle}"/>
+
+            <Button Content="Изменить"
+                Style="{StaticResource ActionButtonsStyle}"/>
+
+            <Button Content="Удалить" 
+                Style="{StaticResource ActionButtonsStyle}"/>
+        </StackPanel>
+        
+        <Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <!-- Фамилия -->
+            <StackPanel Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                <TextBlock Text="Фамилия" Style="{StaticResource SearchingTextBlockStyle}"/>
+                <TextBox Style="{StaticResource SearchingTextBoxStyle}"/>
+
+                <TextBlock Text="Имя" Style="{StaticResource SearchingTextBlockStyle}"/>
+                <TextBox Style="{StaticResource SearchingTextBoxStyle}"/>
+
+                <TextBlock Text="Телефон" Style="{StaticResource SearchingTextBlockStyle}"/>
+                <TextBox Style="{StaticResource SearchingTextBoxStyle}"/>
+
+                <TextBlock Text="E-mail" Style="{StaticResource SearchingTextBlockStyle}"/>
+                <TextBox Style="{StaticResource SearchingTextBoxStyle}"/>
+
+            </StackPanel>
+
+            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                    Content="Поиск"
+                    Margin="3"
+                    BorderThickness="0"/>
+
+        </Grid>
+        
+
     </Grid>
 </UserControl>
