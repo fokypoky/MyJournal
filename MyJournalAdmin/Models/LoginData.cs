@@ -2,6 +2,7 @@
 
 namespace MyJournalAdmin.Models
 {
+	[DataContract]
     public class LoginData
     {
 	    [DataMember] public string Login { get; set; }
