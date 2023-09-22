@@ -4,6 +4,7 @@ using System.Runtime.Serialization;
 
 namespace MyJournalAdmin.Models
 {
+	[DataContract]
     public class DatabaseConnection
     {
 	    [DataMember]
