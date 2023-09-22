@@ -8,6 +8,7 @@ using MyJournalAdmin.ViewModels.Base;
 using MyJournalAdmin.Views.Notifiers.Implementation;
 using MyJournalAdmin.Views.Notifiers.Interfaces;
 using MyJournalAdmin.Views.Windows.Main;
+using MyJournalAdmin.Views.Windows.Settings;
 using MyJournalLibrary.Repositories.EntityRepositories;
 using MyJournalLibrary.Repositories.FileRepositories;
 
@@ -52,7 +53,7 @@ namespace MyJournalAdmin.ViewModels.Windows.Login
 
 		public ICommand LoginCommand
 		{
-			get => new RelayCommand(LogIn, CanConectToDb);
+			get => new RelayCommand(LogIn, CanConnectToDb);
 		}
 
 		public ICommand OpenConnectionSettingsCommand
@@ -105,7 +106,7 @@ namespace MyJournalAdmin.ViewModels.Windows.Login
 			}
 		}
 
-		private bool CanConectToDb(object parameter)
+		private bool CanConnectToDb(object parameter)
 		{
 			using (var context = new ApplicationContext())
 			{
@@ -120,7 +121,11 @@ namespace MyJournalAdmin.ViewModels.Windows.Login
 			}
 		}
 
-		private void OpenConnectionSettings(object parameter) { }
+		private void OpenConnectionSettings(object parameter)
+		{
+			var connectionSettingsWindow = new ConnectionSettingsWingow();
+			connectionSettingsWindow.Show();
+		}
 
 
 		#endregion
