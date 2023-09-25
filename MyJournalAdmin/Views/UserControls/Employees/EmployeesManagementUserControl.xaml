@@ -51,17 +51,21 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         
-        <DataGrid Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Background="White">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Фамилия"/>
-                <DataGridTextColumn Header="Имя"/>
-                <DataGridTextColumn Header="Отчество"/>
-                <DataGridTextColumn Header="Телефон"/>
-                <DataGridTextColumn Header="E-mail"/>
-                <DataGridTextColumn Header="Пол"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        
+        <ListView Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
+                  SelectedItem="{Binding SelectedEmployee}"
+                  ItemsSource="{Binding Employees}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding Contacts.Surname}"/>
+                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Contacts.Name}"/>
+                    <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding Contacts.Midname}"/>
+                    <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding Contacts.PhoneNumber}"/>
+                    <GridViewColumn Header="E-mail" DisplayMemberBinding="{Binding Contacts.Email}"/>
+                    <GridViewColumn Header="Пол" DisplayMemberBinding="{Binding Contacts.Sex}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
         <StackPanel Grid.Row="0" Grid.Column="1">
             <Button Content="Добавить" 
                 Style="{StaticResource ActionButtonsStyle}"/>
@@ -87,23 +91,32 @@
             <!-- Фамилия -->
             <StackPanel Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2">
                 <TextBlock Text="Фамилия" Style="{StaticResource SearchingTextBlockStyle}"/>
-                <TextBox Style="{StaticResource SearchingTextBoxStyle}"/>
+                <TextBox Style="{StaticResource SearchingTextBoxStyle}"
+                         Text="{Binding EmployeeSurnameToSearch, 
+                                UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBlock Text="Имя" Style="{StaticResource SearchingTextBlockStyle}"/>
-                <TextBox Style="{StaticResource SearchingTextBoxStyle}"/>
+                <TextBox Style="{StaticResource SearchingTextBoxStyle}"
+                         Text="{Binding EmployeeNameToSearch,
+                                UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBlock Text="Телефон" Style="{StaticResource SearchingTextBlockStyle}"/>
-                <TextBox Style="{StaticResource SearchingTextBoxStyle}"/>
+                <TextBox Style="{StaticResource SearchingTextBoxStyle}"
+                         Text="{Binding EmployeePhoneNumberToSearch,
+                                UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBlock Text="E-mail" Style="{StaticResource SearchingTextBlockStyle}"/>
-                <TextBox Style="{StaticResource SearchingTextBoxStyle}"/>
+                <TextBox Style="{StaticResource SearchingTextBoxStyle}"
+                         Text="{Binding EmployeeEmailToSearch,
+                                UpdateSourceTrigger=PropertyChanged}"/>
 
             </StackPanel>
 
             <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                     Content="Поиск"
                     Margin="3"
-                    BorderThickness="0"/>
+                    BorderThickness="0"
+                    Command="{Binding FindEmployeeCommand}"/>
 
         </Grid>
         
