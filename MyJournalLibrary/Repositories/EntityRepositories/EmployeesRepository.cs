@@ -17,4 +17,11 @@ public class EmployeesRepository : EntityRepository<Employee>
             .Include(e => e.Contacts)
             .FirstOrDefault(e => e.ContactsId == id);
     }
+
+    public ICollection<Employee> GetAllWithContacts()
+    {
+	    return _context.Set<Employee>()
+		    .Include(e => e.Contacts)
+		    .ToList();
+    }
 }
