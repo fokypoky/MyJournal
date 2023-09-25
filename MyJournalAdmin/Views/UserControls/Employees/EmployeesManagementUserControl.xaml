@@ -71,7 +71,8 @@
                 Style="{StaticResource ActionButtonsStyle}"/>
 
             <Button Content="Изменить"
-                Style="{StaticResource ActionButtonsStyle}"/>
+                Style="{StaticResource ActionButtonsStyle}"
+                Command="{Binding ChangeEmployeeInfoCommand}"/>
 
             <Button Content="Удалить" 
                 Style="{StaticResource ActionButtonsStyle}"/>

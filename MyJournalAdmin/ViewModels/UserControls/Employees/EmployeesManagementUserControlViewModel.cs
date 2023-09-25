@@ -2,7 +2,12 @@
 using System.Windows.Input;
 using MyJournalAdmin.Infrastructure.Commands;
 using MyJournalAdmin.Infrastructure.Repositories;
+using MyJournalAdmin.Models.Messenging;
+using MyJournalAdmin.Models.Messenging.MessageTypes;
 using MyJournalAdmin.ViewModels.Base;
+using MyJournalAdmin.Views.Notifiers.Implementation;
+using MyJournalAdmin.Views.Notifiers.Interfaces;
+using MyJournalAdmin.Views.Windows.Employee;
 using MyJournalLibrary.Entities;
 using MyJournalLibrary.Repositories.EntityRepositories;
 
@@ -20,6 +25,8 @@ namespace MyJournalAdmin.ViewModels.UserControls.Employees
 		private Employee _selectedEmployee;
 
 		#region Public fields
+
+		public INotifier Notifier { get; set; }
 
 		public Employee SelectedEmployee
 		{
@@ -93,7 +100,19 @@ namespace MyJournalAdmin.ViewModels.UserControls.Employees
 
 		private void AddEmployee(object parameter) { }
 
-		private void ChangeEmployeeInfo(object parameter) { }
+		private void ChangeEmployeeInfo(object parameter)
+		{
+			if (SelectedEmployee is null)
+			{
+				Notifier.Notify("Сотрудник не выбран");
+				return;
+			}
+
+			var editingWindow = new EmployeeEditingWindow();
+			editingWindow.Show();
+			
+			WindowMessenger.OnMessageSend(new EmployeeMessage(SelectedEmployee));
+		}
 
 		private void RemoveEmployee(object parameter) { }
 
@@ -107,6 +126,9 @@ namespace MyJournalAdmin.ViewModels.UserControls.Employees
 				    new EmployeesRepository(context).GetAllWithContacts()
 			    );
 		    }
+
+		    Notifier = new MessageBoxNotifier();
+
 	    }
 
     }
