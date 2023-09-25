@@ -6,13 +6,104 @@
         xmlns:local="clr-namespace:MyJournalAdmin.Views.Windows.Employee"
         xmlns:vmodel="clr-namespace:MyJournalAdmin.ViewModels.Windows.Employee"
         mc:Ignorable="d"
-        Title="EmployeeEditingWindow" Height="450" Width="800">
+        Height="450" Width="800">
 
     <Window.DataContext>
         <vmodel:EmployeeEditingWindowViewModel/>
     </Window.DataContext>
 
+    <Window.Resources>
+        <Style x:Key="ContactsTextBlockStyle">
+            <Setter Property="TextBlock.FontSize" Value="13.5"/>
+            <Setter Property="TextBlock.Margin" Value="0,5,0,2"/>
+        </Style>
+        <Style x:Key="ContactsTextBoxStyle">
+            <Setter Property="TextBox.FontSize" Value="13.5"/>
+            <Setter Property="TextBox.Margin" Value="0,0,3,0"/>
+        </Style>
+    </Window.Resources>
+
     <Grid>
-        
+        <TabControl>
+            
+            <TabItem Header="Контакты">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="6.5*"/>
+                        <RowDefinition Height="6.5*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0" Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Фамилия" Style="{StaticResource ContactsTextBlockStyle}"/>
+                            <TextBox Style="{StaticResource ContactsTextBoxStyle}"
+                                     d:Text="Шнюк" Text="{Binding SelectedEmployee.Contacts.Surname,
+                                UpdateSourceTrigger=PropertyChanged}"/>
+
+                            <TextBlock Text="Имя" Style="{StaticResource ContactsTextBlockStyle}"/>
+                            <TextBox Style="{StaticResource ContactsTextBoxStyle}"
+                                     d:Text="Фулиона" Text="{Binding SelectedEmployee.Contacts.Name,
+                                UpdateSourceTrigger=PropertyChanged}"/>
+
+                            <TextBlock Text="Отчество" Style="{StaticResource ContactsTextBlockStyle}"/>
+                            <TextBox Style="{StaticResource ContactsTextBoxStyle}"
+                                     d:Text="Сергеевна" Text="{Binding SelectedEmployee.Contacts.Midname,
+                                UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="Телефон" Style="{StaticResource ContactsTextBlockStyle}"/>
+                            <TextBox Style="{StaticResource ContactsTextBoxStyle}"
+                                     d:Text="+79108883288" Text="{Binding SelectedEmployee.Contacts.PhoneNumber,
+                                UpdateSourceTrigger=PropertyChanged}"/>
+
+                            <TextBlock Text="E-mail" Style="{StaticResource ContactsTextBlockStyle}"/>
+                            <TextBox Style="{StaticResource ContactsTextBoxStyle}"
+                                     d:Text="shnyuk@gmail.com" Text="{Binding SelectedEmployee.Contacts.Email,
+                                UpdateSourceTrigger=PropertyChanged}"/>
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Установить новый пароль" Style="{StaticResource ContactsTextBlockStyle}"/>
+                                <Button Content="RND" Margin="10,0,0,0"
+                                        FontSize="7"
+                                        BorderThickness="0"
+                                        Background="#F0F0F0"/>
+                            </StackPanel>
+                            
+                            <TextBox Style="{StaticResource ContactsTextBoxStyle}"
+                                     d:Text="X#H}YBzN"/>
+
+                        </StackPanel>
+
+                    </Grid>
+
+                    <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                            Margin="2"
+                            BorderThickness="0"
+                            Content="Сохранить изменения"/>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Предметы">
+                <Grid></Grid>
+            </TabItem>
+
+            <TabItem Header="Классы">
+                <Grid></Grid>
+            </TabItem>
+
+        </TabControl>
     </Grid>
+
 </Window>
