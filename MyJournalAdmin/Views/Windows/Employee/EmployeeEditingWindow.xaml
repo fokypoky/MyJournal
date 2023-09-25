@@ -77,7 +77,9 @@
                                 <Button Content="RND" Margin="10,0,0,0"
                                         FontSize="7"
                                         BorderThickness="0"
-                                        Background="#F0F0F0"/>
+                                        Background="#F0F0F0"
+                                        Command="{Binding GeneratePasswordCommand}"
+                                        />
                             </StackPanel>
                             
                             <TextBox Style="{StaticResource ContactsTextBoxStyle}"
@@ -90,7 +92,8 @@
                     <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                             Margin="2"
                             BorderThickness="0"
-                            Content="Сохранить изменения"/>
+                            Content="Сохранить изменения"
+                            Command="{Binding ApplyContactChangesCommand}"/>
 
                 </Grid>
             </TabItem>

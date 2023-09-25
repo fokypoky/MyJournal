@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Windows.Input;
+using MyJournalAdmin.Infrastructure.Commands;
 using MyJournalAdmin.Models.Messenging;
 using MyJournalAdmin.Models.Messenging.MessageTypes;
 using MyJournalAdmin.ViewModels.Base;
@@ -19,7 +21,27 @@ namespace MyJournalAdmin.ViewModels.Windows.Employee
 
 		#endregion
 
-	
+		#region Commands
+
+		public ICommand ApplyContactChangesCommand
+		{
+			get => new RelayCommand(ApplyContactChanges);
+		}
+
+		public ICommand GeneratePasswordCommand
+		{
+			get => new RelayCommand(GeneratePassword);
+		}
+
+		#endregion
+
+		#region Command functions
+
+		private void ApplyContactChanges(object parameter) { }
+		
+		private void GeneratePassword(object parameter) { }
+
+		#endregion
 
 		public EmployeeEditingWindowViewModel()
 		{
