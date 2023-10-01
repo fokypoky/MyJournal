@@ -26,6 +26,11 @@
             <Setter Property="Button.Margin" Value="2,5,2,0"/>
             <Setter Property="Button.MinHeight" Value="23"/>
         </Style>
+        <Style x:Key="ClassesActionButtonStyle">
+            <Setter Property="Button.BorderThickness" Value="0"/>
+            <Setter Property="Button.Margin" Value="2,5,2,0"/>
+            <Setter Property="Button.MinHeight" Value="23"/>
+        </Style>
         <Style TargetType="ComboBox">
             <Setter Property="BorderThickness" Value="0"/>
 
@@ -160,14 +165,13 @@
                     <DataGrid Grid.Column="0">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Номер класса"/>
-                            <DataGridCheckBoxColumn Header="Удалить"/>
                         </DataGrid.Columns>
                     </DataGrid>
 
                     <StackPanel Grid.Column="1">
                         <ComboBox Margin="2,5,2,0"/>
-                        <Button Content="Добавить класс"/>
-                        <Button Content="Удалить выбранные"/>
+                        <Button Content="Добавить класс" Style="{StaticResource ClassesActionButtonStyle}"/>
+                        <Button Content="Удалить выбранные" Style="{StaticResource ClassesActionButtonStyle}"/>
                     </StackPanel>
 
                 </Grid>
