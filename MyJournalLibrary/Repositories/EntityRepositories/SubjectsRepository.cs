@@ -9,6 +9,13 @@ public class SubjectsRepository : EntityRepository<Subject>
     {
     }
 
+    public ICollection<Subject> GetByEmployee(Employee employee)
+    {
+        return _context.Set<Subject>()
+	        .Where(s => s.EmployeeSubjects.Any(es => es.EmployeeId == employee.Id))
+	        .ToList();
+    }
+
     public ICollection<Subject> GetWithClassesByEmployee(Employee employee)
     {
         return _context
