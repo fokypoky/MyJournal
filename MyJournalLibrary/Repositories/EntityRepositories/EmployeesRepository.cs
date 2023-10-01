@@ -9,7 +9,7 @@ public class EmployeesRepository : EntityRepository<Employee>
     {
     }
 
-    public void RemoveSubject(Employee employee, Subject subject)
+    public void RemoveSubjectFromEmployee(Employee employee, Subject subject)
     {
         var employeeSubject = _context.Set<EmployeeSubject>()
 	        .Where(es => es.EmployeeId == employee.Id && es.SubjectId == subject.Id)
