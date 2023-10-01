@@ -9,6 +9,13 @@ public class EmployeesRepository : EntityRepository<Employee>
     {
     }
 
+    public void AddSubjectToEmployee(Employee employee, Subject subject)
+    {
+	    _context.Set<EmployeeSubject>()
+		    .Add(new EmployeeSubject() { EmployeeId = employee.Id, SubjectId = subject.Id });
+        _context.SaveChanges();
+    }
+
     public void RemoveSubjectFromEmployee(Employee employee, Subject subject)
     {
         var employeeSubject = _context.Set<EmployeeSubject>()
