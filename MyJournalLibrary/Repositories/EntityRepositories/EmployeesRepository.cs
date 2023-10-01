@@ -9,6 +9,19 @@ public class EmployeesRepository : EntityRepository<Employee>
     {
     }
 
+    public void RemoveSubject(Employee employee, Subject subject)
+    {
+        var employeeSubject = _context.Set<EmployeeSubject>()
+	        .Where(es => es.EmployeeId == employee.Id && es.SubjectId == subject.Id)
+	        .FirstOrDefault();
+
+        if (employeeSubject != null)
+        {
+            _context.Set<EmployeeSubject>().Remove(employeeSubject);
+            _context.SaveChanges();
+        }
+    }
+
     public Employee? GetByContactId(int id)
     {
         return _context.Set<Employee>()
