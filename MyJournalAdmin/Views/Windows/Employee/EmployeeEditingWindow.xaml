@@ -128,9 +128,20 @@
                     </DataGrid>
                     
                     <StackPanel Grid.Column="1">
-                        <ComboBox Margin="2,5,2,0"/>
+                        
+                        <ComboBox Margin="2,5,2,0"
+                                  ItemsSource="{Binding AllSubjects}"
+                                  SelectedItem="{Binding SelectedToAddSubject}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding SubjectTitle}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
                         <Button Style="{StaticResource SubjectsActionButtonStyle}"
-                                Content="Добавить предмет"/>
+                                Content="Добавить предмет"
+                                Command="{Binding AddSubjectCommand}"/>
                         <Button Style="{StaticResource SubjectsActionButtonStyle}"
                                 Content="Удалить"
                                 Command="{Binding RemoveSubjectCommand}"/>

@@ -20,6 +20,9 @@ namespace MyJournalAdmin.ViewModels.Windows.Employee
 		private ObservableCollection<Class> _classes;
 		private ObservableCollection<Subject> _subjects;
 
+		private ObservableCollection<Subject> _allSubjects;
+		private Subject _selectedToAddSubject;
+
 		private Subject _selectedToDeleteSubject;
 		private Class _selectedToDeleteClass;
 
@@ -28,6 +31,12 @@ namespace MyJournalAdmin.ViewModels.Windows.Employee
 		private string _newPassword;
 
 		#region Public fields
+
+		public Subject SelectedToAddSubject
+		{
+			get => _selectedToAddSubject;
+			set => SetField(ref _selectedToAddSubject, value);
+		}
 
 		public Subject SelectedToDeleteSubject
 		{
@@ -57,6 +66,11 @@ namespace MyJournalAdmin.ViewModels.Windows.Employee
 
 		#region Commands
 
+		public ICommand AddSubjectCommand
+		{
+			get => new RelayCommand(AddSubject);
+		}
+
 		public ICommand ApplyContactChangesCommand
 		{
 			get => new RelayCommand(ApplyContactChanges);
@@ -76,6 +90,28 @@ namespace MyJournalAdmin.ViewModels.Windows.Employee
 
 		#region Command functions
 
+		private void AddSubject(object parameter)
+		{
+			if (SelectedEmployee is null)
+			{
+				_notifier.Notify("Нет данных о сотруднике");
+				return;
+			}
+
+			if (SelectedToAddSubject is null)
+			{
+				_notifier.Notify("Предмет не выбран");
+				return;
+			}
+
+			using (var context = new ApplicationContext())
+			{
+				new EmployeesRepository(context).AddSubjectToEmployee(SelectedEmployee, SelectedToAddSubject);
+			}
+
+			Subjects.Add(SelectedToAddSubject);
+		}
+
 		private void RemoveSubject(object parameter)
 		{
 			if (SelectedEmployee is null)
@@ -92,12 +128,8 @@ namespace MyJournalAdmin.ViewModels.Windows.Employee
 
 			using (var context = new ApplicationContext())
 			{
-				new EmployeesRepository(context).RemoveSubject(SelectedEmployee, SelectedToDeleteSubject);
+				new EmployeesRepository(context).RemoveSubjectFromEmployee(SelectedEmployee, SelectedToDeleteSubject);
 			}
-
-			_notifier.Notify($"Предмет '{SelectedToDeleteSubject.SubjectTitle}' удален у сотрудника " +
-			                 $"{SelectedEmployee.Contacts.Surname} {SelectedEmployee.Contacts.Name} " +
-			                 $"{SelectedEmployee.Contacts.Midname}");
 
 			Subjects.Remove(SelectedToDeleteSubject);
 		}
@@ -142,6 +174,12 @@ namespace MyJournalAdmin.ViewModels.Windows.Employee
 			set => SetField(ref _subjects, value);
 		}
 
+		public ObservableCollection<Subject> AllSubjects
+		{
+			get => _allSubjects;
+			set => SetField(ref _allSubjects, value);
+		}
+
 		#endregion
 
 		public EmployeeEditingWindowViewModel()
@@ -167,8 +205,14 @@ namespace MyJournalAdmin.ViewModels.Windows.Employee
 		{
 			using (var context = new ApplicationContext())
 			{
+				var subjectsRepository = new SubjectsRepository(context);
+				
 				Subjects = new ObservableCollection<Subject>(
-					new SubjectsRepository(context).GetByEmployee(SelectedEmployee)
+					subjectsRepository.GetByEmployee(SelectedEmployee)
+				);
+
+				AllSubjects = new ObservableCollection<Subject>(
+					subjectsRepository.GetAll()
 				);
 			}
 		}
