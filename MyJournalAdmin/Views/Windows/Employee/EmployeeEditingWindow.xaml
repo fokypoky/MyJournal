@@ -116,10 +116,14 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <DataGrid Grid.Column="0" Background="White">
+                    <DataGrid Grid.Column="0" Background="White"
+                              ItemsSource="{Binding Subjects}"
+                              AutoGenerateColumns="False"
+                              SelectedItem="{Binding SelectedToDeleteSubject}"
+                              CanUserAddRows="False" CanUserDeleteRows="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Название предмета"/>
-                            <DataGridCheckBoxColumn Header="Удалить"/>
+                            <DataGridTextColumn Header="Название предмета"
+                                                Binding="{Binding SubjectTitle}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     
@@ -128,7 +132,8 @@
                         <Button Style="{StaticResource SubjectsActionButtonStyle}"
                                 Content="Добавить предмет"/>
                         <Button Style="{StaticResource SubjectsActionButtonStyle}"
-                                Content="Удалить выбранные"/>
+                                Content="Удалить"
+                                Command="{Binding RemoveSubjectCommand}"/>
                     </StackPanel>
 
                 </Grid>

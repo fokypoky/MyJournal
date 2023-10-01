@@ -20,11 +20,26 @@ namespace MyJournalAdmin.ViewModels.Windows.Employee
 		private ObservableCollection<Class> _classes;
 		private ObservableCollection<Subject> _subjects;
 
+		private Subject _selectedToDeleteSubject;
+		private Class _selectedToDeleteClass;
+
 		private INotifier _notifier;
 
 		private string _newPassword;
 
 		#region Public fields
+
+		public Subject SelectedToDeleteSubject
+		{
+			get => _selectedToDeleteSubject;
+			set => SetField(ref _selectedToDeleteSubject, value);
+		}
+
+		public Class SelectedToDeleteClass
+		{
+			get => _selectedToDeleteClass;
+			set => SetField(ref _selectedToDeleteClass, value);
+		}
 
 		public MyJournalLibrary.Entities.Employee SelectedEmployee
 		{
@@ -52,9 +67,40 @@ namespace MyJournalAdmin.ViewModels.Windows.Employee
 			get => new RelayCommand(GeneratePassword);
 		}
 
+		public ICommand RemoveSubjectCommand
+		{
+			get => new RelayCommand(RemoveSubject);
+		}
+
 		#endregion
 
 		#region Command functions
+
+		private void RemoveSubject(object parameter)
+		{
+			if (SelectedEmployee is null)
+			{
+				_notifier.Notify("Нет данных о сотруднике");
+				return;
+			}
+
+			if (SelectedToDeleteSubject is null)
+			{
+				_notifier.Notify("Предмет не выбран");
+				return;
+			}
+
+			using (var context = new ApplicationContext())
+			{
+				new EmployeesRepository(context).RemoveSubject(SelectedEmployee, SelectedToDeleteSubject);
+			}
+
+			_notifier.Notify($"Предмет '{SelectedToDeleteSubject.SubjectTitle}' удален у сотрудника " +
+			                 $"{SelectedEmployee.Contacts.Surname} {SelectedEmployee.Contacts.Name} " +
+			                 $"{SelectedEmployee.Contacts.Midname}");
+
+			Subjects.Remove(SelectedToDeleteSubject);
+		}
 
 		private void ApplyContactChanges(object parameter)
 		{
@@ -121,7 +167,9 @@ namespace MyJournalAdmin.ViewModels.Windows.Employee
 		{
 			using (var context = new ApplicationContext())
 			{
-
+				Subjects = new ObservableCollection<Subject>(
+					new SubjectsRepository(context).GetByEmployee(SelectedEmployee)
+				);
 			}
 		}
 
