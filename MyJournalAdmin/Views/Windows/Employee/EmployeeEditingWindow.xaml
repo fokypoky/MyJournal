@@ -21,6 +21,15 @@
             <Setter Property="TextBox.FontSize" Value="13.5"/>
             <Setter Property="TextBox.Margin" Value="0,0,3,0"/>
         </Style>
+        <Style x:Key="SubjectsActionButtonStyle">
+            <Setter Property="Button.BorderThickness" Value="0"/>
+            <Setter Property="Button.Margin" Value="2,5,2,0"/>
+            <Setter Property="Button.MinHeight" Value="23"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="BorderThickness" Value="0"/>
+
+        </Style>
     </Window.Resources>
 
     <Grid>
@@ -83,7 +92,9 @@
                             </StackPanel>
                             
                             <TextBox Style="{StaticResource ContactsTextBoxStyle}"
-                                     d:Text="X#H}YBzN"/>
+                                     d:Text="X#H}YBzN"
+                                     Text="{Binding NewPassword,
+                                        UpdateSourceTrigger=PropertyChanged}"/>
 
                         </StackPanel>
 
@@ -99,11 +110,51 @@
             </TabItem>
 
             <TabItem Header="Предметы">
-                <Grid></Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <DataGrid Grid.Column="0" Background="White">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Название предмета"/>
+                            <DataGridCheckBoxColumn Header="Удалить"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    
+                    <StackPanel Grid.Column="1">
+                        <ComboBox Margin="2,5,2,0"/>
+                        <Button Style="{StaticResource SubjectsActionButtonStyle}"
+                                Content="Добавить предмет"/>
+                        <Button Style="{StaticResource SubjectsActionButtonStyle}"
+                                Content="Удалить выбранные"/>
+                    </StackPanel>
+
+                </Grid>
             </TabItem>
 
             <TabItem Header="Классы">
-                <Grid></Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <DataGrid Grid.Column="0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Номер класса"/>
+                            <DataGridCheckBoxColumn Header="Удалить"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <StackPanel Grid.Column="1">
+                        <ComboBox Margin="2,5,2,0"/>
+                        <Button Content="Добавить класс"/>
+                        <Button Content="Удалить выбранные"/>
+                    </StackPanel>
+
+                </Grid>
             </TabItem>
 
         </TabControl>
