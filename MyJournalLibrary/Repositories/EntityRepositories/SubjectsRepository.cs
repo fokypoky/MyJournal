@@ -9,6 +9,11 @@ public class SubjectsRepository : EntityRepository<Subject>
     {
     }
 
+    public ICollection<Subject> GetAll()
+    {
+        return _context.Set<Subject>().ToList();
+    }
+
     public ICollection<Subject> GetByEmployee(Employee employee)
     {
         return _context.Set<Subject>()
