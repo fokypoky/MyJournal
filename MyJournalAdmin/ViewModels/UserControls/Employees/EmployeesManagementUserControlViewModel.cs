@@ -98,7 +98,11 @@ namespace MyJournalAdmin.ViewModels.UserControls.Employees
 
 		private void FindEmployee(object parameter) { }
 
-		private void AddEmployee(object parameter) { }
+		private void AddEmployee(object parameter)
+		{
+			var addingWindow = new AddNewEmployeeWindow();
+			addingWindow.ShowDialog();
+		}
 
 		private void ChangeEmployeeInfo(object parameter)
 		{
