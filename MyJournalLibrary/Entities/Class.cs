@@ -6,13 +6,13 @@ public partial class Class
 
     public string ClassNumber { get; set; } = null!;
 
-    public int LeaderId { get; set; }
+    public int? LeaderId { get; set; }
 
     public int AuditoryId { get; set; }
 
     public virtual Auditory Auditory { get; set; } = null!;
 
-    public virtual Employee Leader { get; set; } = null!;
+    public virtual Employee? Leader { get; set; }
 
     public virtual ICollection<Student> Students { get; set; } = new List<Student>();
 
