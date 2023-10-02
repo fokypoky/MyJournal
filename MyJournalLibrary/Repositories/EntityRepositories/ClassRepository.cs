@@ -8,6 +8,14 @@ public class ClassRepository : EntityRepository<Class>
     public ClassRepository(DbContext context) : base(context)
     {
     }
+
+    public ICollection<Class> GetClassesWithoutLeader()
+    {
+        return _context.Set<Class>()
+	        .Where(c => c.LeaderId == null)
+	        .ToList();
+    }
+
     public ICollection<Class> GetByEmployee(Employee employee)
     {
         return _context.Set<Class>()
