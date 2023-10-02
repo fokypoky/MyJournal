@@ -26,11 +26,20 @@ namespace MyJournalAdmin.ViewModels.Windows.Employee
 		private Subject _selectedToDeleteSubject;
 		private Class _selectedToDeleteClass;
 
+		private ObservableCollection<Class> _allClasses;
+		private Class _selectedToAddClass;
+
 		private INotifier _notifier;
 
 		private string _newPassword;
 
 		#region Public fields
+
+		public Class SelectedToAddClass
+		{
+			get => _selectedToAddClass;
+			set => SetField(ref _selectedToAddClass, value);
+		}
 
 		public Subject SelectedToAddSubject
 		{
@@ -66,6 +75,16 @@ namespace MyJournalAdmin.ViewModels.Windows.Employee
 
 		#region Commands
 
+		public ICommand AddClassCommand
+		{
+			get => new RelayCommand(AddClass);
+		}
+
+		public ICommand RemoveClassCommand
+		{
+			get => new RelayCommand(RemoveClass);
+		}
+
 		public ICommand AddSubjectCommand
 		{
 			get => new RelayCommand(AddSubject);
@@ -89,6 +108,42 @@ namespace MyJournalAdmin.ViewModels.Windows.Employee
 		#endregion
 
 		#region Command functions
+
+		private void AddClass(object parameter)
+		{
+			if (SelectedToAddClass is null)
+			{
+				_notifier.Notify("Класс не выбран");
+				return;
+			}
+
+			using (var context = new ApplicationContext())
+			{
+				SelectedToAddClass.LeaderId = SelectedEmployee.Id;
+				new ClassRepository(context).Update(SelectedToAddClass);
+			}
+
+			Classes.Add(SelectedToAddClass);
+			AllClasses.Remove(SelectedToAddClass);
+		}
+
+		private void RemoveClass(object parameter)
+		{
+			if (SelectedToDeleteClass is null)
+			{
+				_notifier.Notify("Класс не выбран");
+				return;
+			}
+
+			using (var context = new ApplicationContext())
+			{
+				SelectedToDeleteClass.LeaderId = null;
+				new ClassRepository(context).Update(SelectedToDeleteClass);
+			}
+
+			Classes.Remove(SelectedToDeleteClass);
+
+		}
 
 		private void AddSubject(object parameter)
 		{
@@ -162,6 +217,12 @@ namespace MyJournalAdmin.ViewModels.Windows.Employee
 
 		#region Public collections
 
+		public ObservableCollection<Class> AllClasses
+		{
+			get => _allClasses;
+			set => SetField(ref _allClasses, value);
+		}
+
 		public ObservableCollection<Class> Classes
 		{
 			get => _classes;
@@ -206,13 +267,22 @@ namespace MyJournalAdmin.ViewModels.Windows.Employee
 			using (var context = new ApplicationContext())
 			{
 				var subjectsRepository = new SubjectsRepository(context);
-				
+				var classesRepository = new ClassRepository(context);
+
 				Subjects = new ObservableCollection<Subject>(
 					subjectsRepository.GetByEmployee(SelectedEmployee)
 				);
 
 				AllSubjects = new ObservableCollection<Subject>(
 					subjectsRepository.GetAll()
+				);
+
+				Classes = new ObservableCollection<Class>(
+					classesRepository.GetByEmployee(SelectedEmployee)
+				);
+
+				AllClasses = new ObservableCollection<Class>(
+					classesRepository.GetClassesWithoutLeader()
 				);
 			}
 		}

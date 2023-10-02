@@ -162,16 +162,30 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     
-                    <DataGrid Grid.Column="0">
+                    <DataGrid Grid.Column="0" AutoGenerateColumns="False"
+                              ItemsSource="{Binding Classes}"
+                              SelectedItem="{Binding SelectedToDeleteClass}"
+                              CanUserAddRows="False" CanUserDeleteRows="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Номер класса"/>
+                            <DataGridTextColumn Header="Номер класса"
+                                                Binding="{Binding ClassNumber}"/>
                         </DataGrid.Columns>
                     </DataGrid>
 
                     <StackPanel Grid.Column="1">
-                        <ComboBox Margin="2,5,2,0"/>
-                        <Button Content="Добавить класс" Style="{StaticResource ClassesActionButtonStyle}"/>
-                        <Button Content="Удалить выбранные" Style="{StaticResource ClassesActionButtonStyle}"/>
+                        <ComboBox Margin="2,5,2,0"
+                                  ItemsSource="{Binding AllClasses}"
+                                  SelectedItem="{Binding SelectedToAddClass}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding ClassNumber}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Button Content="Добавить класс" Style="{StaticResource ClassesActionButtonStyle}"
+                                Command="{Binding AddClassCommand}"/>
+                        <Button Content="Удалить" Style="{StaticResource ClassesActionButtonStyle}"
+                                Command="{Binding RemoveClassCommand}"/>
                     </StackPanel>
 
                 </Grid>
