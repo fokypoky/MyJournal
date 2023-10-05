@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using MyJournalAdmin.Infrastructure.Commands;
 using MyJournalAdmin.Infrastructure.Repositories;
@@ -23,6 +24,8 @@ namespace MyJournalAdmin.ViewModels.UserControls.Employees
 		private string _employeeEmailToSearch;
 
 		private Employee _selectedEmployee;
+
+		private INotifier _notifier;
 
 		#region Public fields
 
@@ -118,12 +121,28 @@ namespace MyJournalAdmin.ViewModels.UserControls.Employees
 			WindowMessenger.OnMessageSend(new EmployeeMessage(SelectedEmployee));
 		}
 
-		private void RemoveEmployee(object parameter) { }
+		private void RemoveEmployee(object parameter)
+		{
+			if (SelectedEmployee is null)
+			{
+				_notifier.Notify("Сотрудник не выбран");
+				return;
+			}
+
+			using (var context = new ApplicationContext())
+			{
+			}
+
+		}
 
 		#endregion
 
 		public EmployeesManagementUserControlViewModel()
-	    {
+		{
+			WindowMessenger.MessageSender += OnMessageReceived;
+
+			_notifier = new MessageBoxNotifier();
+
 		    using (var context = new ApplicationContext())
 		    {
 			    Employees = new ObservableCollection<Employee>(
@@ -134,6 +153,20 @@ namespace MyJournalAdmin.ViewModels.UserControls.Employees
 		    Notifier = new MessageBoxNotifier();
 
 	    }
+
+		/// <summary>
+		/// Отображение добавленных пользователей в AddNewEmployeeWindow
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void OnMessageReceived(object? sender, EventArgs e)
+		{
+			if (e is NewEmployeeMessage)
+			{
+				var employeeMessage = (NewEmployeeMessage)e;
+				Employees.Add(employeeMessage.Employee);
+			}
+		}
 
     }
 }
