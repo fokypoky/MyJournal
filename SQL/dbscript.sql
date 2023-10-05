@@ -20,7 +20,7 @@ CREATE TABLE Auditories(
 CREATE TABLE Classes(
     id SERIAL NOT NULL PRIMARY KEY,
     class_number VARCHAR(5) NOT NULL UNIQUE,
-    leader_id INT NOT NULL,
+    leader_id INT,
     auditory_id INT NOT NULL,
     FOREIGN KEY (leader_id) REFERENCES Employees(id),
     FOREIGN KEY (auditory_id) REFERENCES Auditories(id)

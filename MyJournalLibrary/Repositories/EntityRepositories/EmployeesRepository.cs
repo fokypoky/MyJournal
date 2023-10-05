@@ -29,6 +29,27 @@ public class EmployeesRepository : EntityRepository<Employee>
         }
     }
 
+    public int? GetIdByPhoneNumber(string phoneNumber)
+    {
+        return _context.Set<Employee>()
+	        .Where(e => e.Contacts.PhoneNumber == phoneNumber)
+	        .Select(e => e.Id)
+	        .FirstOrDefault();
+    }
+
+    public void AddSubjectsToEmployee(Employee employee, IEnumerable<Subject> subjects)
+    {
+	    var employeeSubjects = new List<EmployeeSubject>();
+	    foreach (var subject in subjects)
+	    {
+            employeeSubjects.Add(new EmployeeSubject() { EmployeeId = employee.Id, SubjectId = subject.Id});
+	    }
+
+	    _context.Set<EmployeeSubject>().AddRange(employeeSubjects);
+        _context.SaveChanges();
+    }
+
+
     public Employee? GetByContactId(int id)
     {
         return _context.Set<Employee>()

@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
 C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournal\App.xaml
-13-85577169
+232108340439
 
-33-2006327474
-214528835003
-Views\ConnectionSettingsWindow.xaml;Views\LoginWindow.xaml;Views\ParentWindow.xaml;Views\ProfileSettingsWindow.xaml;Views\StudentWindow.xaml;Views\TeacherMarksWindow.xaml;Views\TeacherWindow.xaml;Views\UserControls\ChatUserControl.xaml;Views\UserControls\MainUserControl.xaml;Views\UserControls\ProfileUserControl.xaml;Views\UserControls\TasksUserControl.xaml;Views\UserControls\TeacherSelectionMarksUserControl.xaml;Views\UserControls\TeacherTimetableUserControl.xaml;
+61141856340
+214-1693639719
+Views\ConnectionSettingsWindow.xaml;Views\LoginWindow.xaml;Views\MainWindow.xaml;Views\ParentWindow.xaml;Views\ProfileSettingsWindow.xaml;Views\StudentWindow.xaml;Views\TeacherMarksWindow.xaml;Views\UserControls\ChatUserControl.xaml;Views\UserControls\MainUserControl.xaml;Views\UserControls\Parent\ParentMarksUserControl.xaml;Views\UserControls\Parent\ParentProfileUserControl.xaml;Views\UserControls\Parent\ParentTasksUserControl.xaml;Views\UserControls\Parent\ParentTimetableUserControl.xaml;Views\UserControls\Student\StudentMarksUserControl.xaml;Views\UserControls\Student\StudentProfileUserControl.xaml;Views\UserControls\Student\StudentTasksUserControl.xaml;Views\UserControls\Student\StudentTimetableUserControl.xaml;Views\UserControls\Teacher\TeacherProfileUserControl.xaml;Views\UserControls\Teacher\TeacherSelectionMarksUserControl.xaml;Views\UserControls\Teacher\TeacherTasksUserControl.xaml;Views\UserControls\Teacher\TeacherTimetableUserControl.xaml;Views\Windows\Teacher\TeacherAddingTaskWindow.xaml;Views\Windows\Teacher\TeacherEditingTaskWindow.xaml;
 
 True
 

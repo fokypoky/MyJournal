@@ -1,16 +1,26 @@
-﻿
+﻿C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournal\obj\Debug\net7.0-windows\GeneratedInternalTypeHelper.g.cs
 
 FC:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournal\Views\ConnectionSettingsWindow.xaml;;
 FC:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournal\Views\LoginWindow.xaml;;
+FC:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournal\Views\MainWindow.xaml;;
 FC:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournal\Views\ParentWindow.xaml;;
 FC:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournal\Views\ProfileSettingsWindow.xaml;;
 FC:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournal\Views\StudentWindow.xaml;;
 FC:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournal\Views\TeacherMarksWindow.xaml;;
-FC:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournal\Views\TeacherWindow.xaml;;
 FC:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournal\Views\UserControls\ChatUserControl.xaml;;
 FC:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournal\Views\UserControls\MainUserControl.xaml;;
-FC:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournal\Views\UserControls\ProfileUserControl.xaml;;
-FC:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournal\Views\UserControls\TasksUserControl.xaml;;
-FC:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournal\Views\UserControls\TeacherSelectionMarksUserControl.xaml;;
-FC:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournal\Views\UserControls\TeacherTimetableUserControl.xaml;;
+FC:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournal\Views\UserControls\Parent\ParentMarksUserControl.xaml;;
+FC:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournal\Views\UserControls\Parent\ParentProfileUserControl.xaml;;
+FC:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournal\Views\UserControls\Parent\ParentTasksUserControl.xaml;;
+FC:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournal\Views\UserControls\Parent\ParentTimetableUserControl.xaml;;
+FC:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournal\Views\UserControls\Student\StudentMarksUserControl.xaml;;
+FC:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournal\Views\UserControls\Student\StudentProfileUserControl.xaml;;
+FC:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournal\Views\UserControls\Student\StudentTasksUserControl.xaml;;
+FC:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournal\Views\UserControls\Student\StudentTimetableUserControl.xaml;;
+FC:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournal\Views\UserControls\Teacher\TeacherProfileUserControl.xaml;;
+FC:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournal\Views\UserControls\Teacher\TeacherSelectionMarksUserControl.xaml;;
+FC:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournal\Views\UserControls\Teacher\TeacherTasksUserControl.xaml;;
+FC:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournal\Views\UserControls\Teacher\TeacherTimetableUserControl.xaml;;
+FC:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournal\Views\Windows\Teacher\TeacherAddingTaskWindow.xaml;;
+FC:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournal\Views\Windows\Teacher\TeacherEditingTaskWindow.xaml;;
 

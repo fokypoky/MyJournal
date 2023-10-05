@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
 C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\MyJournalAdmin\App.xaml
-11985742243
+11-1646326292
 
-92088315061
-213-1333510089
-Views\Windows\Login\LoginWindow.xaml;
+39-2099865946
+2131253693912
+Views\UserControls\Auditories\AuditoriesManagementUserControl.xaml;Views\UserControls\Classes\ClassesManagementUserControl.xaml;Views\UserControls\Employees\EmployeesManagementUserControl.xaml;Views\UserControls\Students\StudentsManagementUserControl.xaml;Views\UserControls\Subjects\SubjectsManagementUserControl.xaml;Views\UserControls\Timetable\TimetableManagementUserControl.xaml;Views\Windows\Employee\AddNewEmployeeWindow.xaml;Views\Windows\Employee\EmployeeEditingWindow.xaml;Views\Windows\Login\LoginWindow.xaml;Views\Windows\Main\MainWindow.xaml;Views\Windows\Settings\ConnectionSettingsWingow.xaml;
 
 True
 

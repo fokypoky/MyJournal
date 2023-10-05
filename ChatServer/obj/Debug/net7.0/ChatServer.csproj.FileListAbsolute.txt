@@ -63,7 +63,6 @@ C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\ChatServer\bin\Debug\net7.0\Ch
 C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\ChatServer\bin\Debug\net7.0\ChatServer.runtimeconfig.json
 C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\ChatServer\bin\Debug\net7.0\ChatServer.dll
 C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\ChatServer\bin\Debug\net7.0\ChatServer.pdb
-C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\ChatServer\obj\Debug\net7.0\ChatServer.csproj.AssemblyReference.cache
 C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\ChatServer\obj\Debug\net7.0\ChatServer.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\ChatServer\obj\Debug\net7.0\ChatServer.AssemblyInfoInputs.cache
 C:\Users\fokypoky\Source\Repos\fokypoky\MyJournal\ChatServer\obj\Debug\net7.0\ChatServer.AssemblyInfo.cs
