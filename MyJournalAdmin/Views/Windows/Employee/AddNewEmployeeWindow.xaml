@@ -55,11 +55,15 @@
         <StackPanel Grid.Column="0">
             <TextBlock Text="Фамилия" Style="{StaticResource ContactsTextBlockStyle}"/>
             <TextBox Style="{StaticResource ContactsTextBoxStyle}"
-                     d:Text="Иванов"/>
+                     d:Text="Иванов"
+                     Text="{Binding NewEmployee.Contacts.Surname,
+                UpdateSourceTrigger=PropertyChanged}"/>
 
             <TextBlock Text="Имя" Style="{StaticResource ContactsTextBlockStyle}"/>
             <TextBox Style="{StaticResource ContactsTextBoxStyle}"
-                     d:Text="Иван"/>
+                     d:Text="Иван"
+                     Text="{Binding NewEmployee.Contacts.Name,
+                UpdateSourceTrigger=PropertyChanged}"/>
 
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Отчество" Style="{StaticResource ContactsTextBlockStyle}"/>
@@ -69,15 +73,21 @@
             </StackPanel>
 
             <TextBox Style="{StaticResource ContactsTextBoxStyle}"
-                     d:Text="Иванович"/>
+                     d:Text="Иванович"
+                     Text="{Binding NewEmployee.Contacts.Midname,
+                UpdateSourceTrigger=PropertyChanged}"/>
 
             <TextBlock Text="Номер телефона" Style="{StaticResource ContactsTextBlockStyle}"/>
             <TextBox Style="{StaticResource ContactsTextBoxStyle}"
-                     d:Text="+7 (900) 256-33-11"/>
+                     d:Text="+7 (900) 256-33-11"
+                     Text="{Binding NewEmployee.Contacts.PhoneNumber,
+                UpdateSourceTrigger=PropertyChanged}"/>
 
             <TextBlock Text="E-mail" Style="{StaticResource ContactsTextBlockStyle}"/>
             <TextBox Style="{StaticResource ContactsTextBoxStyle}"
-                     d:Text="ivanov.i.i@gmail.com"/>
+                     d:Text="ivanov.i.i@gmail.com"
+                     Text="{Binding NewEmployee.Contacts.Email,
+                UpdateSourceTrigger=PropertyChanged}"/>
 
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Пароль"/>
@@ -88,16 +98,17 @@
             </StackPanel>
 
             <TextBox Style="{StaticResource ContactsTextBoxStyle}"
-                     d:Text="R7Gkr81U"/>
+                     d:Text="R7Gkr81U"
+                     Text="{Binding NewEmployee.Contacts.Password,
+                UpdateSourceTrigger=PropertyChanged}"/>
             
             <TextBlock Text="Пол" Style="{StaticResource ContactsTextBlockStyle}"/>
-            <ComboBox Margin="3">
-                <TextBlock Text="Мужской"/>
-                <TextBlock Text="Женский"/>
-            </ComboBox>
+            <ComboBox Margin="3" ItemsSource="{Binding Genders}"
+                      SelectedItem="{Binding NewEmployee.Contacts.Sex}"/>
 
             <Button Content="Добавить сотрудника"
-                    FontSize="14" Margin="3, 10, 3, 3" BorderThickness="0"/>
+                    FontSize="14" Margin="3, 10, 3, 3" BorderThickness="0"
+                    Command="{Binding AddEmployeeCommand}"/>
 
 
         </StackPanel>
@@ -126,20 +137,32 @@
                                Style="{StaticResource AdditionalInfoTextBlockStyle}"/>
                 </Border>
 
-                <ListView Grid.Row="1" Grid.Column="0">
+                <ListView Grid.Row="1" Grid.Column="0" 
+                          ItemsSource="{Binding NewEmployeeSubjects}"
+                          SelectedItem="{Binding SelectedToRemoveSubject}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Название"/>
+                            <GridViewColumn Header="Название"
+                                            DisplayMemberBinding="{Binding SubjectTitle}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
                 
                 <StackPanel Grid.Row="1" Grid.Column="1">
-                    <ComboBox Margin="3"></ComboBox>
+                    <ComboBox Margin="3" ItemsSource="{Binding AllSubjects}"
+                              SelectedItem="{Binding SelectedToAddSubject}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding SubjectTitle}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                     <Button Content="Добавить"
-                        Style="{StaticResource AdditionalButtonStyle}"/>
+                        Style="{StaticResource AdditionalButtonStyle}"
+                        Command="{Binding AddSubjectCommand}"/>
                     <Button Content="Удалить"
-                            Style="{StaticResource AdditionalButtonStyle}"/>
+                            Style="{StaticResource AdditionalButtonStyle}"
+                            Command="{Binding RemoveSubjectCommand}"/>
                 </StackPanel>
 
             </Grid>
@@ -161,20 +184,31 @@
                                Style="{StaticResource AdditionalInfoTextBlockStyle}"/>
                 </Border>
 
-                <ListView Grid.Row="1" Grid.Column="0">
+                <ListView Grid.Row="1" Grid.Column="0" ItemsSource="{Binding NewEmployeeClasses}"
+                          SelectedItem="{Binding SelectedToRemoveClass}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Номер"/>
+                            <GridViewColumn Header="Номер"
+                                            DisplayMemberBinding="{Binding ClassNumber}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
 
                 <StackPanel Grid.Row="1" Grid.Column="1">
-                    <ComboBox Margin="3"></ComboBox>
+                    <ComboBox Margin="3" ItemsSource="{Binding AvailableClasses}"
+                              SelectedItem="{Binding SelectedToAddClass}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding ClassNumber}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                     <Button Content="Добавить"
-                        Style="{StaticResource AdditionalButtonStyle}"/>
+                        Style="{StaticResource AdditionalButtonStyle}"
+                        Command="{Binding AddClassCommand}"/>
                     <Button Content="Удалить"
-                            Style="{StaticResource AdditionalButtonStyle}"/>
+                            Style="{StaticResource AdditionalButtonStyle}"
+                            Command="{Binding RemoveClassCommand}"/>
                 </StackPanel>
 
             </Grid>
