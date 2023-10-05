@@ -6,7 +6,7 @@ public partial class Employee
 
     public int ContactsId { get; set; }
 
-    public virtual ICollection<Class> Classes { get; } = new List<Class>();
+    public virtual ICollection<Class> Classes { get; set; } = new List<Class>();
 
     public virtual Contact Contacts { get; set; } = null!;
 
