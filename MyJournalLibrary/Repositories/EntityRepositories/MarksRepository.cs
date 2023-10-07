@@ -9,6 +9,13 @@ public class MarksRepository : EntityRepository<Mark>
     {
     }
 
+    public void RemoveByEmployee(Employee employee)
+    {
+	    _context.Set<Mark>()
+		    .RemoveRange(_context.Set<Mark>()
+				    .Where(m => m.TeacherId == employee.Id));
+    }
+
     public ICollection<Mark> GetWithTeacherAndContactsByStudentSubjectAndPeriod(Student student, Subject subject,
         int year, int month)
     {
