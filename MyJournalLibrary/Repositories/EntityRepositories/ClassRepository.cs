@@ -9,6 +9,17 @@ public class ClassRepository : EntityRepository<Class>
     {
     }
 
+    public ICollection<Class> GetAll()
+    {
+        return _context.Set<Class>().ToList();
+    }
+
+    public Class? GetByAuditory(Auditory auditory)
+    {
+	    return _context.Set<Class>()
+		    .FirstOrDefault(c => c.AuditoryId == auditory.Id);
+    }
+
     public ICollection<Class> GetClassesWithoutLeader()
     {
         return _context.Set<Class>()
