@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using MyJournalAdmin.Infrastructure.Commands;
 using MyJournalAdmin.Infrastructure.Repositories;
@@ -131,6 +132,9 @@ namespace MyJournalAdmin.ViewModels.UserControls.Employees
 
 			using (var context = new ApplicationContext())
 			{
+				var employeesRepository = new EmployeesRepository(context);
+
+				employeesRepository.RemoveSubjects(SelectedEmployee);
 			}
 
 		}

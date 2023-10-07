@@ -6,13 +6,43 @@
              xmlns:local="clr-namespace:MyJournalAdmin.Views.UserControls.Auditories"
              xmlns:vmodel="clr-namespace:MyJournalAdmin.ViewModels.UserControls.Auditories"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             d:Background="White"
+             >
 
     <UserControl.DataContext>
         <vmodel:AuditoriesManagementUserControlViewModel/>
     </UserControl.DataContext>
 
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
-        <TextBlock Text="Auditories" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32" Foreground="Black"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <ListView Grid.Column="0" ItemsSource="{Binding Auditories}"
+                  SelectedItem="{Binding SelectedAuditory}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Аудитория"
+                                    DisplayMemberBinding="{Binding AuditoryNumber}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <StackPanel Grid.Column="1">
+            <Button Content="Добавить" Command="{Binding AddAuditoryCommand}"/>
+            <Button Content="Изменить" Command="{Binding UpdateAuditoryCommand}"/>
+            <Button Content="Удалить" Command="{Binding RemoveAuditoryCommand}"/>
+        </StackPanel>
+
     </Grid>
 </UserControl>
