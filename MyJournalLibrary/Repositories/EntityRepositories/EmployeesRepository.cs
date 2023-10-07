@@ -9,6 +9,18 @@ public class EmployeesRepository : EntityRepository<Employee>
     {
     }
 
+    /// <summary>
+    /// Удаляет связку "Сотрудник-предмет"
+    /// </summary>
+    /// <param name="employee"></param>
+    public void RemoveSubjects(Employee employee)
+    {
+        _context.Set<EmployeeSubject>().RemoveRange(
+	        _context.Set<EmployeeSubject>()
+		           .Where(es => es.EmployeeId == employee.Id)
+	        );
+    }
+
     public void AddSubjectToEmployee(Employee employee, Subject subject)
     {
 	    _context.Set<EmployeeSubject>()
