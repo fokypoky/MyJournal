@@ -8,7 +8,7 @@ public class SubjectsRepository : EntityRepository<Subject>
     public SubjectsRepository(DbContext context) : base(context)
     {
     }
-
+    
     public ICollection<Subject> GetAll()
     {
         return _context.Set<Subject>().ToList();
