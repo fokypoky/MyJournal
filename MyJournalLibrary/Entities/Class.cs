@@ -8,9 +8,9 @@ public partial class Class
 
     public int? LeaderId { get; set; }
 
-    public int AuditoryId { get; set; }
+    public int? AuditoryId { get; set; }
 
-    public virtual Auditory Auditory { get; set; } = null!;
+    public virtual Auditory? Auditory { get; set; }
 
     public virtual Employee? Leader { get; set; }
 
