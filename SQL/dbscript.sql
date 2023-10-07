@@ -70,8 +70,8 @@ CREATE TABLE Marks(
     student_id INT NOT NULL,
     mark INT NOT NULL,
     mark_date TIMESTAMP NOT NULL,
-    teacher_id INT NOT NULL,
-    task_id INT NOT NULL,
+    teacher_id INT,
+    task_id INT,
     FOREIGN KEY (student_id) REFERENCES Students(id),
     FOREIGN KEY (teacher_id) REFERENCES Employees(id),
     FOREIGN KEY (task_id) REFERENCES Tasks(id)
