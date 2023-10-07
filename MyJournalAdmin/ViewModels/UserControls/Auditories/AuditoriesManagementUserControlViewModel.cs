@@ -63,7 +63,10 @@ namespace MyJournalAdmin.ViewModels.UserControls.Auditories
 
 		#region Command functions
 
-		private void AddAuditory(object parameter) { }
+		private void AddAuditory(object parameter)
+		{
+			new AddNewAuditoryWindow().Show();
+		}
 		private void RemoveAuditory(object parameter) { }
 
 		private void UpdateAuditory(object parameter)
@@ -82,7 +85,12 @@ namespace MyJournalAdmin.ViewModels.UserControls.Auditories
 
 		private void OnMessageReceived(object? sender, EventArgs e)
 		{
-
+			if (e is NewAuditoryMessage)
+			{
+				var message = (NewAuditoryMessage)e;
+				Auditories.Add(message.Auditory);
+				Auditories.OrderBy(a => a.AuditoryNumber);
+			}
 		}
 
 		public AuditoriesManagementUserControlViewModel()
