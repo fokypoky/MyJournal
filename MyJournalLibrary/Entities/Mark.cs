@@ -11,7 +11,7 @@ public partial class Mark
 
     public DateTime MarkDate { get; set; }
 
-    public int TeacherId { get; set; }
+    public int? TeacherId { get; set; }
 
     public int? TaskId { get; set; }
 
@@ -19,7 +19,7 @@ public partial class Mark
 
     public virtual Task? Task { get; set; }
 
-    public virtual Employee Teacher { get; set; } = null!;
+    public virtual Employee? Teacher { get; set; }
 
     public virtual Subject Subject { get; set; } = null!;
 }
