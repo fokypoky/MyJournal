@@ -68,7 +68,18 @@ namespace MyJournalAdmin.ViewModels.UserControls.Subjects
 			new AddNewSubjectWindow().Show();
 		}
 		private void RemoveSubject(object parameter) { }
-		private void UpdateSubject(object parameter) { }
+
+		private void UpdateSubject(object parameter)
+		{
+			if (SelectedSubject is null)
+			{
+				_notifier.Notify("Предмет не выбран");
+				return;
+			}
+
+			new SubjectUpdatingWindow().Show();
+			WindowMessenger.OnMessageSend(new SubjectToUpdateMessage() { Subject = SelectedSubject });
+		}
 
 		#endregion
 
@@ -79,6 +90,16 @@ namespace MyJournalAdmin.ViewModels.UserControls.Subjects
 				var message = (NewSubjectMessage)e;
 				AllSubjects.Add(message.Subject);
 				AllSubjects.OrderBy(s => s.SubjectTitle);
+			}
+
+			if (e is UpdatedSubjectMessage)
+			{
+				var message = (UpdatedSubjectMessage)e;
+				int subjectIndex = AllSubjects.IndexOf(AllSubjects.FirstOrDefault(s => s.Id == message.Subject.Id));
+				AllSubjects.RemoveAt(subjectIndex);
+				AllSubjects.Add(message.Subject);
+				AllSubjects.OrderBy(s => s.SubjectTitle);
+				OnPropertyChanged(nameof(AllSubjects));
 			}
 		}
 

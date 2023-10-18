@@ -44,6 +44,9 @@
     <Compile Update="Views\Windows\Subjects\AddNewSubjectWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Windows\Subjects\SubjectUpdatingWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\UserControls\Auditories\AuditoriesManagementUserControl.xaml">
@@ -86,6 +89,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Windows\Subjects\AddNewSubjectWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Windows\Subjects\SubjectUpdatingWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
