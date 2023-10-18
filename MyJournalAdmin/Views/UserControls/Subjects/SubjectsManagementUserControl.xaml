@@ -39,8 +39,8 @@
         
         <StackPanel Grid.Column="1">
             <Button Content="Добавить" Command="{Binding AddSubjectCommand}"/>
-            <Button Content="Изменить"/>
-            <Button Content="Удалить"/>
+            <Button Content="Изменить" Command="{Binding UpdateSubjectCommand}"/>
+            <Button Content="Удалить" Command="{Binding RemoveSubjectCommand}"/>
         </StackPanel>
 
     </Grid>
