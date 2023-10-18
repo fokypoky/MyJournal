@@ -8,6 +8,12 @@ public class SubjectsRepository : EntityRepository<Subject>
     public SubjectsRepository(DbContext context) : base(context)
     {
     }
+
+    public bool IsSubjectTitleExists(Subject subject)
+    {
+	    return _context.Set<Subject>()
+		    .FirstOrDefault(s => s.SubjectTitle == subject.SubjectTitle) is not null;
+    }
     
     public ICollection<Subject> GetAll()
     {

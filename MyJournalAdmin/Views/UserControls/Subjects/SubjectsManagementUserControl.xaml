@@ -6,13 +6,42 @@
              xmlns:local="clr-namespace:MyJournalAdmin.Views.UserControls.Subjects"
              xmlns:vmodel="clr-namespace:MyJournalAdmin.ViewModels.UserControls.Subjects"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             d:Background="White">
 
     <UserControl.DataContext>
         <vmodel:SubjectsManagementUserControlViewModel/>
     </UserControl.DataContext>
 
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
-        <TextBlock Text="Subjects" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <ListView Grid.Column="0" ItemsSource="{Binding AllSubjects}"
+                  SelectedItem="{Binding SelectedSubject}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Название" 
+                                    DisplayMemberBinding="{Binding SubjectTitle}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        
+        <StackPanel Grid.Column="1">
+            <Button Content="Добавить" Command="{Binding AddSubjectCommand}"/>
+            <Button Content="Изменить"/>
+            <Button Content="Удалить"/>
+        </StackPanel>
+
     </Grid>
 </UserControl>

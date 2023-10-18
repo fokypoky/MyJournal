@@ -20,6 +20,12 @@
     <Compile Update="Views\UserControls\Timetable\TimetableManagementUserControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Windows\Auditories\AddNewAuditoryWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Windows\Auditories\AuditoryUpdatingWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Windows\Employee\AddNewEmployeeWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -33,6 +39,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Windows\Settings\ConnectionSettingsWingow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Windows\Subjects\AddNewSubjectWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -55,6 +64,12 @@
     <Page Update="Views\UserControls\Timetable\TimetableManagementUserControl.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Windows\Auditories\AddNewAuditoryWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Windows\Auditories\AuditoryUpdatingWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Windows\Employee\AddNewEmployeeWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -68,6 +83,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Windows\Settings\ConnectionSettingsWingow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Windows\Subjects\AddNewSubjectWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
