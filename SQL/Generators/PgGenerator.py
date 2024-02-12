@@ -1,7 +1,7 @@
 import psycopg2
 from colorama import Fore, Back, Style, init
 from faker import Faker
-import secrets, string, random
+import secrets, string, random, math
 
 init()
 
@@ -34,6 +34,17 @@ class Contacts:
         self.password = password
         self.sex = sex
         self.userrole_id = userrole_id
+
+class Class:
+    def __init__(self, class_number, leader_id, auditory_id) -> None:
+        self.class_number = class_number
+        self.leader_id = leader_id
+        self.auditory_id = auditory_id
+
+class Student:
+    def __init__(self, class_id, contacts_id) -> None:
+        self.class_id = class_id
+        self.contacts_id = contacts_id
 
 def print_sepparator_line_1() -> None:
     print('--------------------')
@@ -281,6 +292,71 @@ def generate_contacts(roles, contacts_count) -> list:
     
     return contacts
 
+def get_employees_id(connection) -> list:
+    with connection.cursor() as cursor:
+        cursor.execute('select id from employees')
+        return [row[0] for row in cursor.fetchall()]
+
+def get_auditories_id(connection) -> list:
+    with connection.cursor() as cursor:
+        cursor.execute('select id from auditories')
+        return [row[0] for row in cursor.fetchall()]
+
+def get_subjects_id(connection) -> list:
+    with connection.cursor() as cursor:
+        cursor.execute('select id from subjects')
+        return [row[0] for row in cursor.fetchall()]
+
+def get_ids_from_table(connection, table_name: str) -> list:
+    with connection.cursor() as cursor:
+        cursor.execute(f'select id from {table_name}')
+        return [row[0] for row in cursor.fetchall()]
+
+def generate_auditories(count) -> list:
+    auditories = []
+    for number in range(1, count + 1):
+        for letter in 'АБВ':
+            auditories.append(str(number) + letter)
+    
+    return auditories
+
+def generate_classes(auditories_id: list, employees_id: list) -> list:
+    classes = []
+    auditories_id_copy = auditories_id.copy()
+    employees_id_copy = employees_id.copy()
+
+    random.shuffle(auditories_id_copy)
+    random.shuffle(employees_id_copy)
+
+    for number in range(5, 12):
+        for letter in 'АБВ':
+            classes.append(Class(class_number= str(number) + letter, 
+                                leader_id= employees_id_copy.pop(),
+                                auditory_id= auditories_id_copy.pop()))
+    
+    return classes
+
+def generate_students(contacts_id:list, classes_id: list) -> list:
+    students = []
+    
+    num_classes = len(classes_id)
+    num_students = len(contacts_id)
+
+    avg_students_per_class = num_students // num_classes
+
+    class_student_mapping = {}
+    for i, class_id in enumerate(classes_id):
+        start_index = i * avg_students_per_class
+        end_index = (i + 1) * avg_students_per_class if i < len(classes_id) - 1 else len(contacts_id)
+        students_in_class = contacts_id[start_index:end_index]
+        class_student_mapping[class_id] = students_in_class
+    
+    for class_id in class_student_mapping.keys():
+        for contact_id in class_student_mapping[class_id]:
+            students.append(Student(class_id=class_id, contacts_id=contact_id))
+    
+    return students
+
 def insert_contacts(connection, contacts) -> None:
     with connection.cursor() as cursor:
         query = 'insert into contacts(surname, name, midname, phone_number, email, password, sex, userrole_id) values'
@@ -301,6 +377,66 @@ def insert_parents(connection, parents_ids) -> None:
         query = 'insert into parents(contacts_id) values'
         for id in parents_ids:
             query += f'({id}),'
+        cursor.execute(query[:-1])
+
+def insert_auditories(connection, auditories) -> None:
+    with connection.cursor() as cursor:
+        query = '''insert into auditories(auditory_number) values'''
+        for auditory in auditories:
+            query += f'''('{auditory}'),'''
+        cursor.execute(query[:-1])
+
+def insert_classes(connection, classes) -> None:
+    with connection.cursor() as cursor:
+        query = 'insert into classes(class_number, leader_id, auditory_id) values'
+        for _class in classes:
+            query += f'''('{_class.class_number}', {_class.leader_id}, {_class.auditory_id}),'''
+        cursor.execute(query[:-1])
+
+def insert_subjects(connection) -> None:
+    subjects = [
+        'Математика', 'Алгебра', "Геометрия", "Информатика",
+        "Природоведение", "Окружающий мир", "География", "Биология",
+        "Физика", "Химия", "ОБЖ", "История", "Обществознание", 
+        "Родной язык", "Родная литература", "Русский язык", "Литературное чтение",
+        "Литература", "Иностранный язык", "Технология", "Черчение", "Индивидуальный проект",
+        "Физическая культура", "Музыка", "Изобразительное искусство", "Истоки"
+    ]
+    with connection.cursor() as cursor:
+        query = 'insert into subjects(subject_title) values'
+        for subject in subjects:
+            query += f'''('{subject}'),'''
+        cursor.execute(query[:-1])
+
+def insert_students(connection, students: list) -> None:
+    with connection.cursor() as cursor:
+        query = 'insert into students(class_id, contacts_id) values'
+        for student in students:
+            query += f'''({student.class_id}, {student.contacts_id}),'''
+        cursor.execute(query[:-1])
+
+def match_employees_subjects(connection, employees_id: list, subjects_id: list) -> None:
+    with connection.cursor() as cursor:
+        query = 'insert into employee_subject(employee_id, subject_id) values'
+        for employee_id in employees_id:
+            subjects_id_copy = subjects_id.copy()
+            random.shuffle(subjects_id_copy)
+            
+            for i in range(3):
+                subject_id = subjects_id_copy.pop()
+                query += f'({employee_id}, {subject_id}),'
+        cursor.execute(query[:-1])
+
+def match_classes_subjects(connection, classes_id: list, subjects_id: list) -> None:
+    with connection.cursor() as cursor:
+        query = 'insert into class_subject(class_id, subject_id) values'
+        for class_id in classes_id:
+            subjects_id_copy = subjects_id.copy()
+            random.shuffle(subjects_id_copy)
+
+            for i in range(10):
+                query += f'''({class_id}, {subjects_id_copy.pop()}),'''
+        
         cursor.execute(query[:-1])
 
 def fill_test_data(con_settings) -> None:
@@ -328,16 +464,38 @@ def fill_test_data(con_settings) -> None:
 
         insert_contacts(connection, default_contacts + admin_contacts)
 
+        # subjects
+        insert_subjects(connection)
+
         # employees
         with connection.cursor() as cursor:
             cursor.execute("select c.id from contacts c join userroles ur on c.userrole_id = ur.id where ur.rolename = 'employee'")
             insert_employees(connection, [row[0] for row in cursor.fetchall()])
         
+        match_employees_subjects(connection, get_employees_id(connection), get_subjects_id(connection))
+
         #parents
         with connection.cursor() as cursor:
             cursor.execute("select c.id from contacts c join userroles ur on c.userrole_id = ur.id where ur.rolename = 'parent'")
             insert_parents(connection, [row[0] for row in cursor.fetchall()])
 
+        # auditories
+        auditories = generate_auditories(15)
+        insert_auditories(connection, auditories)
+
+        # classes
+        classes = generate_classes(get_auditories_id(connection), get_employees_id(connection))
+        insert_classes(connection, classes)
+        match_classes_subjects(connection, get_ids_from_table(connection, 'classes'), get_ids_from_table(connection, 'subjects'))
+
+        # students
+        with connection.cursor() as cursor:
+            cursor.execute("select c.id from contacts c join userroles ur on c.userrole_id = ur.id where ur.rolename = 'student'")
+            student_contacts_id = [row[0] for row in cursor.fetchall()]
+            students = generate_students(student_contacts_id, get_ids_from_table(connection, 'classes'))
+            insert_students(connection, students)
+
+            
     except Exception as e:
         print(Fore.RED + 'An error occurred' + Style.RESET_ALL)
         
