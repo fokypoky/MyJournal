@@ -2,6 +2,7 @@ import psycopg2
 from colorama import Fore, Back, Style, init
 from faker import Faker
 import secrets, string, random, math
+from datetime import datetime, timedelta
 
 init()
 
@@ -69,6 +70,15 @@ class EmployeeSubject:
     def __init__(self, employee_id, subject_id) -> None:
         self.employee_id = employee_id
         self.subject_id = subject_id
+
+class Task:
+    def __init__(self, subject_id, class_id, task_text, teacher_id, task_start_date, task_deadline_date) -> None:
+        self.subject_id = subject_id
+        self.class_id = class_id
+        self.task_text = task_text
+        self.teacher_id = teacher_id
+        self.task_start_date = task_start_date
+        self.task_deadline_date = task_deadline_date
 
 def print_sepparator_line_1() -> None:
     print('--------------------')
@@ -431,6 +441,26 @@ def generate_timetable(class_subjects, class_ids, auditory_ids, employee_subject
 
     return timetables
 
+def truncate_task_text(text) -> str:
+    return text[:197] + '...' if len(text) > 200 else text
+
+def generate_tasks(classes_ids, employee_subject, timetables) -> list:
+    tasks = []
+    for month in range(3, 10):
+        for class_id in classes_ids:
+            class_timetable = list(filter(lambda t: t.class_id == class_id, timetables))
+            date = datetime.strptime(f'2023-{month}-1', '%Y-%m-%d')
+
+            for day in range(1, 7):
+                current_day_subject_ids = list(filter(lambda t: t.day_of_week == day, class_timetable))
+
+                for current_day_subject_id in current_day_subject_ids:
+                    task_start_date = date
+                    task_deadline_date = date + timedelta(days=7)
+                    teacher_id = random.choice(list(filter(lambda es: es.subject_id == current_day_subject_id.subject_id, employee_subject))).employee_id
+                    tasks.append(Task(current_day_subject_id.subject_id, class_id, truncate_task_text(faker.text()), teacher_id, task_start_date, task_deadline_date))
+    return tasks
+
 def insert_contacts(connection, contacts) -> None:
     with connection.cursor() as cursor:
         query = 'insert into contacts(surname, name, midname, phone_number, email, password, sex, userrole_id) values'
@@ -495,6 +525,14 @@ def insert_timetable(connection, timetables) -> None:
         for timetable in timetables:
             query += f'''({timetable.day_of_week}, '{timetable.lesson_time}', 
             {timetable.class_id}, {timetable.subject_id}, {timetable.auditory_id}, {timetable.teacher_id}),'''
+        cursor.execute(query[:-1])
+
+def insert_tasks(connection, tasks) -> None:
+    with connection.cursor() as cursor:
+        query = 'insert into tasks(subject_id, class_id, task_text, teacher_id, task_start_date, task_deadline_date) values'
+        for task in tasks:
+            query += f'''({task.subject_id}, {task.class_id}, '{task.task_text}', {task.teacher_id}, '{task.task_start_date}',
+            '{task.task_deadline_date}'),'''
         cursor.execute(query[:-1])
 
 def match_employees_subjects(connection, employees_id: list, subjects_id: list) -> None:
@@ -605,9 +643,12 @@ def fill_test_data(con_settings) -> None:
         # timetable
         timetable = generate_timetable(get_class_subjects(connection), get_ids_from_table(connection, 'classes'), 
                                        get_ids_from_table(connection, 'auditories'), get_employee_subjects(connection))
-        # tt = timetable[0]
-        # print(tt.day_of_week, tt.lesson_time, tt.class_id, tt.subject_id, tt.auditory_id, tt.teacher_id)
+        
         insert_timetable(connection, timetable)
+
+        # tasks
+        tasks = generate_tasks(get_ids_from_table(connection, 'classes'), get_employee_subjects(connection), timetable)
+        insert_tasks(connection, tasks)
 
     except Exception as e:
         print(Fore.RED + 'An error occurred' + Style.RESET_ALL)
