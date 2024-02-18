@@ -51,6 +51,25 @@ class ParentStudent:
         self.student_id = student_id
         self.parent_id = parent_id
 
+class Timetable:
+    def __init__(self, day_of_week, lesson_time, class_id, subject_id, auditory_id, teacher_id) -> None:
+        self.day_of_week = day_of_week
+        self.lesson_time = lesson_time
+        self.class_id = class_id
+        self.subject_id = subject_id
+        self.auditory_id = auditory_id
+        self.teacher_id = teacher_id
+
+class ClassSubject:
+    def __init__(self, class_id, subject_id) -> None:
+        self.class_id = class_id
+        self.subject_id = subject_id
+
+class EmployeeSubject:
+    def __init__(self, employee_id, subject_id) -> None:
+        self.employee_id = employee_id
+        self.subject_id = subject_id
+
 def print_sepparator_line_1() -> None:
     print('--------------------')
 
@@ -226,7 +245,7 @@ def create_database_structure(con_settings) -> None:
                 FOREIGN KEY (subject_id) REFERENCES subjects(id)
             );'''
 
-            query += '''CREATE UNIQUE INDEX UX_Timetable_lesson_day_date ON Timetable(day_of_week, lesson_time);'''
+            query += '''CREATE UNIQUE INDEX UX_Timetable_lesson_day_date ON Timetable(day_of_week, lesson_time, auditory_id);'''
 
             cursor.execute(query)
             print(Fore.LIGHTGREEN_EX + 'Done' + Style.RESET_ALL)
@@ -325,6 +344,22 @@ def generate_auditories(count) -> list:
     
     return auditories
 
+def get_class_subjects(connection) -> list:
+    class_subjects = []
+    with connection.cursor() as cursor:
+        cursor.execute('select class_id, subject_id from class_subject')
+        for data in cursor.fetchall():
+            class_subjects.append(ClassSubject(data[0], data[1]))
+    return class_subjects
+
+def get_employee_subjects(connection) -> None:
+    employee_subjects = []
+    with connection.cursor() as cursor:
+        cursor.execute('select employee_id, subject_id from employee_subject')
+        for data in cursor.fetchall():
+            employee_subjects.append(EmployeeSubject(data[0], data[1]))
+    return employee_subjects
+
 def generate_classes(auditories_id: list, employees_id: list) -> list:
     classes = []
     auditories_id_copy = auditories_id.copy()
@@ -361,6 +396,40 @@ def generate_students(contacts_id:list, classes_id: list) -> list:
             students.append(Student(class_id=class_id, contacts_id=contact_id))
     
     return students
+
+def generate_timetable(class_subjects, class_ids, auditory_ids, employee_subjects) -> list:
+    timetables = []
+
+    lessons_times = {
+        1: '09:00:00', 2: '09:55:00', 3: '10:50:00', 
+        4: '11:45:00', 5: '12:40:00', 6: '13:35:00',
+        7: '14:30:00', 8: '15:25:00'
+    }
+
+    for class_id in class_ids:
+        current_class_subject = list(filter(lambda f: f.class_id == class_id, class_subjects))
+        for day in range(1, 7): # day of week number
+            lessons_count = random.randint(0, 8)
+            current_day_subjects = []
+            for i in range(lessons_count):
+                current_day_subjects.append(random.choice(current_class_subject))
+            
+            for i in range(0, len(current_day_subjects)):
+                # обеспечиваю, чтоб один учитель не вел 2 предмета одновременно в одной аудитории
+                while True:
+                    teacher_id = random.choice(list(filter(lambda f: f.subject_id == current_day_subjects[i].subject_id, employee_subjects))).employee_id
+                    lesson_time = lessons_times[i + 1]
+                    
+                    auditory_id = random.choice(auditory_ids)
+
+                    if len(list(filter(lambda t: t.lesson_time == lesson_time 
+                        and t.day_of_week == day and (
+                        t.auditory_id == auditory_id or t.teacher_id == teacher_id
+                    ), timetables))) == 0:
+                        timetables.append(Timetable(day, lesson_time, class_id, current_class_subject[i].subject_id, auditory_id, teacher_id))
+                        break
+
+    return timetables
 
 def insert_contacts(connection, contacts) -> None:
     with connection.cursor() as cursor:
@@ -420,6 +489,14 @@ def insert_students(connection, students: list) -> None:
             query += f'''({student.class_id}, {student.contacts_id}),'''
         cursor.execute(query[:-1])
 
+def insert_timetable(connection, timetables) -> None:
+    with connection.cursor() as cursor:
+        query = 'insert into timetable(day_of_week, lesson_time, class_id, subject_id, auditory_id, teacher_id) values'
+        for timetable in timetables:
+            query += f'''({timetable.day_of_week}, '{timetable.lesson_time}', 
+            {timetable.class_id}, {timetable.subject_id}, {timetable.auditory_id}, {timetable.teacher_id}),'''
+        cursor.execute(query[:-1])
+
 def match_employees_subjects(connection, employees_id: list, subjects_id: list) -> None:
     with connection.cursor() as cursor:
         query = 'insert into employee_subject(employee_id, subject_id) values'
@@ -474,7 +551,7 @@ def fill_test_data(con_settings) -> None:
                 port=con_settings.port,
                 database=con_settings.database,
                 user=con_settings.user,
-                password=con_settings.password
+                password=con_settings.password                      
         )
         connection.autocommit = True
 
@@ -524,8 +601,14 @@ def fill_test_data(con_settings) -> None:
             insert_students(connection, students)
 
         match_students_with_parents(connection, get_ids_from_table(connection, 'students'), get_ids_from_table(connection, 'parents'))
-        
-            
+
+        # timetable
+        timetable = generate_timetable(get_class_subjects(connection), get_ids_from_table(connection, 'classes'), 
+                                       get_ids_from_table(connection, 'auditories'), get_employee_subjects(connection))
+        # tt = timetable[0]
+        # print(tt.day_of_week, tt.lesson_time, tt.class_id, tt.subject_id, tt.auditory_id, tt.teacher_id)
+        insert_timetable(connection, timetable)
+
     except Exception as e:
         print(Fore.RED + 'An error occurred' + Style.RESET_ALL)
         
