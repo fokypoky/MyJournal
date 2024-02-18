@@ -43,9 +43,10 @@ class Class:
         self.auditory_id = auditory_id
 
 class Student:
-    def __init__(self, class_id, contacts_id) -> None:
+    def __init__(self, class_id, contacts_id, id=None) -> None:
         self.class_id = class_id
         self.contacts_id = contacts_id
+        self.id = id
 
 class ParentStudent:
     def __init__(self, student_id, parent_id) -> None:
@@ -72,13 +73,22 @@ class EmployeeSubject:
         self.subject_id = subject_id
 
 class Task:
-    def __init__(self, subject_id, class_id, task_text, teacher_id, task_start_date, task_deadline_date) -> None:
+    def __init__(self, subject_id, class_id, task_text, teacher_id, task_start_date, task_deadline_date, id=None) -> None:
         self.subject_id = subject_id
         self.class_id = class_id
         self.task_text = task_text
         self.teacher_id = teacher_id
         self.task_start_date = task_start_date
         self.task_deadline_date = task_deadline_date
+        self.id = id
+
+class Mark:
+    def __init__(self, student_id, mark, mark_date, teacher_id, subject_id) -> None:
+        self.student_id = student_id
+        self.mark = mark
+        self.mark_date = mark_date
+        self.teacher_id = teacher_id
+        self.subject_id = subject_id
 
 def print_sepparator_line_1() -> None:
     print('--------------------')
@@ -370,6 +380,26 @@ def get_employee_subjects(connection) -> None:
             employee_subjects.append(EmployeeSubject(data[0], data[1]))
     return employee_subjects
 
+def get_tasks(connection) -> list:
+    tasks = []
+    with connection.cursor() as cursor:
+        cursor.execute('select * from tasks')
+        for data in cursor.fetchall():
+            tasks.append(Task(id=data[0], subject_id=data[1],
+                              class_id=data[2], task_text=data[3],
+                              teacher_id=data[4], task_start_date=data[5],
+                              task_deadline_date=data[6]))
+    return tasks
+
+def get_students(connection) -> list:
+    students = []
+    with connection.cursor() as cursor:
+        cursor.execute('select * from students')
+        for data in cursor.fetchall():
+            students.append(Student(id=data[0], class_id=data[1], contacts_id=data[2]))
+    
+    return students
+
 def generate_classes(auditories_id: list, employees_id: list) -> list:
     classes = []
     auditories_id_copy = auditories_id.copy()
@@ -461,6 +491,17 @@ def generate_tasks(classes_ids, employee_subject, timetables) -> list:
                     tasks.append(Task(current_day_subject_id.subject_id, class_id, truncate_task_text(faker.text()), teacher_id, task_start_date, task_deadline_date))
     return tasks
 
+def generate_marks(tasks, students) -> list:
+    marks = []
+    for task in tasks:
+        current_task_students = list(filter(lambda s: s.class_id == task.class_id, students))
+        for student in current_task_students:
+            mark_value = random.randint(2, 5)
+            marks.append(Mark(student_id=student.id, mark=mark_value, mark_date=task.task_deadline_date,
+                              teacher_id=task.teacher_id, subject_id=task.subject_id))
+    return marks
+
+
 def insert_contacts(connection, contacts) -> None:
     with connection.cursor() as cursor:
         query = 'insert into contacts(surname, name, midname, phone_number, email, password, sex, userrole_id) values'
@@ -533,6 +574,13 @@ def insert_tasks(connection, tasks) -> None:
         for task in tasks:
             query += f'''({task.subject_id}, {task.class_id}, '{task.task_text}', {task.teacher_id}, '{task.task_start_date}',
             '{task.task_deadline_date}'),'''
+        cursor.execute(query[:-1])
+
+def insert_marks(connection, marks) -> None:
+    with connection.cursor() as cursor:
+        query = 'insert into marks(student_id, mark, mark_date, teacher_id, subject_id) values'
+        for mark in marks:
+            query += f'''({mark.student_id}, {mark.mark}, '{mark.mark_date}', {mark.teacher_id}, {mark.subject_id}),'''
         cursor.execute(query[:-1])
 
 def match_employees_subjects(connection, employees_id: list, subjects_id: list) -> None:
@@ -649,6 +697,9 @@ def fill_test_data(con_settings) -> None:
         # tasks
         tasks = generate_tasks(get_ids_from_table(connection, 'classes'), get_employee_subjects(connection), timetable)
         insert_tasks(connection, tasks)
+
+        marks = generate_marks(get_tasks(connection), get_students(connection))
+        insert_marks(connection, marks)
 
     except Exception as e:
         print(Fore.RED + 'An error occurred' + Style.RESET_ALL)
