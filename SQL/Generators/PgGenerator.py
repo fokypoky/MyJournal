@@ -46,6 +46,11 @@ class Student:
         self.class_id = class_id
         self.contacts_id = contacts_id
 
+class ParentStudent:
+    def __init__(self, student_id, parent_id) -> None:
+        self.student_id = student_id
+        self.parent_id = parent_id
+
 def print_sepparator_line_1() -> None:
     print('--------------------')
 
@@ -439,6 +444,29 @@ def match_classes_subjects(connection, classes_id: list, subjects_id: list) -> N
         
         cursor.execute(query[:-1])
 
+def match_students_with_parents(connection, student_ids: list, parent_ids: list) -> None:
+    parent_students = []
+
+    num_students = len(student_ids)
+    num_parents = len(parent_ids)
+
+    students_per_parent_count = math.ceil(num_students / num_parents)
+
+    for parent_id in parent_ids:
+        for i in range(students_per_parent_count):
+            if len(student_ids) == 0:
+                break
+            parent_students.append(ParentStudent(student_ids.pop(), parent_id))
+
+        if len(student_ids) == 0:
+                break
+    
+    with connection.cursor() as cursor:
+        query = 'insert into parent_student(parent_id, student_id) values'
+        for parent_student in parent_students:
+            query += f'''({parent_student.parent_id}, {parent_student.student_id}),'''
+        cursor.execute(query[:-1])
+
 def fill_test_data(con_settings) -> None:
     try:
         connection = psycopg2.connect(
@@ -495,6 +523,8 @@ def fill_test_data(con_settings) -> None:
             students = generate_students(student_contacts_id, get_ids_from_table(connection, 'classes'))
             insert_students(connection, students)
 
+        match_students_with_parents(connection, get_ids_from_table(connection, 'students'), get_ids_from_table(connection, 'parents'))
+        
             
     except Exception as e:
         print(Fore.RED + 'An error occurred' + Style.RESET_ALL)
@@ -511,13 +541,13 @@ def main() -> None:
     print(Fore.YELLOW + 'Before using the script, make sure that the database you are going to use has already been created and is empty' + Style.RESET_ALL)
     
     con_settings = ConnectionSettings(host='localhost', port='5432', database='MyJournalDB', user='postgres', password='toor')
-    # TODO: for elephant sql test
-    #region elephant test
-    con_settings.host = 'mouse.db.elephantsql.com'
-    con_settings.database = 'spmluhhu'
-    con_settings.user = 'spmluhhu'
-    con_settings.password = 'Rr10RlTEkrsRqcjIz4SlTk-w7dU1hZjF'
-    #endregion
+    # # TODO: for elephant sql test
+    # #region elephant test
+    # con_settings.host = 'mouse.db.elephantsql.com'
+    # con_settings.database = 'spmluhhu'
+    # con_settings.user = 'spmluhhu'
+    # con_settings.password = 'Rr10RlTEkrsRqcjIz4SlTk-w7dU1hZjF'
+    # #endregion
 
 
     while True:
