@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using MyJournalAdmin.Infrastructure.Commands;
 using MyJournalAdmin.Infrastructure.Repositories;
+using MyJournalAdmin.Models;
 using MyJournalAdmin.Models.Messenging;
 using MyJournalAdmin.Models.Messenging.MessageTypes;
 using MyJournalAdmin.ViewModels.Base;
@@ -65,6 +66,7 @@ namespace MyJournalAdmin.ViewModels.Windows.Employee
 			set => SetField(ref _selectedEmployee, value);
 		}
 
+		// to hide existing password form ui
 		public string NewPassword
 		{
 			get => _newPassword;
@@ -210,8 +212,11 @@ namespace MyJournalAdmin.ViewModels.Windows.Employee
 				_notifier.Notify("Данные обновлены");
 			}
 		}
-		
-		private void GeneratePassword(object parameter) { }
+
+		private void GeneratePassword(object parameter)
+		{
+			NewPassword = new PasswordGenerator().Generate();
+		}
 
 		#endregion
 

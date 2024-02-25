@@ -94,7 +94,8 @@
                 <Button Content="RND"
                         Margin="10, 0, 0, 0"
                         FontSize="6"
-                        BorderThickness="0"/>
+                        BorderThickness="0"
+                        Command="{Binding GeneratePasswordCommand}"/>
             </StackPanel>
 
             <TextBox Style="{StaticResource ContactsTextBoxStyle}"

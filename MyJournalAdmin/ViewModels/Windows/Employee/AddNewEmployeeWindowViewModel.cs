@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Input;
 using MyJournalAdmin.Infrastructure.Commands;
 using MyJournalAdmin.Infrastructure.Repositories;
+using MyJournalAdmin.Models;
 using MyJournalAdmin.Models.Messenging;
 using MyJournalAdmin.Models.Messenging.MessageTypes;
 using MyJournalAdmin.ViewModels.Base;
@@ -203,8 +204,12 @@ namespace MyJournalAdmin.ViewModels.Windows.Employee
 			SelectedToAddSubject = null;
 
 		}
-		
-		private void GeneratePassword(object parameter) { }
+
+		private void GeneratePassword(object parameter)
+		{
+			NewEmployee.Contacts.Password = new PasswordGenerator().Generate();
+			OnPropertyChanged(nameof(NewEmployee));
+		}
 
 		private void AddEmployee(object parameter)
 		{
