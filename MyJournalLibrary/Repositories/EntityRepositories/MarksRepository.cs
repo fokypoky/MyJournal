@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Diagnostics;
+using Microsoft.EntityFrameworkCore;
 using MyJournalLibrary.Entities;
 
 namespace MyJournalLibrary.Repositories.EntityRepositories;
@@ -67,6 +68,13 @@ public class MarksRepository : EntityRepository<Mark>
             .ToList();
     }
 
+    public ICollection<Mark> GetByStudent(Student student)
+    {
+        return _context.Set<Mark>()
+	        .Where(m => m.StudentId == student.Id)
+	        .ToList();
+    }
+    
     public override void UpdateRange(IEnumerable<Mark> marks)
     {
         foreach (var mark in marks)
@@ -81,6 +89,5 @@ public class MarksRepository : EntityRepository<Mark>
     public override void AddRange(IEnumerable<Mark> marks)
     {
         _context.Set<Mark>().AddRange(marks);
-        _context.SaveChanges();
     }
 }
