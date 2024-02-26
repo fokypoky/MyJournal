@@ -18,6 +18,14 @@ public class StudentsRepository : EntityRepository<Student>
             .ToList();
     }
 
+    public ICollection<Student> GetAllWithClassAndContacts()
+    {
+	    return _context.Set<Student>()
+		    .Include(s => s.Contacts)
+		    .Include(s => s.Class)
+		    .ToList();
+    }
+
     public Student GetByIdWithContactsClassAndSubjects(int studentId)
     {
         return _context.Set<Student>()
