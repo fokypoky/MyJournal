@@ -6,13 +6,56 @@
              xmlns:local="clr-namespace:MyJournalAdmin.Views.UserControls.Students"
              xmlns:vmodel="clr-namespace:MyJournalAdmin.ViewModels.UserControls.Students"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             d:Background="White">
 
     <UserControl.DataContext>
         <vmodel:StudentsManagementUserControlViewModel/>
     </UserControl.DataContext>
+    
+    <UserControl.Resources>
+        <Style x:Key="ActionsStackPanelStyle"></Style>
+        <Style x:Key="ActionButtonsStyle">
+            <Setter Property="Button.BorderThickness" Value="0"/>
+            <Setter Property="Button.Background" Value="#D9D9D9"/>
+            <Setter Property="Button.FontSize" Value="11"/>
+            <Setter Property="Button.Margin" Value="3,5,4,0"/>
+            <Setter Property="Button.MinHeight" Value="20"/>
+        </Style>
+    </UserControl.Resources>
 
     <Grid>
-        <TextBlock Text="Students" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32"/>    
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2.5*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <ListView Grid.Column="0"
+                  ItemsSource="{Binding Students}"
+                  SelectedItem="{Binding SelectedStudent}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding Contacts.Surname}"/>
+                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Contacts.Name}"/>
+                    <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding Contacts.Midname}"/>
+                    <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding Contacts.PhoneNumber}"/>
+                    <GridViewColumn Header="Класс" DisplayMemberBinding="{Binding Class.ClassNumber}"/>
+                    <GridViewColumn Header="E-mail" DisplayMemberBinding="{Binding Contacts.Email}"/>
+                    <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding Contacts.PhoneNumber}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <StackPanel Grid.Column="1" Style="{StaticResource ActionsStackPanelStyle}">
+            <Button Content="Добавить" Style="{StaticResource ActionButtonsStyle}" 
+                    Command="{Binding AddNewStudentCommand}"/>
+
+            <Button Content="Изменить" Style="{StaticResource ActionButtonsStyle}"
+                    Command="{Binding UpdateStudentCommand}"/>
+
+            <Button Content="Удалить" Style="{StaticResource ActionButtonsStyle}"
+                    Command="{Binding DeleteStudentCommand}"/>
+        </StackPanel>
+
     </Grid>
 </UserControl>
