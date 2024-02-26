@@ -716,13 +716,13 @@ def main() -> None:
     print(Fore.YELLOW + 'Before using the script, make sure that the database you are going to use has already been created and is empty' + Style.RESET_ALL)
     
     con_settings = ConnectionSettings(host='localhost', port='5432', database='MyJournalDB', user='postgres', password='toor')
-    # # TODO: for elephant sql test
-    # #region elephant test
-    # con_settings.host = 'mouse.db.elephantsql.com'
-    # con_settings.database = 'spmluhhu'
-    # con_settings.user = 'spmluhhu'
-    # con_settings.password = 'Rr10RlTEkrsRqcjIz4SlTk-w7dU1hZjF'
-    # #endregion
+    # TODO: for elephant sql test
+    #region elephant test
+    con_settings.host = 'mouse.db.elephantsql.com'
+    con_settings.database = 'spmluhhu'
+    con_settings.user = 'spmluhhu'
+    con_settings.password = 'Rr10RlTEkrsRqcjIz4SlTk-w7dU1hZjF'
+    #endregion
 
 
     while True:
