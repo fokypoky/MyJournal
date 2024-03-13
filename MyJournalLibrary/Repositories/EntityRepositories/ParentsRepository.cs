@@ -25,4 +25,10 @@ public class ParentsRepository : EntityRepository<Parent>
 				.ThenInclude(s => s.Class)
 		    .FirstOrDefault();
     }
+
+    public Parent? GetByContacts(Contact contacts)
+    {
+	    return _context.Set<Parent>()
+		    .FirstOrDefault(p => p.ContactsId == contacts.Id);
+    }
 }
