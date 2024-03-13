@@ -16,6 +16,12 @@ public class ContactsRepository : EntityRepository<Contact>
             .FirstOrDefault(c => (c.Email == login || c.PhoneNumber == login) && c.Password == password);
     }
 
+    public Contact? GetByLoginAndRoleId(string login, int roleId)
+    {
+	    return _context.Set<Contact>()
+		    .FirstOrDefault(c => c.UserRole.Id == roleId && (c.Email == login || c.PhoneNumber == login));
+    }
+
     public bool IsPhoneNumberExists(string phoneNumber)
     {
 	    return _context.Set<Contact>()
