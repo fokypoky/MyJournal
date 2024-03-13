@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Collections;
+using Microsoft.EntityFrameworkCore;
 using MyJournalLibrary.Entities;
 
 namespace MyJournalLibrary.Repositories.EntityRepositories;
@@ -42,5 +43,11 @@ public class StudentsRepository : EntityRepository<Student>
 		    .Where(s => s.ParentStudents.Any(ps => ps.ParentId == parent.Id))?
 		    .Include(s => s.Contacts)
 		    .ToList();
+    }
+
+    public Student? GetByContacts(Contact contact)
+    {
+	    return _context.Set<Student>()
+		    .FirstOrDefault(s => s.ContactsId == contact.Id);
     }
 }

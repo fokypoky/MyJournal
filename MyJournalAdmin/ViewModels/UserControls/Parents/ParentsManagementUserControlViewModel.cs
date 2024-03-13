@@ -1,11 +1,15 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using MyJournalAdmin.Infrastructure.Commands;
 using MyJournalAdmin.Infrastructure.Repositories;
+using MyJournalAdmin.Models.Messenging;
+using MyJournalAdmin.Models.Messenging.MessageTypes;
 using MyJournalAdmin.ViewModels.Base;
 using MyJournalAdmin.Views.Notifiers.Implementation;
 using MyJournalAdmin.Views.Notifiers.Interfaces;
+using MyJournalAdmin.Views.Windows.Parents;
 using MyJournalLibrary.Entities;
 using MyJournalLibrary.Repositories.EntityRepositories;
 
@@ -59,7 +63,10 @@ namespace MyJournalAdmin.ViewModels.UserControls.Parents
 
         #region Command methods
 
-        private void AddParent(object parameter) { }
+        private void AddParent(object parameter)
+        {
+            new AddNewParentWindow().ShowDialog();
+        }
 
         private void RemoveParent(object parameter)
         {
@@ -87,9 +94,21 @@ namespace MyJournalAdmin.ViewModels.UserControls.Parents
         private void UpdateParent(object parameter) { }
 
         #endregion
+
+        private void OnMessageReceived(object? sender, EventArgs e)
+        {
+            if (e is NewParentMessage)
+            {
+                var parentMessage = (NewParentMessage)e;
+                Parents.Add(parentMessage.NewParent);
+                Parents.OrderBy(p => p.Contacts.Surname);
+            }
+        }
         
         public ParentsManagementUserControlViewModel()
         {
+            WindowMessenger.MessageSender += OnMessageReceived;
+            
             _notifier = new MessageBoxNotifier();
             using (var context = new ApplicationContext())
             {
