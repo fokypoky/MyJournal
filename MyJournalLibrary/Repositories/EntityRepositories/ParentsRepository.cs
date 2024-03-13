@@ -9,6 +9,13 @@ public class ParentsRepository : EntityRepository<Parent>
     {
     }
 
+    public ICollection<Parent> GetAllWithContacts()
+    {
+	    return _context.Set<Parent>()
+		    .Include(p => p.Contacts)
+		    .ToList();
+    }
+
     public Parent? GetByUserId(int userId)
     {
 	    return _context.Set<Parent>().Where(p => p.ContactsId == userId)?.FirstOrDefault();
