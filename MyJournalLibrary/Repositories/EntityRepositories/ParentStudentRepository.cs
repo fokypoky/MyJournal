@@ -16,6 +16,13 @@ namespace MyJournalLibrary.Repositories.EntityRepositories
 				.ToList();
 		}
 
+		public ICollection<ParentStudent> GetByParent(Parent parent)
+		{
+			return _context.Set<ParentStudent>()
+				.Where(ps => ps.ParentId == parent.Id)
+				.ToList();
+		}
+		
 		public void RemoveStudent(List<ParentStudent> parentStudents)
 		{
 			RemoveRange(parentStudents);
