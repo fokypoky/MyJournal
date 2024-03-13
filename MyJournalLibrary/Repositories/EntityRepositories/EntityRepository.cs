@@ -19,7 +19,7 @@ public class EntityRepository<T> : IEntityRepository<T> where T : class
         _context.SaveChanges();
     }
 
-    public virtual void AddRange(IEnumerable<T> entities)
+    public virtual void AddRange(List<T> entities)
     {
         _context.Set<T>().AddRange(entities);
         _context.SaveChanges();

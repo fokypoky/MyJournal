@@ -86,7 +86,7 @@ public class MarksRepository : EntityRepository<Mark>
         _context.SaveChanges();
     }
 
-    public override void AddRange(IEnumerable<Mark> marks)
+    public override void AddRange(List<Mark> marks)
     {
         _context.Set<Mark>().AddRange(marks);
     }
