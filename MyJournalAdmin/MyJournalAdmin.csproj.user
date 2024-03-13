@@ -41,6 +41,9 @@
     <Compile Update="Views\Windows\Settings\ConnectionSettingsWingow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Windows\Students\AddNewStudentWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Windows\Subjects\AddNewSubjectWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -86,6 +89,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Windows\Settings\ConnectionSettingsWingow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Windows\Students\AddNewStudentWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Windows\Subjects\AddNewSubjectWindow.xaml">

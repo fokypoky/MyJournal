@@ -1,10 +1,15 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using MyJournalAdmin.Infrastructure.Commands;
 using MyJournalAdmin.Infrastructure.Repositories;
+using MyJournalAdmin.Models.Messenging;
+using MyJournalAdmin.Models.Messenging.MessageTypes;
 using MyJournalAdmin.ViewModels.Base;
 using MyJournalAdmin.Views.Notifiers.Implementation;
 using MyJournalAdmin.Views.Notifiers.Interfaces;
+using MyJournalAdmin.Views.Windows.Students;
 using MyJournalLibrary.Entities;
 using MyJournalLibrary.Repositories.EntityRepositories;
 
@@ -49,7 +54,10 @@ namespace MyJournalAdmin.ViewModels.UserControls.Students
 
 		#region Command methods
 
-		private void AddNewStudent(object parameter) { }
+		private void AddNewStudent(object parameter)
+		{
+			new AddNewStudentWindow().ShowDialog();
+		}
 
 		private void UpdateStudent(object parameter) { }
 
@@ -80,12 +88,25 @@ namespace MyJournalAdmin.ViewModels.UserControls.Students
 
 		#endregion
 
+		private void OnMessageReceived(object? sender, EventArgs e)
+		{
+			if (e is NewStudentMessage)
+			{
+				var studentMessage = (NewStudentMessage)e;
+				Students.Add(studentMessage.NewStudent);
+				Students.OrderBy(s => s.Contacts?.Surname);
+			}
+		}
+		
 		public StudentsManagementUserControlViewModel()
 		{
+			WindowMessenger.MessageSender += OnMessageReceived;
+			
 			using (var context = new ApplicationContext())
 			{
 				Students = new ObservableCollection<Student>(
 					new StudentsRepository(context).GetAllWithClassAndContacts()
+						.OrderBy(s => s.Contacts?.Surname)
 				);
 			}
 
