@@ -33,6 +33,11 @@
             </TabItem>
             
             <TabItem>
+                <TabItem.Header>Родители</TabItem.Header>
+                <Frame Content="{Binding ParentsManagementUserControl}"/>
+            </TabItem>
+            
+            <TabItem>
                 <TabItem.Header>Расписание</TabItem.Header>
                 <Frame Content="{Binding TimetableManagementUserControl}"/>
             </TabItem>
