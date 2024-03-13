@@ -111,7 +111,10 @@ namespace MyJournalAdmin.ViewModels.Windows.Students
 
 			using (var context = new ApplicationContext())
 			{
-				var contacts = new ContactsRepository(context).GetByLogin(ParentToFindPhoneOrEmail);
+				var contacts = new ContactsRepository(context)
+					.GetByLoginAndRoleId(ParentToFindPhoneOrEmail,
+						new UserRoleRepository(context).GetIdByRolename("parent"));
+				
 				if (contacts is null)
 				{
 					_notifier.Notify("Контакты не найдены");
