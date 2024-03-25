@@ -28,4 +28,21 @@ public class TimetableRepository : EntityRepository<TimetableRepository>
                 .ThenInclude(t => t.Contacts)
             .ToList();
     }
+
+    public ICollection<Timetable> GetByClassWithEmployeeContactsSubjectAndAuditory(Class @class)
+    {
+	    return _context.Set<Timetable>()
+		    .Include(t => t.Auditory)
+		    .Include(t => t.Subject)
+		    .Include(t => t.Teacher)
+				.ThenInclude(e => e.Contacts)
+		    .Where(t => t.ClassId == @class.Id)
+		    .ToList();
+    }
+
+    public void Remove(Timetable timetable)
+    {
+	    _context.Set<Timetable>().Remove(timetable);
+	    _context.SaveChanges();
+    }
 }
