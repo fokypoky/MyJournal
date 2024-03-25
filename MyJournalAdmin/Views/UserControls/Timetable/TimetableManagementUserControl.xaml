@@ -6,13 +6,200 @@
              xmlns:local="clr-namespace:MyJournalAdmin.Views.UserControls.Timetable"
              xmlns:vmodel="clr-namespace:MyJournalAdmin.ViewModels.UserControls.Timetable"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             d:Background="White">
 
     <UserControl.DataContext>
         <vmodel:TimetableManagementUserControlViewModel/>
     </UserControl.DataContext>
+    
+    <UserControl.Resources>
+        <Style TargetType="Border">
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="0.7"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="MinHeight" Value="20"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+    </UserControl.Resources>
 
     <Grid>
-        <TextBlock Text="Timetable" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="15*"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0">
+            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                <TextBlock Text="Класс" VerticalAlignment="Center" Margin="10, 0, 0 ,0"
+                           FontSize="15"/>
+                <ComboBox ItemsSource="{Binding Classes}" MinWidth="100"
+                          SelectedItem="{Binding SelectedClass}"
+                          Margin="10, 2, 0, 2"
+                          BorderThickness="0.1">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding ClassNumber}" FontSize="12"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+        </Border>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            <Border Grid.Column="2" Grid.RowSpan="4">
+                <StackPanel>
+                    <Button Content="Добавить" Command="{Binding AddTimetableCommand}"/>
+                    <Button Content="Изменить" Command="{Binding UpdateTimetableCommand}"/>
+                    <Button Content="Удалить" Command="{Binding RemoveTimetableCommand}"/>
+                </StackPanel>
+            </Border>
+            
+            <Grid Grid.Column="0" Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="6*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Понедельник" TextAlignment="Center" FontWeight="Bold"/>
+                <ListView Grid.Row="1" ItemsSource="{Binding MondayTimetables}"
+                          SelectedItem="{Binding SelectedTimetable}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Время" DisplayMemberBinding="{Binding LessonTime}"/>
+                            <GridViewColumn Header="Предмет" DisplayMemberBinding="{Binding Subject.SubjectTitle}"/>
+                            <GridViewColumn Header="Аудитория" DisplayMemberBinding="{Binding Auditory.AuditoryNumber}"/>
+                            <GridViewColumn Header="Преподаватель" DisplayMemberBinding="{Binding Teacher.Contacts.Surname}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+
+            <Grid Grid.Column="0" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="6*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Вторник" TextAlignment="Center" FontWeight="Bold"/>
+                <ListView Grid.Row="1" ItemsSource="{Binding TuesdayTimetables}"
+                          SelectedItem="{Binding SelectedTimetable}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Время" DisplayMemberBinding="{Binding LessonTime}"/>
+                            <GridViewColumn Header="Предмет" DisplayMemberBinding="{Binding Subject.SubjectTitle}"/>
+                            <GridViewColumn Header="Аудитория" DisplayMemberBinding="{Binding Auditory.AuditoryNumber}"/>
+                            <GridViewColumn Header="Преподаватель" DisplayMemberBinding="{Binding Teacher.Contacts.Surname}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+
+            <Grid Grid.Column="0" Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="6*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Среда" TextAlignment="Center" FontWeight="Bold"/>
+                <ListView Grid.Row="1" ItemsSource="{Binding WednesdayTimetables}"
+                          SelectedItem="{Binding SelectedTimetable}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Время" DisplayMemberBinding="{Binding LessonTime}"/>
+                            <GridViewColumn Header="Предмет" DisplayMemberBinding="{Binding Subject.SubjectTitle}"/>
+                            <GridViewColumn Header="Аудитория" DisplayMemberBinding="{Binding Auditory.AuditoryNumber}"/>
+                            <GridViewColumn Header="Преподаватель" DisplayMemberBinding="{Binding Teacher.Contacts.Surname}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+
+            <Grid Grid.Column="0" Grid.Row="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="6*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Четверг" TextAlignment="Center" FontWeight="Bold"/>
+                <ListView Grid.Row="1" ItemsSource="{Binding ThursdayTimetables}"
+                          SelectedItem="{Binding SelectedTimetable}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Время" DisplayMemberBinding="{Binding LessonTime}"/>
+                            <GridViewColumn Header="Предмет" DisplayMemberBinding="{Binding Subject.SubjectTitle}"/>
+                            <GridViewColumn Header="Аудитория" DisplayMemberBinding="{Binding Auditory.AuditoryNumber}"/>
+                            <GridViewColumn Header="Преподаватель" DisplayMemberBinding="{Binding Teacher.Contacts.Surname}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+
+            <Grid Grid.Column="1" Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="6*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Пятница" TextAlignment="Center" FontWeight="Bold"/>
+                <ListView Grid.Row="1" ItemsSource="{Binding FridayTimetables}"
+                          SelectedItem="{Binding SelectedTimetable}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Время" DisplayMemberBinding="{Binding LessonTime}"/>
+                            <GridViewColumn Header="Предмет" DisplayMemberBinding="{Binding Subject.SubjectTitle}"/>
+                            <GridViewColumn Header="Аудитория" DisplayMemberBinding="{Binding Auditory.AuditoryNumber}"/>
+                            <GridViewColumn Header="Преподаватель" DisplayMemberBinding="{Binding Teacher.Contacts.Surname}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+
+            <Grid Grid.Column="1" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="6*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Суббота" TextAlignment="Center" FontWeight="Bold"/>
+                <ListView Grid.Row="1" ItemsSource="{Binding SaturdayTimetables}"
+                          SelectedItem="{Binding SelectedTimetable}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Время" DisplayMemberBinding="{Binding LessonTime}"/>
+                            <GridViewColumn Header="Предмет" DisplayMemberBinding="{Binding Subject.SubjectTitle}"/>
+                            <GridViewColumn Header="Аудитория" DisplayMemberBinding="{Binding Auditory.AuditoryNumber}"/>
+                            <GridViewColumn Header="Преподаватель" DisplayMemberBinding="{Binding Teacher.Contacts.Surname}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+
+            <Grid Grid.Column="1" Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="6*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Воскресенье" TextAlignment="Center" FontWeight="Bold"/>
+                <ListView Grid.Row="1" ItemsSource="{Binding SundayTimetables}"
+                          SelectedItem="{Binding SelectedTimetable}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Время" DisplayMemberBinding="{Binding LessonTime}"/>
+                            <GridViewColumn Header="Предмет" DisplayMemberBinding="{Binding Subject.SubjectTitle}"/>
+                            <GridViewColumn Header="Аудитория" DisplayMemberBinding="{Binding Auditory.AuditoryNumber}"/>
+                            <GridViewColumn Header="Преподаватель" DisplayMemberBinding="{Binding Teacher.Contacts.Surname}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </Grid>
     </Grid>
 </UserControl>
