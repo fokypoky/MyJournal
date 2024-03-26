@@ -1,12 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Input;
 using MyJournalAdmin.Infrastructure.Commands;
 using MyJournalAdmin.Infrastructure.Repositories;
+using MyJournalAdmin.Models.Messenging;
+using MyJournalAdmin.Models.Messenging.MessageTypes;
 using MyJournalAdmin.ViewModels.Base;
 using MyJournalAdmin.Views.Notifiers.Implementation;
 using MyJournalAdmin.Views.Notifiers.Interfaces;
+using MyJournalAdmin.Views.Windows.Timetable;
 using MyJournalLibrary.Entities;
 using MyJournalLibrary.Repositories.EntityRepositories;
 
@@ -143,7 +148,10 @@ namespace MyJournalAdmin.ViewModels.UserControls.Timetable
 
 		#region Command functions
 
-		private void AddTimetable(object parameter) { }
+		private void AddTimetable(object parameter)
+		{
+			new AddNewTimetableWindow().ShowDialog();
+		}
 
 		private void RemoveTimetable(object parameter)
 		{
@@ -186,10 +194,34 @@ namespace MyJournalAdmin.ViewModels.UserControls.Timetable
 			return ClassTimetables.Where(t => t.DayOfWeek == dayOfWeek).ToList();
 		}
 
+		private void OnMessageReceived(object? sender, EventArgs e)
+		{
+			if (SelectedClass is null)
+			{
+				return;
+			}
+
+			if (e is NewTimetableMessage)
+			{
+				var timetableMessage = (NewTimetableMessage)e;
+
+				var timetableCollections = new List<ObservableCollection<MyJournalLibrary.Entities.Timetable>>()
+				{
+					MondayTimetables, TuesdayTimetables, WednesdayTimetables,
+					ThursdayTimetables, FridayTimetables, SaturdayTimetables,
+					SundayTimetables
+				};
+
+				var timetableCollection = timetableCollections.ElementAt(timetableMessage.Timetable.DayOfWeek - 1);
+				timetableCollection.Add(timetableMessage.Timetable);
+			}
+		}
+
 		public TimetableManagementUserControlViewModel()
 		{
+			WindowMessenger.MessageSender += OnMessageReceived;
 			_notifier = new MessageBoxNotifier();
-
+			
 		    using (var context = new ApplicationContext())
 		    {
 			    Classes = new ObservableCollection<Class>(

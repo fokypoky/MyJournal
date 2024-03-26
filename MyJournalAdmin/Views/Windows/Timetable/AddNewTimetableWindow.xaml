@@ -1,0 +1,82 @@
+﻿<Window x:Class="MyJournalAdmin.Views.Windows.Timetable.AddNewTimetableWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyJournalAdmin.Views.Windows.Timetable"
+        xmlns:vmodel="clr-namespace:MyJournalAdmin.ViewModels.Windows.Timetable"
+        mc:Ignorable="d"
+        Title="Добавить расписание" Height="350" Width="600"
+        ResizeMode="NoResize">
+    
+    <Window.DataContext>
+        <vmodel:AddNewTimetableWindowViewModel/>
+    </Window.DataContext>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <ScrollViewer Grid.Row="0" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel HorizontalAlignment="Center" Width="550">
+                <TextBlock Text="Класс"/>
+                <ComboBox ItemsSource="{Binding Classes}"
+                          SelectedItem="{Binding SelectedClass}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding ClassNumber}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <TextBlock Text="Предмет"/>
+                <ComboBox ItemsSource="{Binding SelectedClasSubjects}"
+                          SelectedItem="{Binding SelectedSubject}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding SubjectTitle}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                
+                <TextBlock Text="День недели"/>
+                <ComboBox ItemsSource="{Binding DaysOfWeek}"
+                          SelectedItem="{Binding SelectedDayOfWeek}"></ComboBox>
+
+                <TextBlock Text="Время"/>
+                <ComboBox ItemsSource="{Binding LessonTimes}"
+                          SelectedItem="{Binding SelectedLessonTime}"/>
+
+                <TextBlock Text="Аудитория"/>
+                <ComboBox ItemsSource="{Binding AvailableAuditories}"
+                          SelectedItem="{Binding SelectedAuditory}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding AuditoryNumber}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <TextBlock Text="Преподаватель"/>
+                <ComboBox ItemsSource="{Binding AvailableEmployees}"
+                          SelectedItem="{Binding SelectedEmployee}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Contacts.Surname}"/>
+                                <TextBlock Text="{Binding Contacts.Name}"
+                                           Margin="3, 0, 0, 0"/>
+                                <TextBlock Text="{Binding Contacts.Midname}"
+                                           Margin="3, 0, 0, 0"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+        </ScrollViewer>
+
+        <Button Grid.Row="1" Content="Добавить"
+                Command="{Binding AddTimetableCommand}"/>
+    </Grid>
+</Window>
