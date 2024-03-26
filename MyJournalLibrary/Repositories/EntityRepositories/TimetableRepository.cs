@@ -3,7 +3,7 @@ using MyJournalLibrary.Entities;
 
 namespace MyJournalLibrary.Repositories.EntityRepositories;
 
-public class TimetableRepository : EntityRepository<TimetableRepository>
+public class TimetableRepository : EntityRepository<Timetable>
 {
     public TimetableRepository(DbContext context) : base(context)
     {
@@ -40,9 +40,11 @@ public class TimetableRepository : EntityRepository<TimetableRepository>
 		    .ToList();
     }
 
-    public void Remove(Timetable timetable)
+    public bool IsClassTimeFree(Class @class, int dayOfWeek, TimeOnly time)
     {
-	    _context.Set<Timetable>().Remove(timetable);
-	    _context.SaveChanges();
+	    return _context.Set<Timetable>()
+		    .FirstOrDefault(t => t.ClassId == @class.Id
+		                         && t.DayOfWeek == dayOfWeek
+		                         && t.LessonTime == time) is null;
     }
 }
