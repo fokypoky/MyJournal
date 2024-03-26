@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Input;
 using MyJournalAdmin.Infrastructure.Commands;
@@ -67,7 +68,52 @@ namespace MyJournalAdmin.ViewModels.UserControls.Auditories
 		{
 			new AddNewAuditoryWindow().Show();
 		}
-		private void RemoveAuditory(object parameter) { }
+
+		private void RemoveAuditory(object parameter)
+		{
+			if (SelectedAuditory is null)
+			{
+				_notifier.Notify("Аудитория не выбрана");
+				return;
+			}
+
+			using (var context = new ApplicationContext())
+			{
+				try
+				{
+					var timetableRepository = new TimetableRepository(context);
+					var classesRepository = new ClassRepository(context);
+
+					var timetables = timetableRepository.GetByAuditory(SelectedAuditory);
+					foreach (var timetable in timetables)
+					{
+						timetable.AuditoryId = null;
+					}
+
+					timetableRepository.UpdateRange(timetables.ToList());
+
+					var classes = classesRepository.GetRangeByAuditory(SelectedAuditory);
+					foreach (var @class in classes)
+					{
+						@class.AuditoryId = null;
+					}
+
+					classesRepository.UpdateRange(classes);
+
+					new AuditoriesRepository(context).Remove(SelectedAuditory);
+
+					Auditories.Remove(SelectedAuditory);
+					SelectedAuditory = null;
+
+					_notifier.Notify("Аудитория удалена");
+				}
+				catch (Exception e)
+				{
+					_notifier.Notify("Во время выполнения запроса произошла ошибка");
+					Debug.WriteLine(e.Message);
+				}
+			}
+		}
 
 		private void UpdateAuditory(object parameter)
 		{

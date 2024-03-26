@@ -23,6 +23,7 @@ namespace MyJournalAdmin.ViewModels.Windows.Auditories
 
 		private ObservableCollection<Class> _allClasses;
 		private Class? _selectedClass;
+		private Class _auditoryClass;
 
 	    #region Public fields
 
@@ -100,15 +101,26 @@ namespace MyJournalAdmin.ViewModels.Windows.Auditories
 				if (SelectedClass is not null)
 				{
 					var previousClass = classRepository.GetByAuditory(Auditory);
-					if (SelectedClass?.ClassNumber != previousClass?.ClassNumber)
+					if (previousClass is null)
+					{
+						SelectedClass.AuditoryId = Auditory.Id;
+						classRepository.Update(SelectedClass);
+					}
+					else
 					{
 						previousClass.AuditoryId = null;
 						SelectedClass.AuditoryId = Auditory.Id;
 
 						classRepository.UpdateRange(new[] { previousClass, SelectedClass });
 					}
-				}
+					//if (SelectedClass?.ClassNumber != previousClass?.ClassNumber)
+					//{
+					//	previousClass.AuditoryId = null;
+					//	SelectedClass.AuditoryId = Auditory.Id;
 
+					//	classRepository.UpdateRange(new[] { previousClass, SelectedClass });
+					//}
+				}
 			}
 
 		} 

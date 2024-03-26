@@ -29,6 +29,7 @@ namespace MyJournalAdmin.Infrastructure.Repositories
 			optionsBuilder.UseNpgsql(ConnectionString);
 			AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 			optionsBuilder.LogTo(m => Debug.WriteLine(m));
+			optionsBuilder.EnableSensitiveDataLogging();
 		}
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
