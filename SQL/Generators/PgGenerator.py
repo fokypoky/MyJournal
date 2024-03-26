@@ -265,8 +265,6 @@ def create_database_structure(con_settings) -> None:
                 FOREIGN KEY (subject_id) REFERENCES subjects(id)
             );'''
 
-            query += '''CREATE UNIQUE INDEX UX_Timetable_lesson_day_date ON Timetable(day_of_week, lesson_time, auditory_id);'''
-
             cursor.execute(query)
             print(Fore.LIGHTGREEN_EX + 'Done' + Style.RESET_ALL)
 
