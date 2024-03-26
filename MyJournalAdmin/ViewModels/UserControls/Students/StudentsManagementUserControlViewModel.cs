@@ -59,7 +59,17 @@ namespace MyJournalAdmin.ViewModels.UserControls.Students
 			new AddNewStudentWindow().ShowDialog();
 		}
 
-		private void UpdateStudent(object parameter) { }
+		private void UpdateStudent(object parameter)
+		{
+			if (SelectedStudent is null)
+			{
+				_notifier.Notify("Ученик не выбран");
+				return;
+			}
+
+			new UpdateStudentWindow().Show();
+			WindowMessenger.OnMessageSend(new StudentToUpdateMessage() { Student = SelectedStudent});
+		}
 
 		private void DeleteStudent(object parameter)
 		{

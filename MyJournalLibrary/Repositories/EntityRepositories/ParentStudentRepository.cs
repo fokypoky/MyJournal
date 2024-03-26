@@ -9,6 +9,13 @@ namespace MyJournalLibrary.Repositories.EntityRepositories
 		{
 		}
 
+		public ParentStudent GetByParentAndStudentContacts(Contact parentContacts, Contact studentContacts)
+		{
+			return _context.Set<ParentStudent>()
+				.FirstOrDefault(ps =>
+					ps.Student.Contacts.Id == studentContacts.Id && ps.Parent.Contacts.Id == parentContacts.Id);
+		}
+
 		public ICollection<ParentStudent> GetByStudent(Student student)
 		{
 			return _context.Set<ParentStudent>()
@@ -22,10 +29,14 @@ namespace MyJournalLibrary.Repositories.EntityRepositories
 				.Where(ps => ps.ParentId == parent.Id)
 				.ToList();
 		}
-		
-		public void RemoveStudent(List<ParentStudent> parentStudents)
+
+		public ICollection<ParentStudent> GetWithContactsByStudent(Student student)
 		{
-			RemoveRange(parentStudents);
+			return _context.Set<ParentStudent>()
+				.Where(ps => ps.StudentId == student.Id)
+				.Include(ps => ps.Parent)
+				.ThenInclude(p => p.Contacts)
+				.ToList();
 		}
 	}
 }
