@@ -12,8 +12,6 @@ public class TimetableConfiguration : IEntityTypeConfiguration<Timetable>
 
         builder.ToTable("timetable");
 
-        builder.HasIndex(e => new { e.DayOfWeek, e.LessonTime }, "ux_timetable_lesson_day_date").IsUnique();
-
         builder.Property(e => e.Id).HasColumnName("id");
         builder.Property(e => e.AuditoryId).HasColumnName("auditory_id");
         builder.Property(e => e.ClassId).HasColumnName("class_id");
