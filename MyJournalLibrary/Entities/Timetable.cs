@@ -12,7 +12,7 @@ public partial class Timetable
 
     public int SubjectId { get; set; }
 
-    public int AuditoryId { get; set; }
+    public int? AuditoryId { get; set; }
 
     public int? TeacherId { get; set; }
 

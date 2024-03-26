@@ -169,7 +169,7 @@ def create_database_structure(con_settings) -> None:
 
             query += '''CREATE TABLE auditories(
                 id SERIAL NOT NULL PRIMARY KEY,
-                auditory_number VARCHAR(10) NOT NULL UNIQUE
+                auditory_number VARCHAR(10) UNIQUE
             );'''
 
             query += '''CREATE TABLE classes(
