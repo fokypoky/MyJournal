@@ -139,10 +139,6 @@ namespace MyJournalAdmin.ViewModels.UserControls.Timetable
 			get => new RelayCommand(RemoveTimetable);
 		}
 
-		public ICommand UpdateTimetableCommand
-		{
-			get => new RelayCommand(UpdateTimetable);
-		}
 
 		#endregion
 
