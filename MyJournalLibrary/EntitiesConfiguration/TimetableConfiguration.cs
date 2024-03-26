@@ -13,7 +13,7 @@ public class TimetableConfiguration : IEntityTypeConfiguration<Timetable>
         builder.ToTable("timetable");
 
         builder.Property(e => e.Id).HasColumnName("id");
-        builder.Property(e => e.AuditoryId).HasColumnName("auditory_id");
+        builder.Property(e => e.AuditoryId).IsRequired(false).HasColumnName("auditory_id");
         builder.Property(e => e.ClassId).HasColumnName("class_id");
         builder.Property(e => e.DayOfWeek).HasColumnName("day_of_week");
         builder.Property(e => e.LessonTime).HasColumnName("lesson_time");

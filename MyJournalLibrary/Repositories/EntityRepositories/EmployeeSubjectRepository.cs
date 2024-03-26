@@ -9,6 +9,13 @@ namespace MyJournalLibrary.Repositories.EntityRepositories
 		{
 		}
 
+		public void RemoveAllBySubject(Subject subject)
+		{
+			_context.Set<EmployeeSubject>()
+				.RemoveRange(_context.Set<EmployeeSubject>().Where(es => es.SubjectId == subject.Id));
+			_context.SaveChanges();
+		}
+
 		public ICollection<EmployeeSubject> GetEmployeesWithContactsBySubject(Subject subject)
 		{
 			return _context.Set<EmployeeSubject>()

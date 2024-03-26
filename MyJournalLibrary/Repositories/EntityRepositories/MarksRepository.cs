@@ -10,6 +10,13 @@ public class MarksRepository : EntityRepository<Mark>
     {
     }
 
+    public void RemoveAllBySubject(Subject subject)
+    {
+        _context.Set<Mark>()
+	        .RemoveRange(_context.Set<Mark>().Where(m => m.SubjectId == subject.Id));
+        _context.SaveChanges();
+    }
+
     public ICollection<Mark> GetByEmployee(Employee employee)
     {
         return _context.Set<Mark>()

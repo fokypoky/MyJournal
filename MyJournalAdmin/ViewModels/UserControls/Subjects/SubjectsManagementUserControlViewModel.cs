@@ -67,7 +67,30 @@ namespace MyJournalAdmin.ViewModels.UserControls.Subjects
 		{
 			new AddNewSubjectWindow().Show();
 		}
-		private void RemoveSubject(object parameter) { }
+
+		private void RemoveSubject(object parameter)
+		{
+			if (SelectedSubject is null)
+			{
+				_notifier.Notify("Предмет не выбран");
+				return;
+			}
+
+			using (var context = new ApplicationContext())
+			{
+				new ClassSubjectRepository(context).RemoveAllBySubject(SelectedSubject);
+				new TasksRepository(context).RemoveAllBySubject(SelectedSubject);
+				new TimetableRepository(context).RemoveAllBySubject(SelectedSubject);
+				new EmployeeSubjectRepository(context).RemoveAllBySubject(SelectedSubject);
+				new MarksRepository(context).RemoveAllBySubject(SelectedSubject);
+				new SubjectsRepository(context).Remove(SelectedSubject);
+
+				AllSubjects.Remove(SelectedSubject);
+				SelectedSubject = null;
+
+				_notifier.Notify("Предмет удален");
+			}
+		}
 
 		private void UpdateSubject(object parameter)
 		{

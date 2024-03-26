@@ -16,9 +16,11 @@ public class TimetableRepository : EntityRepository<Timetable>
 		    .ToList();
     }
 
-    public void SetAuditoryNull(Auditory auditory)
+    public void RemoveAllBySubject(Subject subject)
     {
-        
+        _context.Set<Timetable>()
+	        .RemoveRange(_context.Set<Timetable>().Where(t => t.SubjectId == subject.Id));
+        _context.SaveChanges();
     }
 
     public void UpdateRange(List<Timetable> timetables)

@@ -10,6 +10,13 @@ public class TasksRepository : EntityRepository<Task>
     {
     }
 
+    public void RemoveAllBySubject(Subject subject)
+    {
+        _context.Set<Task>()
+	        .RemoveRange(_context.Set<Task>().Where(t => t.SubjectId == subject.Id));
+        _context.SaveChanges();
+    }
+
     public ICollection<Task> GetByEmployee(Employee employee)
     {
         return _context.Set<Task>()
