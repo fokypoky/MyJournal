@@ -14,7 +14,7 @@ public partial class Timetable
 
     public int AuditoryId { get; set; }
 
-    public int TeacherId { get; set; }
+    public int? TeacherId { get; set; }
 
     public virtual Auditory Auditory { get; set; } = null!;
 

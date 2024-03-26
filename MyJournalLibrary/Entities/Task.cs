@@ -10,7 +10,7 @@ public partial class Task
 
     public string TaskText { get; set; } = null!;
 
-    public int TeacherId { get; set; }
+    public int? TeacherId { get; set; }
 
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
