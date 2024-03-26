@@ -9,6 +9,18 @@ public class TimetableRepository : EntityRepository<Timetable>
     {
     }
 
+    public ICollection<Timetable> GetByAuditory(Auditory auditory)
+    {
+	    return _context.Set<Timetable>()
+		    .Where(t => t.AuditoryId == auditory.Id)
+		    .ToList();
+    }
+
+    public void SetAuditoryNull(Auditory auditory)
+    {
+        
+    }
+
     public void UpdateRange(List<Timetable> timetables)
     {
         _context.Set<Timetable>().UpdateRange(timetables);

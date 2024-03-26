@@ -9,6 +9,13 @@ public class ClassRepository : EntityRepository<Class>
     {
     }
 
+    public ICollection<Class> GetRangeByAuditory(Auditory auditory)
+    {
+        return _context.Set<Class>()
+	        .Where(c => c.AuditoryId == auditory.Id)
+	        .ToList();
+    }
+
     public void UpdateRange(List<Class> classes)
     {
         _context.Set<Class>().UpdateRange(classes);

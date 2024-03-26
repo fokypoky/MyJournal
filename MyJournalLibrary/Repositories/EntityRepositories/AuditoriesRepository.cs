@@ -18,7 +18,6 @@ public class AuditoriesRepository : EntityRepository<Auditory>
     public ICollection<Auditory> GetAll()
     {
         return _context.Set<Auditory>()
-	        .Include(a => a.Classes)
 	        .ToList();
     }
 
