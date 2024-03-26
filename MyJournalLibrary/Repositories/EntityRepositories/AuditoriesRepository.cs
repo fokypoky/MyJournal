@@ -22,4 +22,10 @@ public class AuditoriesRepository : EntityRepository<Auditory>
 	        .ToList();
     }
 
+    public ICollection<Auditory> GetNotInRange(List<Auditory> auditories)
+    {
+        return _context.Set<Auditory>()
+	        .Where(a => !auditories.Contains(a))
+	        .ToList();
+    }
 }
