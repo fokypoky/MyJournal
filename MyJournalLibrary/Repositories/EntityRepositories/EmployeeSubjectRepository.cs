@@ -17,5 +17,12 @@ namespace MyJournalLibrary.Repositories.EntityRepositories
 				.ThenInclude(e => e.Contacts)
 				.ToList();
 		}
+
+		public void RemoveByEmployee(Employee employee)
+		{
+			_context.Set<EmployeeSubject>()
+				.RemoveRange(_context.Set<EmployeeSubject>().Where(es => es.EmployeeId == employee.Id));
+			_context.SaveChanges();
+		}
 	}
 }

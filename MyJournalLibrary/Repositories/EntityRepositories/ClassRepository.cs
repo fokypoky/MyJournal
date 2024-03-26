@@ -9,6 +9,12 @@ public class ClassRepository : EntityRepository<Class>
     {
     }
 
+    public void UpdateRange(List<Class> classes)
+    {
+        _context.Set<Class>().UpdateRange(classes);
+        _context.SaveChanges();
+    }
+
     public ICollection<Class> GetAll()
     {
         return _context.Set<Class>().ToList();

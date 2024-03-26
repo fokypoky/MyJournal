@@ -10,6 +10,19 @@ public class TasksRepository : EntityRepository<Task>
     {
     }
 
+    public ICollection<Task> GetByEmployee(Employee employee)
+    {
+        return _context.Set<Task>()
+	        .Where(t => t.TeacherId == employee.Id)
+	        .ToList();
+    }
+
+    public void UpdateRange(List<Task> tasks)
+    {
+        _context.Set<Task>().UpdateRange(tasks);
+        _context.SaveChanges();
+    }
+
     public ICollection<Task> GetByClassSubjectAndPeriod(Class @class, Subject subject, int year, int month)
     {
         return _context.Set<Task>()

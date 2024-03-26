@@ -10,11 +10,11 @@ public class MarksRepository : EntityRepository<Mark>
     {
     }
 
-    public void RemoveByEmployee(Employee employee)
+    public ICollection<Mark> GetByEmployee(Employee employee)
     {
-	    _context.Set<Mark>()
-		    .RemoveRange(_context.Set<Mark>()
-				    .Where(m => m.TeacherId == employee.Id));
+        return _context.Set<Mark>()
+	        .Where(m => m.TeacherId == employee.Id)
+	        .ToList();
     }
 
     public ICollection<Mark> GetWithTeacherAndContactsByStudentSubjectAndPeriod(Student student, Subject subject,

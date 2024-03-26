@@ -9,6 +9,19 @@ public class TimetableRepository : EntityRepository<Timetable>
     {
     }
 
+    public void UpdateRange(List<Timetable> timetables)
+    {
+        _context.Set<Timetable>().UpdateRange(timetables);
+        _context.SaveChanges();
+    }
+
+    public ICollection<Timetable> GetByEmployee(Employee employee)
+    {
+        return _context.Set<Timetable>()
+	        .Where(t => t.TeacherId == employee.Id)
+	        .ToList();
+    }
+
     public ICollection<Timetable> GetTimetableByEmployee(Employee employee)
     {
         return _context.Set<Timetable>()

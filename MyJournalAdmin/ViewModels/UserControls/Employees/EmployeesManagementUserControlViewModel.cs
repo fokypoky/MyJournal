@@ -132,9 +132,52 @@ namespace MyJournalAdmin.ViewModels.UserControls.Employees
 
 			using (var context = new ApplicationContext())
 			{
-				var employeesRepository = new EmployeesRepository(context);
+				var marksRepository = new MarksRepository(context);
+				var tasksRepository = new TasksRepository(context);
+				var timetableRepository = new TimetableRepository(context);
+				var classesRepository = new ClassRepository(context);
 
-				employeesRepository.RemoveSubjects(SelectedEmployee);
+				new EmployeeSubjectRepository(context).RemoveByEmployee(SelectedEmployee);
+
+				var employeeMarks = marksRepository.GetByEmployee(SelectedEmployee);
+				foreach (var employeeMark in employeeMarks)
+				{
+					employeeMark.TeacherId = null;
+				}
+
+				marksRepository.UpdateRange(employeeMarks);
+
+				var employeeTasks = tasksRepository.GetByEmployee(SelectedEmployee);
+				foreach (var task in employeeTasks)
+				{
+					task.TeacherId = null;
+				}
+
+				tasksRepository.UpdateRange(employeeTasks.ToList());
+
+				var classes = new ClassRepository(context).GetByEmployee(SelectedEmployee);
+				foreach (var @class in classes)
+				{
+					@class.LeaderId = null;
+				}
+
+				classesRepository.UpdateRange(classes.ToList());
+
+				var timetables = timetableRepository.GetByEmployee(SelectedEmployee);
+				foreach (var timetable in timetables)
+				{
+					timetable.TeacherId = null;
+				}
+
+				timetableRepository.UpdateRange(timetables.ToList());
+
+				new EmployeesRepository(context).Remove(SelectedEmployee);
+				new ContactsRepository(context).Remove(SelectedEmployee.Contacts);
+
+				Employees.Remove(SelectedEmployee);
+				SelectedEmployee = null;
+
+				_notifier.Notify("Сотрудник удален");
 			}
 
 		}
