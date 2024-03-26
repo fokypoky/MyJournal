@@ -178,15 +178,6 @@ namespace MyJournalAdmin.ViewModels.UserControls.Timetable
 			}
 		}
 
-		private void UpdateTimetable(object parameter)
-		{
-			if (SelectedTimetable is null)
-			{
-				_notifier.Notify("Выберите элемент расписания");
-				return;
-			}
-		}
-
 		#endregion
 
 		private List<MyJournalLibrary.Entities.Timetable> GetTimetablesByDayOfWeek(int dayOfWeek)

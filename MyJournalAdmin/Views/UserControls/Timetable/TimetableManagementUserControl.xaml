@@ -63,7 +63,6 @@
             <Border Grid.Column="2" Grid.RowSpan="4">
                 <StackPanel>
                     <Button Content="Добавить" Command="{Binding AddTimetableCommand}"/>
-                    <Button Content="Изменить" Command="{Binding UpdateTimetableCommand}"/>
                     <Button Content="Удалить" Command="{Binding RemoveTimetableCommand}"/>
                 </StackPanel>
             </Border>
