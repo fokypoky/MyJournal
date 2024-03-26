@@ -77,4 +77,11 @@ public class EmployeesRepository : EntityRepository<Employee>
 		    .Include(e => e.Contacts)
 		    .ToList();
     }
+
+    public ICollection<Employee> GetNotInRange(List<Employee> employees)
+    {
+        return _context.Set<Employee>()
+	        .Where(e => !employees.Contains(e))
+	        .ToList();
+    }
 }
