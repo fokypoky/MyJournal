@@ -91,7 +91,18 @@ namespace MyJournalAdmin.ViewModels.UserControls.Parents
                 SelectedParent = null;
             }
         }
-        private void UpdateParent(object parameter) { }
+
+        private void UpdateParent(object parameter)
+        {
+	        if (SelectedParent is null)
+	        {
+                _notifier.Notify("Выберите родителя");
+                return;
+	        }
+
+	        new UpdateParentWindow().Show();
+            WindowMessenger.OnMessageSend(new ParentToUpdateMessage() { Parent = SelectedParent });
+        }
 
         #endregion
 

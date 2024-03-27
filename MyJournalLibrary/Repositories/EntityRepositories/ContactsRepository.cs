@@ -9,6 +9,21 @@ public class ContactsRepository : EntityRepository<Contact>
     {
     }
 
+    public string? GetPhoneNumberById(int id)
+    {
+	    return _context.Set<Contact>().FirstOrDefault(c => c.Id == id)?.PhoneNumber;
+    }
+
+    public string? GetEmailById(int id)
+    {
+	    return _context.Set<Contact>().FirstOrDefault(c => c.Id == id)?.Email;
+    }
+
+    //public override void Update(Contact contact)
+    //{
+	   // _context.Set<Contact>().AsNoTracking()
+    //}
+
     public Contact? GetByLogin(string login, string password)
     {
         return _context.Set<Contact>()

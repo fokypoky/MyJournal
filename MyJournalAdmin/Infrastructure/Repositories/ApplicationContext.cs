@@ -30,6 +30,7 @@ namespace MyJournalAdmin.Infrastructure.Repositories
 			AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 			optionsBuilder.LogTo(m => Debug.WriteLine(m));
 			optionsBuilder.EnableSensitiveDataLogging();
+			optionsBuilder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 		}
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)

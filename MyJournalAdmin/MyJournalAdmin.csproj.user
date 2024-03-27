@@ -38,6 +38,9 @@
     <Compile Update="Views\Windows\Main\MainWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Windows\Parents\UpdateParentWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Windows\Settings\ConnectionSettingsWingow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -92,6 +95,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Windows\Main\MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Windows\Parents\UpdateParentWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Windows\Settings\ConnectionSettingsWingow.xaml">

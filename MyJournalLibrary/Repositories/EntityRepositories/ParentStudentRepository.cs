@@ -38,5 +38,14 @@ namespace MyJournalLibrary.Repositories.EntityRepositories
 				.ThenInclude(p => p.Contacts)
 				.ToList();
 		}
+
+		public ICollection<ParentStudent> GetWithStudentContactsByParentContacts(Contact parentContacts)
+		{
+			return _context.Set<ParentStudent>()
+				.Where(ps => ps.Parent.ContactsId == parentContacts.Id)
+				.Include(ps => ps.Student)
+				.ThenInclude(s => s.Contacts)
+				.ToList();
+		} 
 	}
 }
