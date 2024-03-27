@@ -9,6 +9,14 @@ public class StudentsRepository : EntityRepository<Student>
     public StudentsRepository(DbContext context) : base(context)
     {
     }
+
+    public ICollection<Student> GetAllByClass(Class @class)
+    {
+        return _context.Set<Student>()
+	        .Where(s => s.ClassId == @class.Id)
+	        .ToList();
+    }
+
     public ICollection<Student> GetByClass(Class @class)
     {
         return _context.Set<Student>()

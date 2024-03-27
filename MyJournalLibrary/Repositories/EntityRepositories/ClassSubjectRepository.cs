@@ -14,6 +14,13 @@ namespace MyJournalLibrary.Repositories.EntityRepositories
 		{
 		}
 
+		public void RemoveAllByClass(Class @class)
+		{
+			_context.Set<ClassSubject>()
+				.RemoveRange(_context.Set<ClassSubject>().Where(cs => cs.ClassId == @class.Id));
+			_context.SaveChanges();
+		}
+
 		public void RemoveAllBySubject(Subject subject)
 		{
 			_context.Set<ClassSubject>()

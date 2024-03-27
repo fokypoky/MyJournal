@@ -13,7 +13,7 @@ public class StudentConfiguration : IEntityTypeConfiguration<Student>
         builder.ToTable("students");
 
         builder.Property(e => e.Id).HasColumnName("id");
-        builder.Property(e => e.ClassId).HasColumnName("class_id");
+        builder.Property(e => e.ClassId).IsRequired(false).HasColumnName("class_id");
         builder.Property(e => e.ContactsId).HasColumnName("contacts_id");
 
         builder.HasOne(d => d.Class).WithMany(p => p.Students)

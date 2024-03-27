@@ -183,7 +183,7 @@ def create_database_structure(con_settings) -> None:
 
             query += '''CREATE TABLE students(
                 id SERIAL NOT NULL PRIMARY KEY,
-                class_id INT NOT NULL,
+                class_id INT,
                 contacts_id INT NOT NULL,
                 FOREIGN KEY (class_id) REFERENCES classes(id),
                 FOREIGN KEY (contacts_id) REFERENCES contacts(id)

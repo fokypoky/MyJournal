@@ -18,7 +18,7 @@ public class TaskConfiguration : IEntityTypeConfiguration<Task>
         builder.Property(e => e.TaskText)
             .HasMaxLength(200)
             .HasColumnName("task_text");
-        builder.Property(e => e.TeacherId).HasColumnName("teacher_id");
+        builder.Property(e => e.TeacherId).IsRequired(false).HasColumnName("teacher_id");
 
         builder.Property(e => e.StartDate).HasColumnName("task_start_date");
         builder.Property(e => e.EndDate).HasColumnName("task_deadline_date");

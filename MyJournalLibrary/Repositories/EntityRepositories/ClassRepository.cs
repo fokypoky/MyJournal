@@ -9,6 +9,15 @@ public class ClassRepository : EntityRepository<Class>
     {
     }
 
+    public ICollection<Class> GetAllWithLeaderAndAuditory()
+    {
+        return _context.Set<Class>()
+	        .Include(c => c.Leader)
+				.ThenInclude(l => l.Contacts)
+	        .Include(c => c.Auditory)
+	        .ToList();
+    }
+
     public ICollection<Class> GetRangeByAuditory(Auditory auditory)
     {
         return _context.Set<Class>()

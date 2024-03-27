@@ -23,6 +23,13 @@ public class TimetableRepository : EntityRepository<Timetable>
         _context.SaveChanges();
     }
 
+    public void RemoveAllByClass(Class @class)
+    {
+        _context.Set<Timetable>()
+	        .RemoveRange(_context.Set<Timetable>().Where(t => t.ClassId == @class.Id));
+        _context.SaveChanges();
+    }
+
     public void UpdateRange(List<Timetable> timetables)
     {
         _context.Set<Timetable>().UpdateRange(timetables);
