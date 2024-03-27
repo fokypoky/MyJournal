@@ -39,13 +39,6 @@
     </UserControl.Resources>
 
     <Grid>
-
-        <Grid.RowDefinitions>
-
-            <RowDefinition Height="9*"/>
-            <RowDefinition Height="7*"/>
-            <RowDefinition Height="2*"/>
-        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2.5*"/>
             <ColumnDefinition Width="*"/>
@@ -90,39 +83,6 @@
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            
-            <!-- Фамилия -->
-            <StackPanel Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2">
-                <TextBlock Text="Фамилия" Style="{StaticResource SearchingTextBlockStyle}"/>
-                <TextBox Style="{StaticResource SearchingTextBoxStyle}"
-                         Text="{Binding EmployeeSurnameToSearch, 
-                                UpdateSourceTrigger=PropertyChanged}"/>
-
-                <TextBlock Text="Имя" Style="{StaticResource SearchingTextBlockStyle}"/>
-                <TextBox Style="{StaticResource SearchingTextBoxStyle}"
-                         Text="{Binding EmployeeNameToSearch,
-                                UpdateSourceTrigger=PropertyChanged}"/>
-
-                <TextBlock Text="Телефон" Style="{StaticResource SearchingTextBlockStyle}"/>
-                <TextBox Style="{StaticResource SearchingTextBoxStyle}"
-                         Text="{Binding EmployeePhoneNumberToSearch,
-                                UpdateSourceTrigger=PropertyChanged}"/>
-
-                <TextBlock Text="E-mail" Style="{StaticResource SearchingTextBlockStyle}"/>
-                <TextBox Style="{StaticResource SearchingTextBoxStyle}"
-                         Text="{Binding EmployeeEmailToSearch,
-                                UpdateSourceTrigger=PropertyChanged}"/>
-
-            </StackPanel>
-
-            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
-                    Content="Поиск"
-                    Margin="3"
-                    BorderThickness="0"
-                    Command="{Binding FindEmployeeCommand}"/>
-
         </Grid>
-        
-
     </Grid>
 </UserControl>
