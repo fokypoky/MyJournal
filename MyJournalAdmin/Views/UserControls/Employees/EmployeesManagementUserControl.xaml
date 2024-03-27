@@ -71,18 +71,9 @@
             <Button Content="Удалить" 
                 Style="{StaticResource ActionButtonsStyle}"
                 Command="{Binding RemoveEmployeeCommand}"/>
+            <Button Content="Обновить"
+                    Style="{StaticResource ActionButtonsStyle}"
+                    Command="{Binding RefreshCommand}"/>
         </StackPanel>
-        
-        <Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-        </Grid>
     </Grid>
 </UserControl>

@@ -41,6 +41,7 @@
             <Button Content="Добавить" Command="{Binding AddSubjectCommand}"/>
             <Button Content="Изменить" Command="{Binding UpdateSubjectCommand}"/>
             <Button Content="Удалить" Command="{Binding RemoveSubjectCommand}"/>
+            <Button Content="Обновить" Command="{Binding RefreshCommand}"/>
         </StackPanel>
 
     </Grid>

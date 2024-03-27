@@ -60,6 +60,11 @@ namespace MyJournalAdmin.ViewModels.UserControls.Auditories
 			get => new RelayCommand(UpdateAuditory);
 		}
 
+		public ICommand RefreshCommand
+		{
+			get => new RelayCommand(Refresh);
+		}
+
 		#endregion
 
 		#region Command functions
@@ -125,6 +130,19 @@ namespace MyJournalAdmin.ViewModels.UserControls.Auditories
 
 			new AuditoryUpdatingWindow().Show();
 			WindowMessenger.OnMessageSend(new AuditoryEditMessage() {Auditory = SelectedAuditory});
+		}
+
+		private void Refresh(object parameter)
+		{
+			using (var context = new ApplicationContext())
+			{
+				Auditories = new ObservableCollection<Auditory>(
+					new AuditoriesRepository(context).GetAll()
+						.OrderBy(a => a.AuditoryNumber)
+				);
+			}
+
+			SelectedAuditory = null;
 		}
 
 		#endregion

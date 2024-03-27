@@ -139,6 +139,10 @@ namespace MyJournalAdmin.ViewModels.UserControls.Timetable
 			get => new RelayCommand(RemoveTimetable);
 		}
 
+		public ICommand RefreshCommand
+		{
+			get => new RelayCommand(RefreshTimetable);
+		}
 
 		#endregion
 
@@ -172,6 +176,25 @@ namespace MyJournalAdmin.ViewModels.UserControls.Timetable
 
 				_notifier.Notify("Элемент расписания удален");
 			}
+		}
+
+		private void RefreshTimetable(object parameter)
+		{
+			if (SelectedClass is null)
+			{
+				_notifier.Notify("Класс не выбран");
+				return;
+			}
+
+			using (var context = new ApplicationContext())
+			{
+				ClassTimetables = new ObservableCollection<MyJournalLibrary.Entities.Timetable>(
+					new TimetableRepository(context).GetByClassWithEmployeeContactsSubjectAndAuditory(
+						_selectedClass)
+				);
+			}
+
+			SelectedTimetable = null;
 		}
 
 		#endregion

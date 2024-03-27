@@ -36,6 +36,11 @@ namespace MyJournalAdmin.ViewModels.UserControls.Classes
 
 		#region Commands
 
+		public ICommand RefreshCommand
+		{
+			get => new RelayCommand(Refresh);
+		}
+
 		public ICommand AddClassCommand
 		{
 			get => new RelayCommand(AddClass);
@@ -54,6 +59,18 @@ namespace MyJournalAdmin.ViewModels.UserControls.Classes
 		#endregion
 
 		#region Command methods
+
+		private void Refresh(object parameter)
+		{
+			using (var context = new ApplicationContext())
+			{
+				Classes = new ObservableCollection<Class>(
+					new ClassRepository(context).GetAllWithLeaderAndAuditory()
+				);
+			}
+
+			SelectedClass = null;
+		}
 
 		private void AddClass(object parameter)
 		{

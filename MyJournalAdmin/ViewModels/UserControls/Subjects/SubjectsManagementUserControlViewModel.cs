@@ -44,6 +44,11 @@ namespace MyJournalAdmin.ViewModels.UserControls.Subjects
 
 		#region Commands
 
+		public ICommand RefreshCommand
+		{
+			get => new RelayCommand(Refresh);
+		}
+
 		public ICommand AddSubjectCommand
 		{
 			get => new RelayCommand(AddSubject);
@@ -102,6 +107,19 @@ namespace MyJournalAdmin.ViewModels.UserControls.Subjects
 
 			new SubjectUpdatingWindow().Show();
 			WindowMessenger.OnMessageSend(new SubjectToUpdateMessage() { Subject = SelectedSubject });
+		}
+
+		private void Refresh(object parameter)
+		{
+			using (var context = new ApplicationContext())
+			{
+				AllSubjects = new ObservableCollection<Subject>(
+					new SubjectsRepository(context).GetAll()
+				);
+				AllSubjects.OrderBy(s => s.SubjectTitle);
+			}
+
+			SelectedSubject = null;
 		}
 
 		#endregion

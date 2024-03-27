@@ -96,6 +96,11 @@ namespace MyJournalAdmin.ViewModels.UserControls.Employees
 			get => new RelayCommand(RemoveEmployee);
 		}
 
+		public ICommand RefreshCommand
+		{
+			get => new RelayCommand(Refresh);
+		}
+
 		#endregion
 
 		#region Command functions
@@ -180,6 +185,17 @@ namespace MyJournalAdmin.ViewModels.UserControls.Employees
 				_notifier.Notify("Сотрудник удален");
 			}
 
+		}
+
+		private void Refresh(object parameter)
+		{
+			using (var context = new ApplicationContext())
+			{
+				Employees = new ObservableCollection<Employee>(
+					new EmployeesRepository(context).GetAllWithContacts()
+				);
+				SelectedEmployee = null;
+			}
 		}
 
 		#endregion

@@ -50,9 +50,26 @@ namespace MyJournalAdmin.ViewModels.UserControls.Students
 			get => new RelayCommand(DeleteStudent);
 		}
 
+		public ICommand RefreshCommand
+		{
+			get => new RelayCommand(Refresh);
+		}
+
 		#endregion
 
 		#region Command methods
+
+		private void Refresh(object parameter)
+		{
+			using (var context = new ApplicationContext())
+			{
+				Students = new ObservableCollection<Student>(
+					new StudentsRepository(context).GetAllWithClassAndContactsNoTracking()
+						.OrderBy(s => s.Contacts?.Surname)
+				);
+				SelectedStudent = null;
+			}
+		}
 
 		private void AddNewStudent(object parameter)
 		{

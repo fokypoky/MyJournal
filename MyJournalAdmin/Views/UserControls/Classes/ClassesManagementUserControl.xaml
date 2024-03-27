@@ -41,6 +41,7 @@
             <Button Content="Добавить" Command="{Binding AddClassCommand}"/>
             <Button Content="Изменить" Command="{Binding UpdateClassCommand}"/>
             <Button Content="Удалить" Command="{Binding RemoveClassCommand}"/>
+            <Button Content="Обновить" Command="{Binding RefreshCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>

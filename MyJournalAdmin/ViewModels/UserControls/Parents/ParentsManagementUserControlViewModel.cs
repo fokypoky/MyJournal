@@ -59,9 +59,26 @@ namespace MyJournalAdmin.ViewModels.UserControls.Parents
             get => new RelayCommand(UpdateParent);
         }
 
+        public ICommand RefreshCommand
+        {
+	        get => new RelayCommand(Refresh);
+        }
+
         #endregion
 
         #region Command methods
+
+        private void Refresh(object parameter)
+        {
+	        using (var context = new ApplicationContext())
+	        {
+		        Parents = new ObservableCollection<Parent>(
+			        new ParentsRepository(context).GetAllWithContacts()
+				        .OrderBy(p => p.Contacts.Surname)
+		        );
+		        SelectedParent = null;
+	        }
+		}
 
         private void AddParent(object parameter)
         {

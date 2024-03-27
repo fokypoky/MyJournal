@@ -42,6 +42,7 @@
             <Button Content="Добавить" Command="{Binding AddAuditoryCommand}"/>
             <Button Content="Изменить" Command="{Binding UpdateAuditoryCommand}"/>
             <Button Content="Удалить" Command="{Binding RemoveAuditoryCommand}"/>
+            <Button Content="Обновить" Command="{Binding RefreshCommand}"/>
         </StackPanel>
 
     </Grid>

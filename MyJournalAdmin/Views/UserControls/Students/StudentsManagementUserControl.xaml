@@ -55,6 +55,8 @@
 
             <Button Content="Удалить" Style="{StaticResource ActionButtonsStyle}"
                     Command="{Binding DeleteStudentCommand}"/>
+            <Button Content="Обновить" Style="{StaticResource ActionButtonsStyle}"
+                    Command="{Binding RefreshCommand}"/>
         </StackPanel>
 
     </Grid>
