@@ -1,0 +1,77 @@
+﻿<Window x:Class="MyJournalAdmin.Views.Windows.Auditories.AddNewAuditoryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyJournalAdmin.Views.Windows.Auditories"
+        xmlns:vmodel="clr-namespace:MyJournalAdmin.ViewModels.Windows.Auditories"
+        mc:Ignorable="d"
+        Title="Добавить аудиторию" Height="250" Width="400"
+        ResizeMode="NoResize">
+    
+    <Window.DataContext>
+        <vmodel:AddNewAuditoryWindowViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="17,6,17,0"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Margin" Value="17,6,17,0"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+        <Style TargetType="StackPanel">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="Номер аудитории"/>
+            <TextBox Text="{Binding Auditory.AuditoryNumber,
+                UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Класс"/>
+                <CheckBox Content="Нет класса"
+                          IsChecked="{Binding ClassIsNotNeed}"
+                          FontSize="12"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Center"
+                          Margin="10, 3,0 ,0"/>
+            </StackPanel>
+            <ComboBox ItemsSource="{Binding Classes}"
+                      SelectedItem="{Binding SelectedClass}"
+                      IsEnabled="{Binding ClassSelectionIsAvailable}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding ClassNumber}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+
+        <Button Grid.Row="2" Content="Добавить"
+                Command="{Binding AddAuditoryCommand}"/>
+
+    </Grid>
+</Window>

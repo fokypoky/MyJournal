@@ -1,8 +1,20 @@
-﻿using System.Windows;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Windows;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
+using MyJournal.Models;
 using MyJournal.ViewModels.Base;
 using MyJournal.Views;
+using MyJournalLibrary.Repositories.FileRepositories;
+using UserRole = MyJournal.Models.UserRole;
+using MyJournal.Infrastructure.Commands;
+using MyJournalLibrary.Encrypting;
+using MyJournalLibrary.Encrypting.Implementation;
+using MyJournalLibrary.Encrypting.Keys.Implementation;
+using MyJournalLibrary.Repositories.EntityRepositories;
 
 namespace MyJournal.ViewModels;
 
@@ -10,7 +22,8 @@ public class LoginWindowViewModel : ViewModel
 {
     private string _login;
     private string _password;
-    
+    private bool _needsToSaveLogin = false;
+    private IEncryptor _encryptor;
     public string Login
     {
         get => _login;
@@ -23,27 +36,121 @@ public class LoginWindowViewModel : ViewModel
         set => SetField(ref _password, value);
     }
 
+    public bool NeedsToSaveLogin
+    {
+        get => _needsToSaveLogin;
+        set => SetField(ref _needsToSaveLogin, value);
+    }
+
+    public ICommand RememberLogin
+    {
+        get => new RelayCommand((object parameter) =>
+        {
+            NeedsToSaveLogin = !NeedsToSaveLogin;
+        });
+    }
     public ICommand LoginButtonClick
     {
-        get => new RelayCommand(OnLoginButtonClick);
+        get => new RelayCommand(OnLoginButtonClick, CanLoginButtonClicked);
     }
-    private void OnLoginButtonClick()
+
+    private void OnLoginButtonClick(object parameter)
     {
-        TeacherWindow window = new TeacherWindow();
-        window.Show();
+        using (var db = new ApplicationContext())
+        {
+            var service = new ContactsRepository(db);
+            var contact = service.GetByLogin(Login, Password);
+
+            if (contact == null)
+            {
+                MessageBox.Show("Такого пользователя не существует");
+                return;
+            }
+            
+            ApplicationData.UserId = contact.Id;
+
+            switch (contact.UserRole.Rolename.ToLower())
+            {
+                case "employee":
+                    ApplicationData.UserRole = UserRole.Employee;
+                    break;
+                case "student":
+                    ApplicationData.UserRole = UserRole.Student;
+                    break;
+                case "parent":
+                    ApplicationData.UserRole = UserRole.Parent;
+                    break;
+                default:
+                    ApplicationData.UserRole = UserRole.None;
+                    MessageBox.Show("Недостаточно привилегий");
+                    return;
+            }
+
+            if (NeedsToSaveLogin)
+            {
+                string encryptedLogin = Convert.ToBase64String(_encryptor.Encrypt(Login));
+                string encryptedPassword = Convert.ToBase64String(_encryptor.Encrypt(Password));
+
+                var repository = new JsonRepository<LoginData>("LoginData.json");
+                repository.WriteFile(new LoginData(encryptedLogin, encryptedPassword));
+            }
+
+            Views.MainWindow mainWindow = new Views.MainWindow();
+            mainWindow.Show();
+
+            if (ApplicationData.UserRole != UserRole.None)
+            {
+	            if (parameter is not Window)
+	            {
+		            return;
+	            }
+
+                var window = (Window)parameter;
+                window.Close();
+            }
+            
+        }
+    }
+
+    private bool CanLoginButtonClicked(object parameter)
+    {
+        using (var db = new ApplicationContext())
+        {
+            return db.Database.CanConnect();
+        }
     }
 
     public ICommand ConnectionSettingsButtonClick
     {
-        get => new RelayCommand(() =>
+        get => new RelayCommand((object parameter) =>
         {
             ConnectionSettingsWindow settingsWindow = new ConnectionSettingsWindow();
             settingsWindow.Show();
         });
     }
-    
     public LoginWindowViewModel()
     {
+        ApplicationData.AESKey = new AESKey(
+            Encoding.UTF8.GetBytes("MyJournalAESKey"),
+            new byte[] { 142, 11, 13, 188, 138, 80, 185, 126, 5, 27, 33, 33, 75, 18, 210, 232}
+        );
+        _encryptor = new AESEncryptor(ApplicationData.AESKey);
         
+        JsonRepository<DatabaseConnection> repository = new JsonRepository<DatabaseConnection>("ConnectionSettings.json");
+        var connection = repository.ReadFile();
+        
+        if (connection != null)
+        {
+            ApplicationContext.ConnectionString = connection.ToConnectionString();
+        }
+
+        if (File.Exists("LoginData.json"))
+        {
+            JsonRepository<LoginData> loginRepository = new JsonRepository<LoginData>("LoginData.json");
+            var loginData = loginRepository.ReadFile();
+
+            Login = _encryptor.Decrypt(Convert.FromBase64String(loginData.Login));
+            Password = _encryptor.Decrypt(Convert.FromBase64String(loginData.Password));
+        }
     }
 }

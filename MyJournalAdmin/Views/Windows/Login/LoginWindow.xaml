@@ -1,0 +1,91 @@
+﻿<Window x:Class="MyJournalAdmin.Views.Windows.Login.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyJournalAdmin.Views.Windows.Login"
+        xmlns:vmodel="clr-namespace:MyJournalAdmin.ViewModels.Windows.Login"
+        mc:Ignorable="d"
+        Title="Вход" Height="550" Width="350"
+        ResizeMode="NoResize"
+        x:Name="LogInWindow">
+
+    <Window.DataContext>
+        <vmodel:LoginWindowViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="Inter"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="#F0F0F0"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="25"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel HorizontalAlignment="Center"
+            VerticalAlignment="Center" Width="293">
+            <TextBlock Text="Адрес почты или телефон" FontSize="12"
+               Margin="5"/>
+            <TextBox Margin="0,5,0,5"
+             Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <TextBlock Text="Пароль" Margin="5"/>
+            <TextBox Margin="0,5,0,5" 
+             Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Grid Margin="0,5,0,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Восстановить пароль"/>
+
+                <CheckBox Grid.Column="1" IsChecked="{Binding NeedsToSaveLogin}">
+                    <CheckBox.InputBindings>
+                        <MouseBinding MouseAction="LeftClick"
+                              Command="{Binding RememberLoginCommand}"/>
+                    </CheckBox.InputBindings>
+                </CheckBox>
+                
+                <TextBlock Grid.Column="1" Text="Запомнить">
+                    <TextBlock.InputBindings>
+                        <MouseBinding MouseAction="LeftClick"
+                              Command="{Binding RememberLoginCommand}"/>
+                    </TextBlock.InputBindings>
+                </TextBlock>
+
+            </Grid>
+
+            <Button Content="Войти" BorderThickness="0"
+            Height="51"
+            Margin="0,10,0,0"
+            Command="{Binding LoginCommand}"
+            CommandParameter="{Binding ElementName=LogInWindow}"
+            />
+
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <TextBlock Text="Настройки подключения"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"
+               Foreground="#808080">
+                <TextBlock.InputBindings>
+                    <MouseBinding 
+                MouseAction="LeftClick"
+                Command="{Binding OpenConnectionSettingsCommand}"/>
+                </TextBlock.InputBindings>
+            </TextBlock>
+        </Grid>
+    </Grid>
+</Window>

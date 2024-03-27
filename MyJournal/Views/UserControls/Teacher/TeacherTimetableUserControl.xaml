@@ -1,0 +1,206 @@
+﻿<UserControl x:Class="MyJournal.Views.UserControls.Teacher.TeacherTimetableUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:MyJournal.Views.UserControls.Teacher"
+             xmlns:vmodel="clr-namespace:MyJournal.ViewModels.UserControlsViewModels.Teacher"
+             mc:Ignorable="d"
+             d:DesignHeight="550" d:DesignWidth="900">
+
+    <UserControl.DataContext>
+        <vmodel:TeacherTimetableViewModel/>
+    </UserControl.DataContext>
+    
+    <UserControl.Resources>
+        <Style TargetType="ListView">
+            <Setter Property="BorderThickness" Value="0.25"/>
+        </Style>
+        <Style TargetType="GridViewColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="15*"/>
+        </Grid.RowDefinitions>
+        
+        <Grid>
+            <TextBlock Text="{Binding TodayInfo}" FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="20,0,0,0"
+                       FontSize="25"/>
+        </Grid>
+        
+        <Grid Grid.Row="1">
+            <ScrollViewer CanContentScroll="True">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Grid.Column="0">
+                        <TextBlock Text="{Binding MondayInfo}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="14"
+                                   FontWeight="Bold"
+                                   Foreground="#3F4ED7"/>
+                        <ListView ItemsSource="{Binding MondayTimetable}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Предмет"
+                                                    DisplayMemberBinding="{Binding Subject.SubjectTitle}"/>
+                                    <GridViewColumn Header="Аудитория"
+                                                    DisplayMemberBinding="{Binding Auditory.AuditoryNumber}"/>
+                                    <GridViewColumn Header="Время"
+                                                    DisplayMemberBinding="{Binding LessonTime}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Grid.Row="0">
+                        <TextBlock Text="{Binding TuesdayInfo}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="14"
+                                   FontWeight="Bold"
+                                   Foreground="#3F4ED7"/>
+                        <ListView ItemsSource="{Binding TuesdayTimetable}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Предмет"
+                                                    DisplayMemberBinding="{Binding Subject.SubjectTitle}"/>
+                                    <GridViewColumn Header="Аудитория"
+                                                    DisplayMemberBinding="{Binding Auditory.AuditoryNumber}"/>
+                                    <GridViewColumn Header="Время"
+                                                    DisplayMemberBinding="{Binding LessonTime}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
+                    <StackPanel Grid.Column="0" Grid.Row="1">
+                        <TextBlock Text="{Binding WednesdayInfo}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="14"
+                                   FontWeight="Bold"
+                                   Foreground="#3F4ED7"/>
+                        <ListView ItemsSource="{Binding WednesdayTimetable}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Предмет"
+                                                    DisplayMemberBinding="{Binding Subject.SubjectTitle}"/>
+                                    <GridViewColumn Header="Аудитория"
+                                                    DisplayMemberBinding="{Binding Auditory.AuditoryNumber}"/>
+                                    <GridViewColumn Header="Время"
+                                                    DisplayMemberBinding="{Binding LessonTime}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Grid.Row="1">
+                        <TextBlock Text="{Binding ThursdayInfo}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="14"
+                                   FontWeight="Bold"
+                                   Foreground="#3F4ED7"/>
+                        <ListView ItemsSource="{Binding ThursdayTimetable}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Предмет"
+                                                    DisplayMemberBinding="{Binding Subject.SubjectTitle}"/>
+                                    <GridViewColumn Header="Аудитория"
+                                                    DisplayMemberBinding="{Binding Auditory.AuditoryNumber}"/>
+                                    <GridViewColumn Header="Время"
+                                                    DisplayMemberBinding="{Binding LessonTime}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
+                    
+                    <StackPanel Grid.Column="0" Grid.Row="2">
+                        <TextBlock Text="{Binding FridayInfo}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="14"
+                                   FontWeight="Bold"
+                                   Foreground="#3F4ED7"/>
+                        <ListView ItemsSource="{Binding FridayTimetable}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Предмет"
+                                                    DisplayMemberBinding="{Binding Subject.SubjectTitle}"/>
+                                    <GridViewColumn Header="Аудитория"
+                                                    DisplayMemberBinding="{Binding Auditory.AuditoryNumber}"/>
+                                    <GridViewColumn Header="Время"
+                                                    DisplayMemberBinding="{Binding LessonTime}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
+                    
+                    <StackPanel Grid.Column="1" Grid.Row="2">
+                        <TextBlock Text="{Binding SaturdayInfo}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="14"
+                                   FontWeight="Bold"
+                                   Foreground="#DC3030"/>
+                        <ListView ItemsSource="{Binding SaturdayTimetable}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Предмет"
+                                                    DisplayMemberBinding="{Binding Subject.SubjectTitle}"/>
+                                    <GridViewColumn Header="Аудитория"
+                                                    DisplayMemberBinding="{Binding Auditory.AuditoryNumber}"/>
+                                    <GridViewColumn Header="Время"
+                                                    DisplayMemberBinding="{Binding LessonTime}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>    
+                    </StackPanel>
+                    
+                    <StackPanel Grid.Column="0" Grid.Row="3">
+                        <TextBlock Text="{Binding SundayInfo}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="14"
+                                   FontWeight="Bold"
+                                   Foreground="#DC3030"/>
+                        <ListView ItemsSource="{Binding SundayTimetable}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Предмет"
+                                                    DisplayMemberBinding="{Binding Subject.SubjectTitle}"/>
+                                    <GridViewColumn Header="Аудитория"
+                                                    DisplayMemberBinding="{Binding Auditory.AuditoryNumber}"/>
+                                    <GridViewColumn Header="Время"
+                                                    DisplayMemberBinding="{Binding LessonTime}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+        
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+    </Grid>
+</UserControl>

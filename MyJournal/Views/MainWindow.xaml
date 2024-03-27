@@ -1,0 +1,67 @@
+﻿<Window x:Class="MyJournal.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:MyJournal.Views"
+        xmlns:vmodel="clr-namespace:MyJournal.ViewModels"
+        mc:Ignorable="d"
+        Title="Teacher" 
+        MinHeight="720" MinWidth="1280">
+    
+    <Window.DataContext>
+        <vmodel:MainWindowViewModel/>
+    </Window.DataContext>
+    
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#DADADA"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Margin" Value="15, 5, 3, 5"/>
+            <Setter Property="MinHeight" Value="44"/>
+            <Setter Property="FontFamily" Value="Inter"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid Grid.Column="1">
+            <Frame Content="{Binding CurrentUserControl}"
+                   NavigationUIVisibility="Hidden"/>
+        </Grid>
+        
+        <Grid Grid.Column="0" Background="#BFBFBF">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="12*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <StackPanel>
+                <Button Content="Главная"
+                        Command="{Binding MainButtonClick}"/>
+                
+                <Button Content="Расписание"
+                        Command="{Binding TimetableButtonClick}"/>
+                
+                <Button Content="Отметки"
+                        Command="{Binding MarksButtonClick}"/>
+                
+                <Button Content="Домашнее задание"
+                        Command="{Binding TasksButtonClick}"/>
+                
+                <Button Content="Профиль"
+                        Command="{Binding ProfileButtonClick}"/>
+                
+                <Button Content="Чат"
+                        Command="{Binding ChatButtonClick}"/>
+            </StackPanel>
+            
+            <TextBlock Grid.Row="1"/>
+        </Grid>
+        
+    </Grid>
+</Window>
