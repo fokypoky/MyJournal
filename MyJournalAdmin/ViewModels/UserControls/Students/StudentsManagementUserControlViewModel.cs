@@ -115,7 +115,7 @@ namespace MyJournalAdmin.ViewModels.UserControls.Students
 			using (var context = new ApplicationContext())
 			{
 				Students = new ObservableCollection<Student>(
-					new StudentsRepository(context).GetAllWithClassAndContacts()
+					new StudentsRepository(context).GetAllWithClassAndContactsNoTracking()
 						.OrderBy(s => s.Contacts?.Surname)
 				);
 			}

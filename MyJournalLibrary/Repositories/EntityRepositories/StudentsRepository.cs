@@ -50,4 +50,18 @@ public class StudentsRepository : EntityRepository<Student>
 	    return _context.Set<Student>()
 		    .FirstOrDefault(s => s.ContactsId == contact.Id);
     }
+
+    public void UpdateNoTracking(Student existingStudent, Student updatedStudent)
+    {
+	    _context.Set<Student>().Entry(existingStudent).CurrentValues.SetValues(updatedStudent);
+	    _context.SaveChanges();
+    }
+
+    public ICollection<Student> GetAllWithClassAndContactsNoTracking()
+    {
+	    return _context.Set<Student>().AsNoTracking()
+		    .Include(s => s.Contacts)
+		    .Include(s => s.Class)
+		    .ToList();
+	}
 }

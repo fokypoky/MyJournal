@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +23,7 @@ namespace MyJournalAdmin.ViewModels.Windows.Students
 	{
 		private INotifier _notifier;
 		private Contact _contacts;
-		private Contact _previousContact;
+		private Student _previousStudent;
 
 		private string[] _genders = {"М", "Ж"};
 		
@@ -112,7 +113,43 @@ namespace MyJournalAdmin.ViewModels.Windows.Students
 
 		private void UpdateStudent(object parameter)
 		{
+			if (!IsContactsValid(Contacts) || SelectedClass is null)
+			{
+				_notifier.Notify("Указаны не все данные ученика");
+				return;
+			}
 
+			using (var context = new ApplicationContext())
+			{
+				var contactsRepository = new ContactsRepository(context);
+				var studentsRepository = new StudentsRepository(context);
+
+				if (contactsRepository.IsEmailExists(Contacts.Email) && contactsRepository.GetEmailById(Contacts.Id) != Contacts.Email)
+				{
+					_notifier.Notify("E-mail уже используется");
+					return;
+				}
+
+				if (contactsRepository.IsPhoneNumberExists(Contacts.PhoneNumber) && contactsRepository.GetPhoneNumberById(Contacts.Id) != Contacts.PhoneNumber)
+				{
+					_notifier.Notify("Номер телефона уже используется");
+					return;
+				}
+
+				contactsRepository.Update(Contacts);
+
+				// если изменился класс
+				var student = studentsRepository.GetByContacts(Contacts);
+				if (SelectedClass.Id != student.ClassId)
+				{
+					student.Class = SelectedClass;
+					student.ClassId = SelectedClass.Id;
+
+					studentsRepository.UpdateNoTracking(_previousStudent, student);
+				}
+
+				_notifier.Notify("Ученик обновлен");
+			}
 		}
 
 		private void AddParent(object parameter)
@@ -202,6 +239,7 @@ namespace MyJournalAdmin.ViewModels.Windows.Students
 			{
 				var studentMessage = (StudentToUpdateMessage)e;
 
+				_previousStudent = studentMessage.Student;
 				Contacts = studentMessage.Student.Contacts;
 
 				using (var context = new ApplicationContext())
@@ -227,7 +265,6 @@ namespace MyJournalAdmin.ViewModels.Windows.Students
 			_contacts = new Contact();
 			_notifier = new MessageBoxNotifier();
 			ParentsContacts = new();
-			_previousContact = new Contact();
 		}
 	}
 }
