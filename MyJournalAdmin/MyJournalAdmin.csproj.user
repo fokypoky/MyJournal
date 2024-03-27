@@ -26,6 +26,9 @@
     <Compile Update="Views\Windows\Auditories\AuditoryUpdatingWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Windows\Classes\AddNewClassWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Windows\Employee\AddNewEmployeeWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -83,6 +86,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Windows\Auditories\AuditoryUpdatingWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Windows\Classes\AddNewClassWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Windows\Employee\AddNewEmployeeWindow.xaml">

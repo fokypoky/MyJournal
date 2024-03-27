@@ -21,6 +21,17 @@ public class EmployeesRepository : EntityRepository<Employee>
 	        );
     }
 
+    public ICollection<Employee> GetFreeClassEmployeesWithContacts()
+    {
+	    return _context.Set<Employee>()
+		    .Where(e => !_context.Set<Class>()
+			    .Where(c => c.Leader != null)
+			    .Select(c => c.Leader)
+			    .Contains(e))
+		    .Include(e => e.Contacts)
+		    .ToList();
+    }
+
     public void AddSubjectToEmployee(Employee employee, Subject subject)
     {
 	    _context.Set<EmployeeSubject>()

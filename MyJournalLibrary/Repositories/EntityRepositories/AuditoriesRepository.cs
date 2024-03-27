@@ -21,10 +21,12 @@ public class AuditoriesRepository : EntityRepository<Auditory>
 	        .ToList();
     }
 
-    public ICollection<Auditory> GetNotInRange(List<Auditory> auditories)
+    public ICollection<Auditory> GetFreeAuditories()
     {
-        return _context.Set<Auditory>()
-	        .Where(a => !auditories.Contains(a))
-	        .ToList();
+	    return _context.Set<Auditory>()
+		    .Where(a => !_context.Set<Class>()
+			    .Where(c => c.Auditory != null)
+			    .Select(c => c.Auditory).Contains(a))
+		    .ToList();
     }
 }

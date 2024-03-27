@@ -1,11 +1,14 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using MyJournalAdmin.Infrastructure.Commands;
 using MyJournalAdmin.Infrastructure.Repositories;
+using MyJournalAdmin.Models.Messenging.MessageTypes;
 using MyJournalAdmin.ViewModels.Base;
 using MyJournalAdmin.Views.Notifiers.Implementation;
 using MyJournalAdmin.Views.Notifiers.Interfaces;
+using MyJournalAdmin.Views.Windows.Classes;
 using MyJournalLibrary.Entities;
 using MyJournalLibrary.Repositories.EntityRepositories;
 
@@ -51,7 +54,10 @@ namespace MyJournalAdmin.ViewModels.UserControls.Classes
 
 		#region Command methods
 
-		private void AddClass(object parameter) { }
+		private void AddClass(object parameter)
+		{
+			new AddNewClassWindow().Show();
+		}
 
 		private void RemoveClass(object parameter)
 		{
@@ -99,6 +105,15 @@ namespace MyJournalAdmin.ViewModels.UserControls.Classes
 		}
 
 		#endregion
+
+		private void OnMessageReceived(object? sender, EventArgs e)
+		{
+			if (e is NewClassMessage)
+			{
+				var classMessage = (NewClassMessage)e;
+				Classes.Add(classMessage.Class);
+			}
+		}
 
 		public ClassesManagementUserControlViewModel()
 		{

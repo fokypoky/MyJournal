@@ -9,6 +9,12 @@ public class ClassRepository : EntityRepository<Class>
     {
     }
 
+    public bool IsClassNumberExists(string classNumber)
+    {
+	    return _context.Set<Class>()
+		    .FirstOrDefault(c => c.ClassNumber == classNumber) is not null;
+    }
+
     public ICollection<Class> GetAllWithLeaderAndAuditory()
     {
         return _context.Set<Class>()
