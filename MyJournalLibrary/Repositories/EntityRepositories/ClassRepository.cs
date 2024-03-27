@@ -9,6 +9,12 @@ public class ClassRepository : EntityRepository<Class>
     {
     }
 
+    public void UpdateNoTracked(Class existingClass, Class updatedClass)
+    {
+	    _context.Set<Class>().Entry(existingClass).CurrentValues.SetValues(updatedClass);
+	    _context.SaveChanges();
+	}
+
     public bool IsClassNumberExists(string classNumber)
     {
 	    return _context.Set<Class>()

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Input;
 using MyJournalAdmin.Infrastructure.Commands;
 using MyJournalAdmin.Infrastructure.Repositories;
+using MyJournalAdmin.Models.Messenging;
 using MyJournalAdmin.Models.Messenging.MessageTypes;
 using MyJournalAdmin.ViewModels.Base;
 using MyJournalAdmin.Views.Notifiers.Implementation;
@@ -101,7 +102,14 @@ namespace MyJournalAdmin.ViewModels.UserControls.Classes
 
 		private void UpdateClass(object parameter)
 		{
-			
+			if (SelectedClass is null)
+			{
+				_notifier.Notify("Класс не выбран");
+				return;
+			}
+
+			new UpdateClassWindow().Show();
+			WindowMessenger.OnMessageSend(new ClassToUpdateMessage() { Class = SelectedClass});
 		}
 
 		#endregion
